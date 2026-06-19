@@ -308,7 +308,7 @@ nav {
 
 /* ── DIMENSIONS ── */
 /* ── PROFIL & DIMENSIONS ── */
-.profil-section { padding:80px 24px; display:flex; flex-direction:column; align-items:center; gap:24px; max-width:480px; margin:0 auto; }
+.profil-section { padding:80px 24px; display:flex; flex-direction:column; align-items:center; gap:24px; max-width:520px; margin:0 auto; }
 .profil-label { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#6366f1; text-align:center; }
 .profil-title { font-family:"Sora",sans-serif; font-size:clamp(26px,5vw,36px); font-weight:900; color:#fff; text-align:center; line-height:1.15; letter-spacing:-0.5px; }
 .profil-sub { font-size:13px; color:rgba(255,255,255,0.35); text-align:center; line-height:1.7; }
@@ -316,7 +316,7 @@ nav {
 
 /* Radar + card row */
 .profil-row { width:100%; display:flex; flex-direction:column; gap:14px; }
-.radar-wrap { width:100%; max-width:220px; margin:0 auto; }
+.radar-wrap { width:100%; max-width:300px; margin:0 auto; }
 .radar-wrap svg { width:100%; height:auto; display:block; }
 
 /* Profile card — simple horizontal */
@@ -831,7 +831,7 @@ footer {
   <div class="hero-content">
     <div class="hero-badge">✦ &nbsp;Développement personnel réinventé</div>
     <h1 class="hero-title">Reprends le contrôle<br>de <span>ton histoire.</span></h1>
-    <p class="hero-sub">Des parcours de 12 jours, 5 minutes par jour, pour comprendre ce qui te bloque et vraiment avancer.</p>
+    <p class="hero-sub">Des parcours de 12 jours, 5 minutes par jour, pour comprendre ce qui te bloque — et vraiment avancer.</p>
     <div class="hero-cta-wrap">
       <a href="#" class="hero-cta">Commencer gratuitement →</a>
       <div class="hero-meta">
@@ -1272,56 +1272,55 @@ footer {
 
   <div class="profil-row reveal">
 
-    <!-- Radar -->
+    <!-- Radar interactif -->
     <div class="radar-wrap">
-      <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+      <svg id="radarSvg" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" style="touch-action:none;">
+        <!-- Grid -->
         <circle cx="120" cy="120" r="95" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-        <circle cx="120" cy="120" r="70" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-        <circle cx="120" cy="120" r="46" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-        <circle cx="120" cy="120" r="23" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-        <line x1="120" y1="120" x2="120" y2="25" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-        <line x1="120" y1="120" x2="187" y2="53" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-        <line x1="120" y1="120" x2="215" y2="120" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-        <line x1="120" y1="120" x2="187" y2="187" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-        <line x1="120" y1="120" x2="120" y2="215" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-        <line x1="120" y1="120" x2="53" y2="187" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-        <line x1="120" y1="120" x2="25" y2="120" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-        <line x1="120" y1="120" x2="53" y2="53" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-        <!--
-          Clarté 4/4→r=95: (120,25)  Relations 3/4→r=71: (170,70)
-          Action 1/4→r=24: (144,120)  Émotion 2/4→r=47: (153,153)
-          Courage 2/4→r=47: (120,167)  Choix 2/4→r=47: (87,153)
-          Ancrage 3/4→r=71: (49,120)  Identité 3/4→r=71: (70,70)
-        -->
-        <polygon points="120,25 170,70 144,120 153,153 120,167 87,153 49,120 70,70"
-          fill="rgba(99,102,241,0.12)" stroke="rgba(99,102,241,0.4)" stroke-width="1.5" stroke-linejoin="round"/>
-        <!-- Dimension dots at actual value positions -->
-        <circle cx="120" cy="25" r="4" fill="#fda4af"/>
-        <circle cx="170" cy="70" r="3" fill="#67e8f9"/>
-        <circle cx="144" cy="120" r="3" fill="#5eead4"/>
-        <circle cx="153" cy="153" r="3" fill="#f9a8d4"/>
-        <circle cx="120" cy="167" r="3" fill="#fdba74"/>
-        <circle cx="87" cy="153" r="3" fill="#fde047"/>
-        <circle cx="49" cy="120" r="3" fill="#bef264"/>
-        <circle cx="70" cy="70" r="3" fill="#c4b5fd"/>
-        <!-- Labels -->
-        <text x="120" y="16" text-anchor="middle" fill="#fda4af" font-size="8" font-family="Inter" font-weight="700">Clarté</text>
-        <text x="200" y="52" text-anchor="start" fill="#67e8f9" font-size="8" font-family="Inter" font-weight="700">Relations</text>
+        <circle cx="120" cy="120" r="71" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+        <circle cx="120" cy="120" r="47" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+        <circle cx="120" cy="120" r="24" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+        <!-- Axes -->
+        <line x1="120" y1="120" x2="120" y2="25" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+        <line x1="120" y1="120" x2="187" y2="53" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+        <line x1="120" y1="120" x2="215" y2="120" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+        <line x1="120" y1="120" x2="187" y2="187" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+        <line x1="120" y1="120" x2="120" y2="215" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+        <line x1="120" y1="120" x2="53" y2="187" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+        <line x1="120" y1="120" x2="25" y2="120" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+        <line x1="120" y1="120" x2="53" y2="53" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+        <!-- Polygon dynamique -->
+        <polygon id="radarPolygon" fill="rgba(99,102,241,0.12)" stroke="rgba(99,102,241,0.4)" stroke-width="1.5" stroke-linejoin="round"/>
+        <!-- Labels fixes -->
+        <text x="120" y="13" text-anchor="middle" fill="#fda4af" font-size="8" font-family="Inter" font-weight="700">Clarté</text>
+        <text x="200" y="50" text-anchor="start" fill="#67e8f9" font-size="8" font-family="Inter" font-weight="700">Relations</text>
         <text x="224" y="124" text-anchor="start" fill="#5eead4" font-size="8" font-family="Inter" font-weight="700">Action</text>
-        <text x="194" y="204" text-anchor="start" fill="#f9a8d4" font-size="8" font-family="Inter" font-weight="700">Émotion</text>
-        <text x="120" y="232" text-anchor="middle" fill="#fdba74" font-size="8" font-family="Inter" font-weight="700">Courage</text>
-        <text x="46" y="204" text-anchor="end" fill="#fde047" font-size="8" font-family="Inter" font-weight="700">Choix</text>
+        <text x="196" y="208" text-anchor="start" fill="#f9a8d4" font-size="8" font-family="Inter" font-weight="700">Émotion</text>
+        <text x="120" y="234" text-anchor="middle" fill="#fdba74" font-size="8" font-family="Inter" font-weight="700">Courage</text>
+        <text x="44" y="208" text-anchor="end" fill="#fde047" font-size="8" font-family="Inter" font-weight="700">Choix</text>
         <text x="16" y="124" text-anchor="start" fill="#bef264" font-size="8" font-family="Inter" font-weight="700">Ancrage</text>
-        <text x="46" y="52" text-anchor="end" fill="#c4b5fd" font-size="8" font-family="Inter" font-weight="700">Identité</text>
+        <text x="44" y="50" text-anchor="end" fill="#c4b5fd" font-size="8" font-family="Inter" font-weight="700">Identité</text>
+        <!-- Points draggables -->
+        <circle id="dot0" r="7" fill="#fda4af" cursor="grab" style="filter:drop-shadow(0 0 4px #fda4af)"/>
+        <circle id="dot1" r="6" fill="#67e8f9" cursor="grab" style="filter:drop-shadow(0 0 4px #67e8f9)"/>
+        <circle id="dot2" r="6" fill="#5eead4" cursor="grab" style="filter:drop-shadow(0 0 4px #5eead4)"/>
+        <circle id="dot3" r="6" fill="#f9a8d4" cursor="grab" style="filter:drop-shadow(0 0 4px #f9a8d4)"/>
+        <circle id="dot4" r="6" fill="#fdba74" cursor="grab" style="filter:drop-shadow(0 0 4px #fdba74)"/>
+        <circle id="dot5" r="6" fill="#fde047" cursor="grab" style="filter:drop-shadow(0 0 4px #fde047)"/>
+        <circle id="dot6" r="6" fill="#bef264" cursor="grab" style="filter:drop-shadow(0 0 4px #bef264)"/>
+        <circle id="dot7" r="6" fill="#c4b5fd" cursor="grab" style="filter:drop-shadow(0 0 4px #c4b5fd)"/>
       </svg>
+      <div style="text-align:center;font-family:'Inter',sans-serif;font-size:11px;color:rgba(255,255,255,0.2);margin-top:6px;">
+        Glisse les points pour explorer
+      </div>
     </div>
 
-<!-- Profile card -->
-    <div class="profil-card-simple">
-      <div class="profil-card-simple-icon">🎯</div>
+    <!-- Profile card dynamique -->
+    <div class="profil-card-simple" id="profilCardSimple">
+      <div class="profil-card-simple-icon" id="profilIcon">🎯</div>
       <div class="profil-card-simple-body">
         <div class="profil-card-simple-tag">✦ Ton profil</div>
-        <div class="profil-card-simple-name">Le Stratège Silencieux</div>
+        <div class="profil-card-simple-name" id="profilName">Le Stratège Silencieux</div>
       </div>
     </div>
 
@@ -1571,6 +1570,136 @@ var dObs = new IntersectionObserver(function(entries){
 },{threshold:0.3});
 var dSection = document.querySelector('.demo-section');
 if(dSection) dObs.observe(dSection);
+</script>
+
+
+<script>
+// ── RADAR INTERACTIF ──
+var CX = 120, CY = 120, MAX_R = 95, MIN_R = 10;
+
+// 8 dimensions, angles en degrés depuis le haut, sens horaire
+var dims = [
+  { name:'Clarté',    angle:-90,  color:'#fda4af', val:0.95 },
+  { name:'Relations', angle:-45,  color:'#67e8f9', val:0.75 },
+  { name:'Action',    angle:0,    color:'#5eead4', val:0.25 },
+  { name:'Émotion',   angle:45,   color:'#f9a8d4', val:0.50 },
+  { name:'Courage',   angle:90,   color:'#fdba74', val:0.50 },
+  { name:'Choix',     angle:135,  color:'#fde047', val:0.50 },
+  { name:'Ancrage',   angle:180,  color:'#bef264', val:0.75 },
+  { name:'Identité',  angle:-135, color:'#c4b5fd', val:0.75 }
+];
+
+// 28 profils selon les 2 dimensions dominantes
+var profils = {
+  'Clarté-Relations':   { name:'Le Diplomate Lucide',     icon:'🌊' },
+  'Clarté-Action':      { name:'Le Stratège Décisif',     icon:'⚡' },
+  'Clarté-Émotion':     { name:'L\'Analyste Sensible',    icon:'🔍' },
+  'Clarté-Courage':     { name:'Le Pionnier Conscient',   icon:'🏔️' },
+  'Clarté-Choix':       { name:'Le Stratège Silencieux',  icon:'🎯' },
+  'Clarté-Ancrage':     { name:'Le Sage Ancré',           icon:'🌲' },
+  'Clarté-Identité':    { name:'L\'Architecte de Soi',    icon:'🏛️' },
+  'Relations-Action':   { name:'Le Catalyseur',           icon:'🔥' },
+  'Relations-Émotion':  { name:'Le Lien Vivant',          icon:'💫' },
+  'Relations-Courage':  { name:'Le Bâtisseur de Ponts',   icon:'🌉' },
+  'Relations-Choix':    { name:'Le Connecteur',           icon:'🕸️' },
+  'Relations-Ancrage':  { name:'Le Gardien du Lien',      icon:'🤝' },
+  'Relations-Identité': { name:'L\'Empathe Affirmé',      icon:'💎' },
+  'Action-Émotion':     { name:'L\'Élan Passionné',       icon:'🌊' },
+  'Action-Courage':     { name:'Le Funambule',            icon:'🎪' },
+  'Action-Choix':       { name:'L\'Entrepreneur Intérieur',icon:'🚀' },
+  'Action-Ancrage':     { name:'Le Bâtisseur',            icon:'🔨' },
+  'Action-Identité':    { name:'L\'Acteur de Sa Vie',     icon:'🎭' },
+  'Émotion-Courage':    { name:'Le Cœur Courageux',       icon:'❤️‍🔥' },
+  'Émotion-Choix':      { name:'L\'Intuitif',             icon:'🌀' },
+  'Émotion-Ancrage':    { name:'Le Gardien Sensible',     icon:'🍃' },
+  'Émotion-Identité':   { name:'L\'Artiste de l\'Âme',   icon:'🎨' },
+  'Courage-Choix':      { name:'L\'Explorateur',          icon:'🧭' },
+  'Courage-Ancrage':    { name:'Le Roc Courageux',        icon:'⛰️' },
+  'Courage-Identité':   { name:'L\'Affirmatif',           icon:'🦁' },
+  'Choix-Ancrage':      { name:'Le Décideur Stable',      icon:'⚖️' },
+  'Choix-Identité':     { name:'L\'Auteur de Sa Vie',     icon:'✍️' },
+  'Ancrage-Identité':   { name:'La Racine Profonde',      icon:'🌿' }
+};
+
+function getPoint(dim) {
+  var rad = dim.angle * Math.PI / 180;
+  var r = MIN_R + dim.val * (MAX_R - MIN_R);
+  return { x: CX + r * Math.cos(rad), y: CY + r * Math.sin(rad) };
+}
+
+function updatePolygon() {
+  var pts = dims.map(getPoint);
+  var poly = pts.map(function(p){ return p.x.toFixed(1)+','+p.y.toFixed(1); }).join(' ');
+  document.getElementById('radarPolygon').setAttribute('points', poly);
+  pts.forEach(function(p, i) {
+    var dot = document.getElementById('dot'+i);
+    dot.setAttribute('cx', p.x.toFixed(1));
+    dot.setAttribute('cy', p.y.toFixed(1));
+  });
+  updateProfil();
+}
+
+function updateProfil() {
+  // Find top 2 dimensions
+  var sorted = dims.slice().sort(function(a,b){ return b.val - a.val; });
+  var d1 = sorted[0].name, d2 = sorted[1].name;
+  var key = d1+'-'+d2;
+  var p = profils[key] || profils[d2+'-'+d1];
+  if (!p) p = { name: d1 + ' & ' + d2, icon: '✨' };
+  document.getElementById('profilIcon').textContent = p.icon;
+  document.getElementById('profilName').textContent = p.name;
+  // Update card border color
+  document.getElementById('profilCardSimple').style.borderColor = sorted[0].color + '40';
+}
+
+// Drag logic
+var dragging = null;
+
+function projectOnAxis(dim, mx, my) {
+  var rad = dim.angle * Math.PI / 180;
+  var dx = mx - CX, dy = my - CY;
+  // Project mouse onto axis
+  var proj = dx * Math.cos(rad) + dy * Math.sin(rad);
+  return Math.max(MIN_R, Math.min(MAX_R, proj));
+}
+
+function getSVGPoint(svg, e) {
+  var rect = svg.getBoundingClientRect();
+  var clientX = e.touches ? e.touches[0].clientX : e.clientX;
+  var clientY = e.touches ? e.touches[0].clientY : e.clientY;
+  var scaleX = 240 / rect.width;
+  var scaleY = 240 / rect.height;
+  return { x: (clientX - rect.left) * scaleX, y: (clientY - rect.top) * scaleY };
+}
+
+var svg = document.getElementById('radarSvg');
+
+for (var i = 0; i < 8; i++) {
+  (function(idx) {
+    var dot = document.getElementById('dot'+idx);
+    dot.addEventListener('mousedown', function(e){ dragging = idx; e.preventDefault(); });
+    dot.addEventListener('touchstart', function(e){ dragging = idx; }, {passive:true});
+  })(i);
+}
+
+document.addEventListener('mousemove', function(e) {
+  if (dragging === null) return;
+  var pt = getSVGPoint(svg, e);
+  var r = projectOnAxis(dims[dragging], pt.x, pt.y);
+  dims[dragging].val = (r - MIN_R) / (MAX_R - MIN_R);
+  updatePolygon();
+});
+document.addEventListener('touchmove', function(e) {
+  if (dragging === null) return;
+  var pt = getSVGPoint(svg, e);
+  var r = projectOnAxis(dims[dragging], pt.x, pt.y);
+  dims[dragging].val = (r - MIN_R) / (MAX_R - MIN_R);
+  updatePolygon();
+}, {passive:true});
+document.addEventListener('mouseup', function(){ dragging = null; });
+document.addEventListener('touchend', function(){ dragging = null; });
+
+updatePolygon();
 </script>
 
 </body>
