@@ -106,27 +106,6 @@ body {
   .waitlist-btn { width:100%; }
 }
 
-
-/* ── COUNTDOWN ── */
-.countdown {
-  display:flex; gap:20px; justify-content:center;
-  margin-bottom:28px;
-}
-.countdown-block {
-  display:flex; flex-direction:column; align-items:center; gap:6px;
-}
-.countdown-num {
-  font-family:"Sora",sans-serif; font-size:38px; font-weight:900;
-  color:rgba(255,255,255,0.35); line-height:1;
-}
-.countdown-label {
-  font-size:10px; font-weight:600; letter-spacing:1.5px;
-  text-transform:uppercase; color:rgba(255,255,255,0.15);
-}
-.countdown-sep {
-  font-size:32px; color:rgba(255,255,255,0.08);
-  font-weight:300; align-self:flex-start; margin-top:2px;
-}
   
 /* ── SCROLL REVEAL ── */
 .reveal {
@@ -2018,29 +1997,6 @@ function setupWaitlist(formId, successId) {
 }
 
 
-// Compte à rebours — 14 juillet 2026
-function updateCountdown() {
-  var target = new Date('2026-07-14T00:00:00').getTime();
-  var now = new Date().getTime();
-  var diff = target - now;
-
-  if (diff <= 0) {
-    document.getElementById('countdown').style.display = 'none';
-    return;
-  }
-
-  var days  = Math.floor(diff / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var mins  = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-  var secs  = Math.floor((diff % (1000 * 60)) / 1000);
-
-  document.getElementById('cdDays').textContent  = String(days).padStart(2,'0');
-  document.getElementById('cdHours').textContent = String(hours).padStart(2,'0');
-  document.getElementById('cdMins').textContent  = String(mins).padStart(2,'0');
-  document.getElementById('cdSecs').textContent  = String(secs).padStart(2,'0');
-}
-updateCountdown();
-setInterval(updateCountdown, 1000);
 
 setupWaitlist('waitlistForm1', 'waitlistSuccess1');
 setupWaitlist('waitlistForm2', 'waitlistSuccess2');
