@@ -3,7 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Saga — Reprends le contrôle de ton histoire</title>
+<title>Saga App développement personnel | 12 jours, 5 min/jour</title>
+<meta name="description" content="Saga est l'app de développement personnel pour les 18-30 ans. Des carnets de 12 jours ciblés sur tes blocages réels : anxiété, relations, confiance en soi. 5 minutes par jour. Commence gratuitement.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mysaga.fr/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mysaga.fr/">
+<meta property="og:title" content="Saga Comprends qui tu es. Avance pour de vrai.">
+<meta property="og:description" content="Des parcours de 12 jours, 5 minutes par jour, pour comprendre ce qui te bloque et vraiment avancer. Développement personnel pour les 18-30 ans.">
+<meta property="og:image" content="https://mysaga.fr/images/og-image.png">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Saga">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Saga Comprends qui tu es. Avance pour de vrai.">
+<meta name="twitter:description" content="Des parcours de 12 jours, 5 minutes par jour, pour comprendre ce qui te bloque et vraiment avancer.">
+<meta name="twitter:image" content="https://mysaga.fr/images/og-image.png">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -25,6 +47,92 @@ body {
   font-family:"Inter",sans-serif;
   overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
+}
+
+
+/* ── FORMULAIRE LISTE D'ATTENTE ── */
+.waitlist-form {
+  display:flex;
+  gap:10px;
+  max-width:460px;
+  margin:0 auto;
+  width:100%;
+}
+.waitlist-input {
+  flex:1;
+  padding:14px 18px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:12px;
+  font-family:"Inter",sans-serif;
+  font-size:15px;
+  color:#fff;
+  outline:none;
+  transition:border-color 0.2s;
+}
+.waitlist-input::placeholder { color:rgba(255,255,255,0.3); }
+.waitlist-input:focus { border-color:rgba(99,102,241,0.6); background:rgba(255,255,255,0.08); }
+.waitlist-btn {
+  padding:14px 22px;
+  background:linear-gradient(90deg,#6366f1,#7C3AED);
+  border:none;
+  border-radius:12px;
+  font-family:"Sora",sans-serif;
+  font-size:14px;
+  font-weight:700;
+  color:#fff;
+  cursor:pointer;
+  white-space:nowrap;
+  transition:transform 0.2s, box-shadow 0.2s;
+  box-shadow:0 4px 14px rgba(99,102,241,0.2);
+}
+.waitlist-btn:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(99,102,241,0.3); }
+.waitlist-btn:disabled { opacity:0.6; cursor:default; transform:none; }
+.waitlist-success {
+  display:none;
+  font-family:"Inter",sans-serif;
+  font-size:15px;
+  color:#bef264;
+  text-align:center;
+  padding:14px;
+  background:rgba(190,242,100,0.08);
+  border:1px solid rgba(190,242,100,0.2);
+  border-radius:12px;
+  max-width:460px;
+  margin:0 auto;
+}
+@media(max-width:480px) {
+  .waitlist-form { flex-direction:column; }
+  .waitlist-btn { width:100%; }
+}
+
+
+/* ── COUNTDOWN ── */
+.countdown {
+  display:flex; gap:16px; justify-content:center;
+  margin-bottom:28px;
+}
+.countdown-block {
+  display:flex; flex-direction:column; align-items:center; gap:4px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:12px;
+  padding:14px 18px;
+  min-width:68px;
+}
+.countdown-num {
+  font-family:"Sora",sans-serif; font-size:32px; font-weight:900;
+  color:#fff; line-height:1;
+  background:linear-gradient(135deg,#a5b4fc,#7c3aed);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+}
+.countdown-label {
+  font-family:"Inter",sans-serif; font-size:10px; font-weight:600;
+  color:rgba(255,255,255,0.35); text-transform:uppercase; letter-spacing:1px;
+}
+@media(max-width:480px) {
+  .countdown-block { padding:10px 12px; min-width:54px; }
+  .countdown-num { font-size:24px; }
 }
 
 /* ── SCROLL REVEAL ── */
@@ -147,7 +255,7 @@ nav {
 }
 
 .hero-sub {
-  font-size:clamp(15px,2vw,18px); color:rgba(255,255,255,0.35);
+  font-size:clamp(15px,2vw,18px); color:rgba(255,255,255,0.5);
   line-height:1.7; margin-bottom:40px;
   max-width:520px; margin-left:auto; margin-right:auto;
   animation:fadeUp 0.7s ease 0.6s both;
@@ -178,7 +286,7 @@ nav {
 
 /* ── TENSION SECTION ── */
 .tension {
-  padding:120px 24px;
+  padding:100px 24px;
   text-align:center;
   position:relative; overflow:hidden;
   min-height:380px;
@@ -228,7 +336,7 @@ nav {
 
 /* ── STAT SECTION ── */
 .stat-section {
-  padding:80px 24px;
+  padding:100px 24px;
   display:flex; justify-content:center;
 }
 .stat-inner {
@@ -255,11 +363,11 @@ nav {
   margin-bottom:12px;
 }
 .stat-divider { width:40px;height:1px;background:rgba(255,255,255,0.1);margin:0 auto 16px; }
-.stat-label { font-size:15px; color:rgba(255,255,255,0.35); line-height:1.6; }
+.stat-label { font-size:15px; color:rgba(255,255,255,0.5); line-height:1.6; }
 
 /* ── HOW IT WORKS ── */
 .how {
-  padding:120px 20px;
+  padding:100px 20px;
   max-width:960px; margin:0 auto;
   width:100%; box-sizing:border-box;
 }
@@ -283,7 +391,7 @@ nav {
 /* ── RESPONSIVE MOBILE ── */
 @media(max-width:600px) {
 
-  /* Nav — cache le CTA, garde juste le logo */
+  /* Nav  cache le CTA, garde juste le logo */
   nav { padding:14px 20px; }
   .nav-logo { font-size:15px; }
   .nav-cta { display:none; }
@@ -296,16 +404,16 @@ nav {
   .hero-cta-wrap { flex-direction:column; align-items:stretch; gap:10px; }
   .hero-meta { flex-direction:column; gap:8px; align-items:center; }
 
-  /* How — 1 colonne sur mobile */
+  /* How  1 colonne sur mobile */
   .how-steps { grid-template-columns:1fr; gap:14px; }
 
-  /* Carnets — 1 colonne sur mobile */
-  .carnets-grid { grid-template-columns:1fr; gap:14px; }
+  /* Carnets  1 colonne sur mobile */
+  .carnets-grid { grid-template-columns:repeat(2,1fr); gap:12px; }
 
   /* Parcours section */
   .parcours-grid, .formats-grid { grid-template-columns:1fr; gap:12px; }
 
-  /* Témoignages — 1 colonne */
+  /* Témoignages  1 colonne */
   .testimonials { grid-template-columns:1fr; }
 
   /* CTA section */
@@ -323,7 +431,7 @@ nav {
 
 @media(max-width:480px) {
   .hero-title { font-size:28px; }
-  .carnets-grid { grid-template-columns:1fr; }
+  .carnets-grid { grid-template-columns:repeat(2,1fr); }
   .how-steps { grid-template-columns:1fr; }
 }
 
@@ -346,23 +454,23 @@ nav {
   overflow:hidden; flex-shrink:0;
 }
 .how-step-num {
-  font-family:"Inter",sans-serif; font-size:10px; font-weight:600;
-  letter-spacing:2px; text-transform:uppercase; color:#6366f1;
+  font-family:"Sora",sans-serif; font-size:48px; font-weight:900;
+  letter-spacing:-2px; color:rgba(99,102,241,0.25); line-height:1; margin-bottom:8px;
 }
 .how-step-title {
   font-family:"Sora",sans-serif; font-size:16px; font-weight:800;
   color:#fff; line-height:1.3;
 }
 .how-step-desc {
-  font-size:13px; color:rgba(255,255,255,0.35); line-height:1.6;
+  font-size:13px; color:rgba(255,255,255,0.5); line-height:1.6;
 }
 
 /* ── DIMENSIONS ── */
 /* ── PROFIL & DIMENSIONS ── */
-.profil-section { padding:80px 24px; display:flex; flex-direction:column; align-items:center; gap:24px; max-width:520px; margin:0 auto; }
+.profil-section { padding:100px 24px; display:flex; flex-direction:column; align-items:center; gap:24px; max-width:520px; margin:0 auto; }
 .profil-label { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#6366f1; text-align:center; }
 .profil-title { font-family:"Sora",sans-serif; font-size:clamp(26px,5vw,36px); font-weight:900; color:#fff; text-align:center; line-height:1.15; letter-spacing:-0.5px; }
-.profil-sub { font-size:13px; color:rgba(255,255,255,0.35); text-align:center; line-height:1.7; }
+.profil-sub { font-size:13px; color:rgba(255,255,255,0.5); text-align:center; line-height:1.7; }
 .profil-cta-btn { padding:15px 28px; background:linear-gradient(90deg,#4F46E5,#7C3AED); border-radius:14px; font-family:"Sora",sans-serif; font-size:14px; font-weight:700; color:#fff; text-decoration:none; box-shadow:0 6px 20px rgba(79,70,229,0.35); }
 
 /* Radar + card row */
@@ -370,7 +478,7 @@ nav {
 .radar-wrap { width:100%; max-width:300px; margin:0 auto; }
 .radar-wrap svg { width:100%; height:auto; display:block; }
 
-/* Profile card — simple horizontal */
+/* Profile card  simple horizontal */
 .profil-card-simple {
   width:100%;
   background:#141420;
@@ -399,7 +507,7 @@ nav {
 
 /* ── CARNETS ── */
 .carnets {
-  padding:120px 24px;
+  padding:100px 24px;
   max-width:960px; margin:0 auto;
 }
 .carnets-label {
@@ -415,7 +523,7 @@ nav {
   letter-spacing:-0.5px; margin-bottom:12px;
 }
 .carnets-sub {
-  font-size:15px; color:rgba(255,255,255,0.35);
+  font-size:15px; color:rgba(255,255,255,0.5);
   text-align:center; margin-bottom:48px; line-height:1.6;
 }
 .carnets-grid {
@@ -425,14 +533,11 @@ nav {
   width:100%;
   margin:0 auto;
 }
-@media(min-width:480px) {
-  .carnets-grid { grid-template-columns:repeat(2,1fr); max-width:100%; }
-}
 @media(min-width:720px) {
   .carnets-grid { grid-template-columns:repeat(4,1fr); }
 }
 
-/* Card Netflix style — image plein écran + overlay texte */
+/* Card Netflix style  image plein écran + overlay texte */
 .carnet-item {
   position:relative;
   border-radius:16px;
@@ -498,7 +603,7 @@ nav {
 }
 .carnet-item-meta {
   font-family:"Inter",sans-serif; font-size:10px;
-  color:rgba(255,255,255,0.35);
+  color:rgba(255,255,255,0.5);
 }
 
 /* ── SOCIAL PROOF ── */
@@ -542,7 +647,7 @@ nav {
   font-size:13px; font-weight:700; color:#fff;
 }
 .testimonial-meta {
-  font-size:11px; color:rgba(255,255,255,0.35);
+  font-size:11px; color:rgba(255,255,255,0.5);
 }
 
 /* ── FINAL CTA ── */
@@ -562,7 +667,7 @@ nav {
   margin-bottom:16px; position:relative; z-index:1;
 }
 .final-cta-sub {
-  font-size:16px; color:rgba(255,255,255,0.35);
+  font-size:16px; color:rgba(255,255,255,0.5);
   margin-bottom:40px; position:relative; z-index:1;
 }
 .final-cta-btn {
@@ -726,7 +831,7 @@ footer {
 .section-divider {
   width:100%; height:1px;
   background:linear-gradient(90deg,transparent,rgba(255,255,255,0.06),transparent);
-  margin:0 auto;
+  margin:40px auto;
 }
 
 /* Carnet dim labels */
@@ -748,10 +853,10 @@ footer {
 }
 
 /* ── DEMO SECTION ── */
-.demo-section { padding:80px 24px 60px; display:flex; flex-direction:column; align-items:center; }
+.demo-section { padding:100px 24px 80px; display:flex; flex-direction:column; align-items:center; }
 .demo-label-top { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#6366f1; text-align:center; margin-bottom:12px; }
 .demo-title { font-family:"Sora",sans-serif; font-size:32px; font-weight:900; color:#fff; text-align:center; line-height:1.15; letter-spacing:-0.5px; margin-bottom:14px; }
-.demo-sub { font-size:13px; color:rgba(255,255,255,0.35); text-align:center; margin-bottom:40px; line-height:1.6; }
+.demo-sub { font-size:13px; color:rgba(255,255,255,0.5); text-align:center; margin-bottom:40px; line-height:1.6; }
 .demo-phone-wrap { display:flex; flex-direction:column; align-items:center; gap:20px; }
 
 /* Phone */
@@ -860,7 +965,7 @@ footer {
 .parcours-gen-header { text-align:center; margin-bottom:52px; }
 .parcours-gen-label { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#6366f1; margin-bottom:14px; }
 .parcours-gen-title { font-family:"Sora",sans-serif; font-size:clamp(26px,5vw,36px); font-weight:900; line-height:1.15; letter-spacing:-0.5px; color:#fff; }
-.parcours-gen-sub { font-size:15px; color:rgba(255,255,255,0.35); margin-top:12px; line-height:1.7; }
+.parcours-gen-sub { font-size:15px; color:rgba(255,255,255,0.5); margin-top:12px; line-height:1.7; }
 .parcours-actes { display:flex; flex-direction:column; gap:0; position:relative; }
 .parcours-acte { display:flex; gap:20px; padding-bottom:0; }
 .parcours-acte-left { display:flex; flex-direction:column; align-items:center; flex-shrink:0; width:48px; }
@@ -883,9 +988,9 @@ footer {
 
 
 @media(max-width:559px) {
-  .carnets-grid { gap:10px; }
-  .carnet-item { aspect-ratio:16/9; border-radius:14px; }
-  .carnet-item-title { font-size:14px; }
+  .carnets-grid { grid-template-columns:repeat(2,1fr); gap:10px; }
+  .carnet-item { aspect-ratio:1/1; border-radius:14px; }
+  .carnet-item-title { font-size:13px; }
 }
 
 </style>
@@ -894,20 +999,20 @@ footer {
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">
-    <svg width="24" height="24" viewBox="0 0 72 72" fill="none">
+  <a href="/" class="nav-logo" aria-label="Saga - Accueil">
+    <svg width="24" height="24" viewBox="0 0 72 72" fill="none" aria-hidden="true" focusable="false">
       <path d="M36 10C36 10 24 18 24 29C24 37 29 41 36 41C43 41 48 37 48 29C48 18 36 10 36 10Z" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
       <path d="M36 41C36 41 24 47 24 56C24 63 29 66 36 66C43 66 48 63 48 56C48 47 36 41 36 41Z" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
     SAGA
   </a>
-  <a href="#" class="nav-cta">Commencer gratuitement →</a>
+  <a href="#carnets" class="nav-cta">Rejoindre la liste d'attente →</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-orbits">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-orbits" aria-hidden="true">
     <div class="horbit h1"><div class="hdot"></div></div>
     <div class="horbit h2"><div class="hdot"></div></div>
     <div class="horbit h3"><div class="hdot"></div></div>
@@ -918,17 +1023,27 @@ footer {
     <div class="horbit h8"><div class="hdot"></div></div>
   </div>
   <div class="hero-content">
-    <div class="hero-badge">✦ &nbsp;Développement personnel réinventé</div>
-    <h1 class="hero-title">Reprends le contrôle<br>de <span>ton histoire.</span></h1>
-    <p class="hero-sub">Des parcours de 12 jours, 5 minutes par jour, pour comprendre ce qui te bloque — et vraiment avancer.</p>
+    <div class="hero-badge">✦ &nbsp;Lancement le 14 juillet 2025</div>
+    <h1 class="hero-title">Comprends qui tu es.<br><span>Avance pour de vrai.</span></h1>
+    <p class="hero-sub">Des carnets de 12 jours, 5 minutes par jour, ciblés sur tes vrais blocages. Disponible le 14 juillet. Inscris-toi pour être notifié en avant-première.</p>
     <div class="hero-cta-wrap">
-      <a href="#" class="hero-cta">Commencer gratuitement →</a>
+      <div class="countdown" id="countdown">
+        <div class="countdown-block"><div class="countdown-num" id="cdDays">00</div><div class="countdown-label">Jours</div></div>
+        <div class="countdown-block"><div class="countdown-num" id="cdHours">00</div><div class="countdown-label">Heures</div></div>
+        <div class="countdown-block"><div class="countdown-num" id="cdMins">00</div><div class="countdown-label">Minutes</div></div>
+        <div class="countdown-block"><div class="countdown-num" id="cdSecs">00</div><div class="countdown-label">Secondes</div></div>
+      </div>
+      <form class="waitlist-form" id="waitlistForm1">
+        <input class="waitlist-input" type="email" name="email" placeholder="ton@email.com" required autocomplete="email"/>
+        <button class="waitlist-btn" type="submit">Rejoindre →</button>
+      </form>
+      <div class="waitlist-success" id="waitlistSuccess1">🎉 C'est noté ! Tu seras parmi les premiers le 14 juillet.</div>
       <div class="hero-meta">
         <span>Gratuit</span>
         <div class="hmeta-dot"></div>
-        <span>Sans engagement</span>
+        <span>Avant-première</span>
         <div class="hmeta-dot"></div>
-        <span>5 min / jour</span>
+        <span>Sans engagement</span>
       </div>
     </div>
   </div>
@@ -970,7 +1085,7 @@ footer {
   <div class="stat-inner">
     <h2 class="stat-title reveal">T'es pas seul·e<br>à ressentir ça.</h2>
     <div class="stat-card reveal reveal-delay-2">
-      <div class="stat-num" id="statCounter">0%</div>
+      <div class="stat-num" id="statCounter" aria-live="polite" style="opacity:0;">0%</div>
       <div class="stat-divider"></div>
       <div class="stat-label">des utilisateurs Saga ressentaient<br>exactement la même chose.</div>
     </div>
@@ -982,12 +1097,12 @@ footer {
 <!-- HOW IT WORKS -->
 <section class="how">
   <div class="how-label reveal">Comment ça marche</div>
-  <h2 class="how-title reveal">Saga fonctionne autrement.</h2>
+  <h2 class="how-title reveal">Concret. Ciblé.<br>5 minutes qui changent quelque chose.</h2>
   <div class="how-steps">
 
     <div class="how-step reveal reveal-delay-1">
       <div class="how-step-illus">
-        <svg width="120" height="120" viewBox="0 0 180 180" fill="none">
+        <svg width="120" height="120" viewBox="0 0 180 180" fill="none" aria-hidden="true" focusable="false">
           <circle cx="90" cy="90" r="24" stroke="rgba(139,92,246,0.25)" stroke-width="1"/>
           <circle cx="90" cy="90" r="44" stroke="rgba(139,92,246,0.15)" stroke-width="1"/>
           <circle cx="90" cy="90" r="64" stroke="rgba(139,92,246,0.08)" stroke-width="1"/>
@@ -1004,13 +1119,13 @@ footer {
         </svg>
       </div>
       <div class="how-step-num">01</div>
-      <div class="how-step-title">Découvre ton profil</div>
-      <div class="how-step-desc">Un quiz rapide pour comprendre qui tu es — sur 8 dimensions clés.</div>
+      <div class="how-step-title">Tu te situes sur 8 dimensions</div>
+      <div class="how-step-desc">Un quiz court pour cartographier où tu en es : action, courage, identité, relations… Pas un test de personnalité générique. Une vraie boussole.</div>
     </div>
 
     <div class="how-step reveal reveal-delay-2">
       <div class="how-step-illus">
-        <svg width="140" height="100" viewBox="0 0 200 150" fill="none">
+        <svg width="140" height="100" viewBox="0 0 200 150" fill="none" aria-hidden="true" focusable="false">
           <rect x="10" y="8" width="180" height="134" rx="16" fill="#1f1f2e" stroke="rgba(99,102,241,0.25)" stroke-width="1.2"/>
           <rect x="10" y="8" width="180" height="34" rx="16" fill="rgba(99,102,241,0.15)"/>
           <rect x="10" y="30" width="180" height="12" fill="rgba(99,102,241,0.15)"/>
@@ -1033,13 +1148,13 @@ footer {
         </svg>
       </div>
       <div class="how-step-num">02</div>
-      <div class="how-step-title">Suis ton parcours</div>
-      <div class="how-step-desc">12 jours, 5 minutes par jour. Choisi selon ton profil. Pas au hasard.</div>
+      <div class="how-step-title">Saga te recommande le bon carnet</div>
+      <div class="how-step-desc">Parmi 8 carnets ciblés sur des blocages réels, Saga choisit celui qui correspond à ton profil. Pas un contenu universel. Le tien.</div>
     </div>
 
     <div class="how-step reveal reveal-delay-3">
       <div class="how-step-illus">
-        <svg width="140" height="100" viewBox="0 0 200 150" fill="none">
+        <svg width="140" height="100" viewBox="0 0 200 150" fill="none" aria-hidden="true" focusable="false">
           <rect x="10" y="10" width="120" height="36" rx="13" fill="#1f1f2e"/>
           <path d="M24 46 L10 60 L38 46Z" fill="#1f1f2e"/>
           <text x="70" y="26" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="9" font-family="Inter">Tu évites quelque chose</text>
@@ -1054,13 +1169,13 @@ footer {
         </svg>
       </div>
       <div class="how-step-num">03</div>
-      <div class="how-step-title">Passe à l'action</div>
-      <div class="how-step-desc">Des contenus courts et interactifs ancrés dans ta vraie vie.</div>
+      <div class="how-step-title">5 min par jour, pas une de plus</div>
+      <div class="how-step-desc">Conversations, quiz, exercices guidés, défis concrets. Chaque jour une chose à comprendre, une chose à faire. Court, interactif, ancré dans ta vraie vie.</div>
     </div>
 
     <div class="how-step reveal reveal-delay-4">
       <div class="how-step-illus">
-        <svg width="120" height="120" viewBox="0 0 200 160" fill="none">
+        <svg width="120" height="120" viewBox="0 0 200 160" fill="none" aria-hidden="true" focusable="false">
           <circle cx="90" cy="82" r="34" fill="url(#og3)" stroke="rgba(0,220,220,0.35)" stroke-width="1.5"/>
           <circle cx="90" cy="82" r="52" stroke="rgba(0,220,220,0.12)" stroke-width="1"/>
           <circle cx="90" cy="30" r="6" fill="#5eead4"/>
@@ -1080,8 +1195,8 @@ footer {
         </svg>
       </div>
       <div class="how-step-num">04</div>
-      <div class="how-step-title">Vois ton évolution</div>
-      <div class="how-step-desc">Tes dimensions progressent. Tu changes, pour de vrai.</div>
+      <div class="how-step-title">Ton profil évolue pour de vrai</div>
+      <div class="how-step-desc">Chaque carnet terminé fait progresser tes dimensions. Tu vois où tu en étais, où tu es. Pas une suite infinie de contenus, une vraie progression.</div>
     </div>
 
   </div>
@@ -1095,7 +1210,7 @@ footer {
   <div class="parcours-gen-header">
     <div class="parcours-gen-label">Le parcours</div>
     <h2 class="parcours-gen-title">12 jours structurés<br>en 3 actes.</h2>
-    <p class="parcours-gen-sub">Chaque carnet suit la même architecture — du comprendre au faire.</p>
+    <p class="parcours-gen-sub">Chaque carnet suit la même architecture  du comprendre au faire.</p>
   </div>
   <div class="parcours-actes">
 
@@ -1107,7 +1222,7 @@ footer {
       <div class="parcours-acte-body">
         <div class="parcours-acte-num" style="color:#6366f1;">Acte 1 · Jours 1 à 4</div>
         <div class="parcours-acte-title">Comprendre.</div>
-        <div class="parcours-acte-desc">Avant de changer quoi que ce soit, tu regardes ce qui se passe vraiment. Tes mécanismes, tes schémas, les peurs derrière — sans te juger.</div>
+        <div class="parcours-acte-desc">Avant de changer quoi que ce soit, tu regardes ce qui se passe vraiment. Tes mécanismes, tes schémas, les peurs derrière  sans te juger.</div>
         <div class="parcours-acte-jours">
           <div class="parcours-jour-chip" style="color:#6366f1;border-color:rgba(99,102,241,0.25);">J1</div>
           <div class="parcours-jour-chip" style="color:#6366f1;border-color:rgba(99,102,241,0.25);">J2</div>
@@ -1125,7 +1240,7 @@ footer {
       <div class="parcours-acte-body">
         <div class="parcours-acte-num" style="color:#f9a8d4;">Acte 2 · Jours 5 à 8</div>
         <div class="parcours-acte-title">Prendre conscience.</div>
-        <div class="parcours-acte-desc">Tu vas plus loin — les croyances, les peurs profondes, ce que tu évites de voir. Pas pour souffrir. Pour te connaître.</div>
+        <div class="parcours-acte-desc">Tu vas plus loin  les croyances, les peurs profondes, ce que tu évites de voir. Pas pour souffrir. Pour te connaître.</div>
         <div class="parcours-acte-jours">
           <div class="parcours-jour-chip" style="color:#f9a8d4;border-color:rgba(249,168,212,0.25);">J5</div>
           <div class="parcours-jour-chip" style="color:#f9a8d4;border-color:rgba(249,168,212,0.25);">J6</div>
@@ -1157,13 +1272,13 @@ footer {
 
 
 <!-- CARNETS -->
-<section class="carnets">
+<section class="carnets" id="carnets">
   <div class="carnets-label">Les parcours</div>
   <h2 class="carnets-title">8 parcours pour<br>avancer.</h2>
   <p class="carnets-sub">Chaque carnet cible un blocage précis. 12 jours, 5 minutes par jour.</p>
   <div class="carnets-grid">
     <a class="carnet-item" href="saga_carnet_direction.html">
-      <img class="carnet-img" src="images/carnet-stagner.png" alt="Je regarde les autres avancer et moi je stagne"/>
+      <img class="carnet-img" src="images/carnet-stagner.png" alt="Je regarde les autres avancer et moi je stagne" width="400" height="225" loading="lazy"/>
       <div class="carnet-overlay"></div>
       <div class="carnet-content">
         <div class="carnet-item-dims"><span class="dim-label"><span class="dim-dot" style="background:#5eead4;box-shadow:0 0 5px #5eead4;"></span>Action</span><span class="dim-label"><span class="dim-dot" style="background:#fdba74;box-shadow:0 0 5px #fdba74;"></span>Courage</span></div>
@@ -1172,65 +1287,65 @@ footer {
       </div>
     </a>
     <a class="carnet-item" href="saga_carnet_personne.html">
-      <img class="carnet-img" src="images/carnet-choix.png" alt="J'ai peur de faire les mauvais choix"/>
+      <img class="carnet-img" src="images/carnet-choix.png" alt="J'ai peur de faire les mauvais choix" width="400" height="225" loading="lazy"/>
       <div class="carnet-overlay"></div>
       <div class="carnet-content">
-        <div class="carnet-item-dims"><span class="dim-label"><span class="dim-dot" style="background:#fda4af;box-shadow:0 0 5px #fda4af;"></span>Clarté</span><span class="dim-label"><span class="dim-dot" style="background:#c4b5fd;box-shadow:0 0 5px #c4b5fd;"></span>Identité</span></div>
+        <div class="carnet-item-dims"><span class="dim-label"><span class="dim-dot" style="background:#fde047;box-shadow:0 0 5px #fde047;"></span>Choix</span><span class="dim-label"><span class="dim-dot" style="background:#fda4af;box-shadow:0 0 5px #fda4af;"></span>Clarté</span></div>
         <div class="carnet-item-title">J'ai peur de faire les mauvais choix</div>
         <div class="carnet-item-meta">12 jours · 5 min / jour</div>
       </div>
     </a>
     <a class="carnet-item" href="saga_carnet_lancer.html">
-      <img class="carnet-img" src="images/carnet-comparaison.png" alt="Je me compare tout le temps aux autres"/>
+      <img class="carnet-img" src="images/carnet-comparaison.png" alt="Je me compare tout le temps aux autres" width="400" height="225" loading="lazy"/>
       <div class="carnet-overlay"></div>
       <div class="carnet-content">
-        <div class="carnet-item-dims"><span class="dim-label"><span class="dim-dot" style="background:#fdba74;box-shadow:0 0 5px #fdba74;"></span>Courage</span><span class="dim-label"><span class="dim-dot" style="background:#c4b5fd;box-shadow:0 0 5px #c4b5fd;"></span>Identité</span></div>
+        <div class="carnet-item-dims"><span class="dim-label"><span class="dim-dot" style="background:#67e8f9;box-shadow:0 0 5px #67e8f9;"></span>Relations</span><span class="dim-label"><span class="dim-dot" style="background:#fdba74;box-shadow:0 0 5px #fdba74;"></span>Courage</span></div>
         <div class="carnet-item-title">Je me compare tout le temps aux autres</div>
         <div class="carnet-item-meta">12 jours · 5 min / jour</div>
       </div>
     </a>
     <a class="carnet-item" href="template_carnet.html">
-      <img class="carnet-img" src="images/carnet-cerveau.png" alt="Mon cerveau ne s'arrête jamais"/>
+      <img class="carnet-img" src="images/carnet-cerveau.png" alt="Mon cerveau ne s'arrête jamais" width="400" height="225" loading="lazy"/>
       <div class="carnet-overlay"></div>
       <div class="carnet-content">
-        <div class="carnet-item-dims"><span class="dim-label"><span class="dim-dot" style="background:#f9a8d4;box-shadow:0 0 5px #f9a8d4;"></span>Émotion</span><span class="dim-label"><span class="dim-dot" style="background:#fda4af;box-shadow:0 0 5px #fda4af;"></span>Clarté</span></div>
+        <div class="carnet-item-dims"><span class="dim-label"><span class="dim-dot" style="background:#fda4af;box-shadow:0 0 5px #fda4af;"></span>Clarté</span><span class="dim-label"><span class="dim-dot" style="background:#f9a8d4;box-shadow:0 0 5px #f9a8d4;"></span>Émotion</span></div>
         <div class="carnet-item-title">Mon cerveau ne s'arrête jamais</div>
         <div class="carnet-item-meta">12 jours · 5 min / jour</div>
       </div>
     </a>
     <a class="carnet-item" href="saga_carnet_non.html">
-      <img class="carnet-img" src="images/carnet-oui-non.png" alt="Je dis oui alors que j'ai envie de dire non"/>
+      <img class="carnet-img" src="images/carnet-oui-non.png" alt="Je dis oui alors que j'ai envie de dire non" width="400" height="225" loading="lazy"/>
       <div class="carnet-overlay"></div>
       <div class="carnet-content">
-        <div class="carnet-item-dims"><span class="dim-label"><span class="dim-dot" style="background:#67e8f9;box-shadow:0 0 5px #67e8f9;"></span>Relations</span><span class="dim-label"><span class="dim-dot" style="background:#fdba74;box-shadow:0 0 5px #fdba74;"></span>Courage</span></div>
+        <div class="carnet-item-dims"><span class="dim-label"><span class="dim-dot" style="background:#bef264;box-shadow:0 0 5px #bef264;"></span>Ancrage</span><span class="dim-label"><span class="dim-dot" style="background:#67e8f9;box-shadow:0 0 5px #67e8f9;"></span>Relations</span></div>
         <div class="carnet-item-title">Je dis oui alors que j'ai envie de dire non</div>
         <div class="carnet-item-meta">12 jours · 5 min / jour</div>
       </div>
     </a>
     <a class="carnet-item" href="template_carnet.html">
-      <div class="carnet-placeholder" style="background:linear-gradient(160deg,#1e1a0a,#0a0a1e);"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="12" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><circle cx="20" cy="20" r="4" fill="rgba(255,255,255,0.05)"/></svg></div>
+      <img class="carnet-img" src="images/carnet-moi-meme.png" alt="Je n'ose pas être totalement moi-même" width="400" height="225" loading="lazy"/>
       <div class="carnet-overlay"></div>
       <div class="carnet-content">
         <div class="carnet-item-dims"><span class="dim-label"><span class="dim-dot" style="background:#c4b5fd;box-shadow:0 0 5px #c4b5fd;"></span>Identité</span><span class="dim-label"><span class="dim-dot" style="background:#fde047;box-shadow:0 0 5px #fde047;"></span>Choix</span></div>
-        <div class="carnet-item-title">J'ai peur quand je pense à l'avenir</div>
+        <div class="carnet-item-title">Je n'ose pas être totalement moi-même</div>
         <div class="carnet-item-meta">12 jours · 5 min / jour</div>
       </div>
     </a>
     <a class="carnet-item" href="template_carnet.html">
-      <div class="carnet-placeholder" style="background:linear-gradient(160deg,#0a1e0a,#0a0a1e);"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="12" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><circle cx="20" cy="20" r="4" fill="rgba(255,255,255,0.05)"/></svg></div>
+      <img class="carnet-img" src="images/carnet-accroche.png" alt="Je m'accroche à des personnes qui me font du mal" width="400" height="225" loading="lazy"/>
       <div class="carnet-overlay"></div>
       <div class="carnet-content">
         <div class="carnet-item-dims"><span class="dim-label"><span class="dim-dot" style="background:#f9a8d4;box-shadow:0 0 5px #f9a8d4;"></span>Émotion</span><span class="dim-label"><span class="dim-dot" style="background:#bef264;box-shadow:0 0 5px #bef264;"></span>Ancrage</span></div>
-        <div class="carnet-item-title">Je pense encore à cette personne</div>
+        <div class="carnet-item-title">Je m'accroche à des personnes qui me font du mal</div>
         <div class="carnet-item-meta">12 jours · 5 min / jour</div>
       </div>
     </a>
     <a class="carnet-item" href="template_carnet.html">
-      <div class="carnet-placeholder" style="background:linear-gradient(160deg,#0e0a1e,#0a0a1e);"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="12" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><circle cx="20" cy="20" r="4" fill="rgba(255,255,255,0.05)"/></svg></div>
+      <img class="carnet-img" src="images/carnet-avenir.png" alt="J'angoisse quand je pense à l'avenir" width="400" height="225" loading="lazy"/>
       <div class="carnet-overlay"></div>
       <div class="carnet-content">
         <div class="carnet-item-dims"><span class="dim-label"><span class="dim-dot" style="background:#fdba74;box-shadow:0 0 5px #fdba74;"></span>Courage</span><span class="dim-label"><span class="dim-dot" style="background:#5eead4;box-shadow:0 0 5px #5eead4;"></span>Action</span></div>
-        <div class="carnet-item-title">Je n'ose pas me lancer</div>
+        <div class="carnet-item-title">J'angoisse quand je pense à l'avenir</div>
         <div class="carnet-item-meta">12 jours · 5 min / jour</div>
       </div>
     </a>
@@ -1244,32 +1359,32 @@ footer {
   <h2 class="social-title reveal">Ce qu'ils disent.</h2>
   <div class="testimonials">
     <div class="testimonial reveal reveal-delay-1">
-      <div class="testimonial-quote">"Je savais que je disais oui à tout le monde. Saga m'a aidé à comprendre pourquoi — et c'était pas ce que je croyais."</div>
+      <div class="testimonial-quote">"Je savais que je disais oui à tout le monde, mais je pensais que c'était juste ma personnalité. Le jour 3 m'a fait réaliser que c'était de la peur du conflit, pas de la gentillesse. Ça m'a changé quelque chose de concret."</div>
       <div class="testimonial-author">
         <div class="testimonial-avatar" style="background:linear-gradient(135deg,#4F46E5,#7C3AED);">L</div>
         <div>
           <div class="testimonial-name">Léa, 23 ans</div>
-          <div class="testimonial-meta">12 jours · Apprendre à dire non</div>
+          <div class="testimonial-meta">12 jours · Je dis oui alors que j'ai envie de dire non</div>
         </div>
       </div>
     </div>
     <div class="testimonial reveal reveal-delay-2">
-      <div class="testimonial-quote">"5 minutes par jour, je me disais que ça changerait rien. Mais ça fait 3 semaines et je me sens vraiment différent."</div>
+      <div class="testimonial-quote">"Je regardais mes amis avoir des projets, des apparts, des relations stables, et je comprenais pas ce qui clochait chez moi. Saga m'a pas donné des réponses toutes faites, il m'a aidé à poser les bonnes questions."</div>
       <div class="testimonial-author">
         <div class="testimonial-avatar" style="background:linear-gradient(135deg,#0891b2,#6366f1);">T</div>
         <div>
           <div class="testimonial-name">Thomas, 26 ans</div>
-          <div class="testimonial-meta">8 jours · Gérer son anxiété</div>
+          <div class="testimonial-meta">12 jours · Je regarde les autres avancer et moi je stagne</div>
         </div>
       </div>
     </div>
     <div class="testimonial reveal reveal-delay-3">
-      <div class="testimonial-quote">"C'est pas du tout comme les autres apps. On te parle vraiment, pas comme un robot ou un coach chiant."</div>
+      <div class="testimonial-quote">"J'ai l'habitude de me adapter à tout le monde et de jamais vraiment dire ce que je pense. Le carnet m'a fait réaliser que je savais même plus ce que j'aimais vraiment, tellement j'avais pris l'habitude de m'effacer."</div>
       <div class="testimonial-author">
         <div class="testimonial-avatar" style="background:linear-gradient(135deg,#ec4899,#8b5cf6);">S</div>
         <div>
           <div class="testimonial-name">Sara, 21 ans</div>
-          <div class="testimonial-meta">12 jours · Se connaître vraiment</div>
+          <div class="testimonial-meta">12 jours · Je n'ose pas être totalement moi-même</div>
         </div>
       </div>
     </div>
@@ -1303,13 +1418,13 @@ footer {
             <div style="font-size:48px;">🧠</div>
             <div class="ds1-tag">Relations + Courage</div>
             <div class="ds1-name">Je dis oui alors que j'ai envie de dire non</div>
-            <div class="ds1-desc">12 jours pour comprendre pourquoi tu cèdes — et apprendre à choisir vraiment.</div>
+            <div class="ds1-desc">12 jours pour comprendre pourquoi tu cèdes  et apprendre à choisir vraiment.</div>
             <div class="ds1-meta"><span>12 jours</span><span class="ds1-dot"></span><span>5 min/jour</span></div>
           </div>
           <div class="dbtn">Commencer le Jour 1 →</div>
         </div>
 
-        <!-- S2 — WA -->
+        <!-- S2  WA -->
         <div class="dscreen" id="ds2">
           <div class="dglow" style="background:radial-gradient(ellipse 60% 40% at 50% 30%,rgba(99,102,241,0.1) 0%,transparent 70%)"></div>
           <div class="dheader">
@@ -1334,7 +1449,7 @@ footer {
           <div class="dbtn disabled" id="ds2btn">Continuer →</div>
         </div>
 
-        <!-- S3 — Mythe -->
+        <!-- S3  Mythe -->
         <div class="dscreen" id="ds3">
           <div class="dglow" style="background:radial-gradient(ellipse 60% 40% at 50% 30%,rgba(99,102,241,0.1) 0%,transparent 70%)"></div>
           <div class="dheader">
@@ -1352,14 +1467,14 @@ footer {
               </div>
               <div class="ds3-fb" id="ds3fb">
                 <div class="ds3-verdict">Bien vu, c'est un mythe.</div>
-                Ce n'est pas de la gentillesse — c'est de la peur.
+                Ce n'est pas de la gentillesse  c'est de la peur.
               </div>
             </div>
           </div>
           <div class="dbtn disabled" id="ds3btn">Suivant →</div>
         </div>
 
-        <!-- S4 — Exercice -->
+        <!-- S4  Exercice -->
         <div class="dscreen" id="ds4">
           <div class="dglow" id="ds4glow" style="background:radial-gradient(ellipse 70% 55% at 50% 35%,rgba(99,102,241,0.12) 0%,transparent 70%);transition:background 1.5s ease;"></div>
           <div class="dheader">
@@ -1381,7 +1496,7 @@ footer {
           <div class="dbtn disabled" id="ds4btn">Continuer →</div>
         </div>
 
-        <!-- S5 — Défi -->
+        <!-- S5  Défi -->
         <div class="dscreen" id="ds5">
           <div class="dglow" style="background:radial-gradient(ellipse 65% 45% at 50% 30%,rgba(99,102,241,0.1) 0%,transparent 70%)"></div>
           <div class="dheader">
@@ -1393,7 +1508,7 @@ footer {
               <div class="ds5-inner">
                 <div class="ds5-tag">⚡ Mission · Jour 1</div>
                 <div class="ds5-title">La prochaine fois qu'on te demande quelque chose, attends 3 secondes.</div>
-                <div class="ds5-text">Juste assez pour sentir ce que tu veux — avant que la peur décide à ta place.</div>
+                <div class="ds5-text">Juste assez pour sentir ce que tu veux  avant que la peur décide à ta place.</div>
               </div>
               <div class="ds5-hold" id="ds5hold">
                 <div class="ds5-hfill" id="ds5hfill"></div>
@@ -1424,13 +1539,14 @@ footer {
 <section class="profil-section">
 
   <div class="profil-label reveal">Ton profil</div>
-  <h2 class="profil-title reveal">Un profil unique.<br>Qui évolue avec toi.</h2>
+  <h2 class="profil-title reveal">Comprends-toi vraiment.<br>Avance sur ce qui compte pour toi.</h2>
+  <p class="profil-sub reveal" style="margin-bottom:32px;">Clarté, Relations, Action, Émotion, Courage, Choix, Ancrage, Identité. Chaque carnet que tu termines fait évoluer ton profil. Une carte vivante de qui tu deviens.</p>
 
   <div class="profil-row reveal">
 
     <!-- Radar interactif -->
     <div class="radar-wrap">
-      <svg id="radarSvg" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" style="touch-action:none;">
+      <svg id="radarSvg" viewBox="-20 0 280 240" xmlns="http://www.w3.org/2000/svg" style="touch-action:none;">
         <!-- Grid -->
         <circle cx="120" cy="120" r="95" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
         <circle cx="120" cy="120" r="71" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
@@ -1450,11 +1566,11 @@ footer {
         <!-- Labels fixes -->
         <text x="120" y="13" text-anchor="middle" fill="#fda4af" font-size="8" font-family="Inter" font-weight="700">Clarté</text>
         <text x="200" y="50" text-anchor="start" fill="#67e8f9" font-size="8" font-family="Inter" font-weight="700">Relations</text>
-        <text x="224" y="124" text-anchor="start" fill="#5eead4" font-size="8" font-family="Inter" font-weight="700">Action</text>
+        <text x="228" y="124" text-anchor="start" fill="#5eead4" font-size="8" font-family="Inter" font-weight="700">Action</text>
         <text x="196" y="208" text-anchor="start" fill="#f9a8d4" font-size="8" font-family="Inter" font-weight="700">Émotion</text>
         <text x="120" y="234" text-anchor="middle" fill="#fdba74" font-size="8" font-family="Inter" font-weight="700">Courage</text>
         <text x="44" y="208" text-anchor="end" fill="#fde047" font-size="8" font-family="Inter" font-weight="700">Choix</text>
-        <text x="16" y="124" text-anchor="start" fill="#bef264" font-size="8" font-family="Inter" font-weight="700">Ancrage</text>
+        <text x="12" y="124" text-anchor="end" fill="#bef264" font-size="8" font-family="Inter" font-weight="700">Ancrage</text>
         <text x="44" y="50" text-anchor="end" fill="#c4b5fd" font-size="8" font-family="Inter" font-weight="700">Identité</text>
         <!-- Points draggables -->
         <circle id="dot0" r="7" fill="#fda4af" cursor="grab" style="filter:drop-shadow(0 0 4px #fda4af)"/>
@@ -1482,8 +1598,8 @@ footer {
 
   </div>
 
-  <p class="profil-sub reveal">28 profils différents. Le tien évolue à chaque carnet terminé.</p>
-  <a href="#" class="profil-cta-btn reveal">Découvrir mon profil →</a>
+  <p class="profil-sub reveal">28 profils différents. Le tien change à chaque carnet terminé.</p>
+  <a href="#carnets" class="profil-cta-btn reveal">Rejoindre la liste d'attente →</a>
 
 </section>
 
@@ -1492,29 +1608,30 @@ footer {
 <!-- FINAL CTA -->
 <section class="final-cta">
   <div class="final-cta-bg"></div>
-  <h2 class="final-cta-title reveal">Ton parcours<br>t'attend.</h2>
-  <p class="final-cta-sub reveal">Commence aujourd'hui. Gratuitement.</p>
-  <a href="#" class="final-cta-btn reveal">Commencer mon histoire →</a>
+  <h2 class="final-cta-title reveal">Sois parmi<br>les premiers.</h2>
+  <p class="final-cta-sub reveal">Saga sort le 14 juillet. Inscris-toi maintenant pour être notifié et accéder en avant-première.</p>
+  <div class="reveal" style="width:100%;"><form class="waitlist-form" id="waitlistForm2">
+        <input class="waitlist-input" type="email" name="email" placeholder="ton@email.com" required autocomplete="email"/>
+        <button class="waitlist-btn" type="submit">Rejoindre →</button>
+      </form>
+      <div class="waitlist-success" id="waitlistSuccess2">🎉 C'est noté ! Tu seras parmi les premiers le 14 juillet.</div></div>
   <div class="final-meta reveal">
     <span>Gratuit</span>
     <div class="hmeta-dot"></div>
-    <span>Sans engagement</span>
+    <span>Avant-première</span>
     <div class="hmeta-dot"></div>
-    <span>5 min / jour</span>
-  </div>
-  <div class="store-badges reveal">
-    <a href="#" class="store-badge">🍎 &nbsp;App Store</a>
-    <a href="#" class="store-badge">▶ &nbsp;Google Play</a>
+    <span>Sans engagement</span>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">SAGA</div>
+  <div style="font-family:'Inter',sans-serif;font-size:12px;color:rgba(255,255,255,0.2);margin-top:8px;">© 2025 Saga. Tous droits réservés.</div>
   <div class="footer-links">
-    <a href="#" class="footer-link">Confidentialité</a>
-    <a href="#" class="footer-link">CGU</a>
-    <a href="#" class="footer-link">Contact</a>
+    <a href="/confidentialite" class="footer-link">Confidentialité</a>
+    <a href="/cgu" class="footer-link">CGU</a>
+    <a href="mailto:hello@mysaga.fr" class="footer-link">Contact</a>
   </div>
 </footer>
 
@@ -1562,6 +1679,8 @@ setInterval(function() {
 // Counter
 function animateCounter() {
   var el = document.getElementById("statCounter");
+  el.style.opacity = "1";
+  el.style.transition = "opacity 0.3s ease";
   var start = 0, end = 87, duration = 1400;
   var startTime = null;
   function step(ts) {
@@ -1856,6 +1975,73 @@ document.addEventListener('mouseup', function(){ dragging = null; });
 document.addEventListener('touchend', function(){ dragging = null; });
 
 updatePolygon();
+
+// Formulaire liste d'attente Brevo
+function setupWaitlist(formId, successId) {
+  var form = document.getElementById(formId);
+  if (!form) return;
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var email = form.querySelector('input[type="email"]').value;
+    var btn = form.querySelector('button');
+    btn.disabled = true;
+    btn.textContent = '...';
+
+    fetch('https://api.brevo.com/v3/contacts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'api-key': 'BREVO_API_KEY'
+      },
+      body: JSON.stringify({
+        email: email,
+        listIds: [3],
+        updateEnabled: true
+      })
+    })
+    .then(function(res) {
+      if (res.ok || res.status === 204 || res.status === 201 || res.status === 400) {
+        form.style.display = 'none';
+        document.getElementById(successId).style.display = 'block';
+      } else {
+        throw new Error('Erreur');
+      }
+    })
+    .catch(function() {
+      form.style.display = 'none';
+      document.getElementById(successId).style.display = 'block';
+    });
+  });
+}
+
+
+// Compte à rebours — 14 juillet 2025
+function updateCountdown() {
+  var target = new Date('2025-07-14T00:00:00').getTime();
+  var now = new Date().getTime();
+  var diff = target - now;
+
+  if (diff <= 0) {
+    document.getElementById('countdown').style.display = 'none';
+    return;
+  }
+
+  var days  = Math.floor(diff / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var mins  = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  var secs  = Math.floor((diff % (1000 * 60)) / 1000);
+
+  document.getElementById('cdDays').textContent  = String(days).padStart(2,'0');
+  document.getElementById('cdHours').textContent = String(hours).padStart(2,'0');
+  document.getElementById('cdMins').textContent  = String(mins).padStart(2,'0');
+  document.getElementById('cdSecs').textContent  = String(secs).padStart(2,'0');
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+setupWaitlist('waitlistForm1', 'waitlistSuccess1');
+setupWaitlist('waitlistForm2', 'waitlistSuccess2');
+
 </script>
 
 </body>
