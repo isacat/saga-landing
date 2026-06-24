@@ -2256,8 +2256,13 @@ setupWaitlist('waitlistForm2', 'waitlistSuccess2', 'waitlistError2');
     dots.forEach(function(d, i){ d.classList.toggle('active', i === current); });
   }
 
-  window.carouselNext = function(){ goTo(current + 1); };
-  window.carouselPrev = function(){ goTo(current - 1); };
+window.carouselNext = function(){ goTo(current >= maxIndex() ? 0 : current + 1); };
+window.carouselPrev = function(){ goTo(current <= 0 ? maxIndex() : current - 1); };
+
+// Auto-défilement
+var autoSlide = setInterval(function(){ carouselNext(); }, 3500);
+track.addEventListener('mouseenter', function(){ clearInterval(autoSlide); });
+track.addEventListener('mouseleave', function(){ autoSlide = setInterval(function(){ carouselNext(); }, 3500); });
 
   buildDots();
 
