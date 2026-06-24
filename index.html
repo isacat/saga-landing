@@ -1076,8 +1076,8 @@ footer {
     <p class="hero-sub">Une application de carnets interactifs de 12 jours pour comprendre tes blocages et passer à l'action.</p>
 
  
-      <form class="waitlist-form" id="waitlistForm1">
-        <input class="waitlist-input" type="email" name="email" placeholder="ton@email.com" required autocomplete="email"/>
+      <form class="waitlist-form" id="waitlistForm1" novalidate>
+        <input class="waitlist-input" type="email" name="email" placeholder="ton@email.com" autocomplete="email"/>
         <button class="waitlist-btn" type="submit">Rejoindre →</button>
       </form>
       <div class="waitlist-error" id="waitlistError1">Cet email ne semble pas valide.</div>
@@ -1638,14 +1638,30 @@ footer {
               </div>
             </div>
           </div>
-          <div class="dbtn disabled" id="ds5btn">Continuer →</div>
+          <div class="dbtn disabled" id="ds5btn">Terminer J1 ✓</div>
+        </div>
+
+
+        <!-- S6 fin -->
+        <div class="dscreen" id="ds6">
+          <div class="dglow" style="background:radial-gradient(ellipse 70% 60% at 50% 40%,rgba(99,102,241,0.2) 0%,transparent 70%)"></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 20px;gap:16px;text-align:center;position:relative;z-index:1;">
+            <div style="font-size:48px;">✨</div>
+            <div style="font-family:'Sora',sans-serif;font-size:16px;font-weight:900;color:#fff;line-height:1.2;">J1 terminé.</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.4);line-height:1.7;">Demain, on continue.<br>5 minutes. Jour 2 sur 12.</div>
+            <div style="display:flex;gap:8px;margin-top:8px;">
+              <div style="width:12px;height:4px;border-radius:2px;background:#6366f1;"></div>
+              <div style="width:6px;height:4px;border-radius:2px;background:rgba(255,255,255,0.15);"></div>
+              <div style="width:6px;height:4px;border-radius:2px;background:rgba(255,255,255,0.15);"></div>
+            </div>
+          </div>
         </div>
 
       </div>
     </div>
 
     <div class="demo-progress-dots" id="dProgressDots">
-      <div class="dpd active"></div><div class="dpd"></div><div class="dpd"></div><div class="dpd"></div><div class="dpd"></div>
+      <div class="dpd active"></div><div class="dpd"></div><div class="dpd"></div><div class="dpd"></div><div class="dpd"></div><div class="dpd"></div>
     </div>
     <button class="demo-replay-btn" id="dReplayBtn" onclick="dRestart()">↺ Rejouer la démo</button>
   </div>
@@ -1729,7 +1745,7 @@ footer {
   <div class="final-cta-bg"></div>
   <h2 class="final-cta-title anim-fade-up">Sois parmi<br>les premiers.</h2>
   <p class="final-cta-sub anim-fade-up anim-stagger-1">Saga sort le 14 juillet. Inscris-toi maintenant pour être notifié et accéder en avant-première.</p>
-  <div class="reveal" style="width:100%;"><form class="waitlist-form" id="waitlistForm2">
+  <div class="reveal" style="width:100%;"><form class="waitlist-form" id="waitlistForm2" novalidate>
         <input class="waitlist-input" type="email" name="email" placeholder="ton@email.com" required autocomplete="email"/>
         <button class="waitlist-btn" type="submit">Rejoindre →</button>
       </form>
@@ -1833,7 +1849,7 @@ function animateCounter() {
 <script>
 // ── DEMO LANDING ──
 var dCur = 0;
-var dScreens = ['ds1','ds2','ds3','ds4','ds5'];
+var dScreens = ['ds1','ds2','ds3','ds4','ds5','ds6'];
 var dProg = [0,20,40,65,85];
 var dSeq = []; var dSeqIdx = 0;
 
@@ -1877,6 +1893,7 @@ function dRestart() {
   document.getElementById('ds2btn').classList.add('disabled');
   document.getElementById('ds3m').className='ds3-mythe';
   document.getElementById('ds3m').style='';
+  document.getElementById('ds3m').textContent='🚫 Mythe';
   document.getElementById('ds3fb').classList.remove('show');
   document.getElementById('ds3btn').classList.add('disabled');
   document.getElementById('ds3card').style.borderColor='';
@@ -1887,6 +1904,16 @@ function dRestart() {
   document.getElementById('ds5htxt').style.color='';
   document.getElementById('ds5btn').classList.add('disabled');
   dSeqIdx=0;
+  // Reset ds6
+  var ds6=document.getElementById('ds6');
+  if(ds6){ds6.classList.remove('active','exit');}
+  // Reset ds5btn text
+  document.getElementById('ds5btn').textContent='Terminer J1 ✓';
+  document.getElementById('ds5btn').style.opacity='';
+  document.getElementById('ds5hicon').textContent='🤝';
+  document.getElementById('ds5hfill').style.background='';
+  // Force repaint
+  void document.getElementById('demoPhone').offsetHeight;
   setTimeout(dRun,800);
 }
 
@@ -1911,8 +1938,14 @@ dSeq.push({fn:function(){
   dTap(80,330);
   var m=document.getElementById('ds3m');
   m.style.background='rgba(16,185,129,0.15)'; m.style.borderColor='rgba(16,185,129,0.6)'; m.style.color='#6ee7b7';
-  setTimeout(function(){ document.getElementById('ds3fb').classList.add('show'); document.getElementById('ds3btn').classList.remove('disabled'); document.getElementById('ds3card').style.borderColor='rgba(16,185,129,0.4)'; },400);
-},after:1600});
+  // Flash "Bien vu !" sur le bouton mythe
+  m.textContent = '✓ Bien vu !';
+  setTimeout(function(){
+    document.getElementById('ds3fb').classList.add('show');
+    document.getElementById('ds3btn').classList.remove('disabled');
+    document.getElementById('ds3card').style.borderColor='rgba(16,185,129,0.4)';
+  },400);
+},after:2000});
 dSeq.push({fn:function(){dTap(140,490);},after:800});
 dSeq.push({fn:function(){dGoTo(3);dStartS4();},after:200});
 
@@ -1955,8 +1988,9 @@ dSeq.push({fn:function(){dGoTo(4);dStartHold();},after:200});
 // S5
 function dStartHold(){
   var f=document.getElementById('ds5hfill'),p=0;
-  setTimeout(function(){
-    dTap(140,400);
+  var holdEl=document.getElementById('ds5hold');
+
+  function runFill(){
     var t=setInterval(function(){
       p+=4; f.style.width=p+'%';
       if(p>=100){
@@ -1965,13 +1999,32 @@ function dStartHold(){
         document.getElementById('ds5htxt').textContent="C'est noté !";
         document.getElementById('ds5htxt').style.color='#6ee7b7';
         f.style.background='rgba(16,185,129,0.2)';
-        document.getElementById('ds5btn').classList.remove('disabled');
+        var btn=document.getElementById('ds5btn');
+        btn.classList.remove('disabled');
+        btn.style.opacity='1';
         document.getElementById('dTopFill').style.width='100%';
       }
     },50);
+  }
+
+  // Support desktop click + mobile longpress
+  setTimeout(function(){
+    dTap(140,400);
+    // Desktop: simple click déclenche le fill
+    holdEl.addEventListener('click', function onHoldClick(){
+      holdEl.removeEventListener('click', onHoldClick);
+      runFill();
+    });
+    // Mobile: longpress
+    var pressT=null;
+    holdEl.addEventListener('touchstart',function(){ pressT=setTimeout(runFill,200); },{passive:true});
+    holdEl.addEventListener('touchend',function(){ clearTimeout(pressT); },{passive:true});
   },1000);
 }
-dSeq.push({wait:3500});
+dSeq.push({wait:2500});
+dSeq.push({fn:function(){dTap(140,490);},after:800});
+dSeq.push({fn:function(){dGoTo(5);},after:200});
+dSeq.push({wait:2000});
 dSeq.push({fn:function(){document.getElementById('dReplayBtn').classList.add('show');},after:0});
 
 // Auto start when section is visible
@@ -2125,10 +2178,22 @@ function setupWaitlist(formId, successId, errorId) {
 
     // Validation email
     var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email || !emailRegex.test(email)) {
+    if (!email) {
       input.style.borderColor = 'rgba(239,68,68,0.6)';
       input.style.animation = 'shake 0.3s ease';
-      if (errorEl) errorEl.style.display = 'block';
+      if (errorEl) { errorEl.textContent = 'Entre ton email pour continuer.'; errorEl.style.display = 'block'; }
+      input.focus();
+      setTimeout(function() {
+        input.style.animation = '';
+        input.style.borderColor = '';
+        if (errorEl) errorEl.style.display = 'none';
+      }, 2500);
+      return;
+    }
+    if (!emailRegex.test(email)) {
+      input.style.borderColor = 'rgba(239,68,68,0.6)';
+      input.style.animation = 'shake 0.3s ease';
+      if (errorEl) { errorEl.textContent = 'Cet email ne semble pas valide.'; errorEl.style.display = 'block'; }
       setTimeout(function() {
         input.style.animation = '';
         input.style.borderColor = '';
