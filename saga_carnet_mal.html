@@ -1,479 +1,2374 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Saga – Je m'accroche à des personnes qui me font du mal</title>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>Saga App développement personnel | 12 jours, 5 min/jour</title>
+<meta name="description" content="Saga est l'app de développement personnel pour les 18-30 ans. Des carnets de 12 jours ciblés sur tes blocages réels : anxiété, relations, confiance en soi. 5 minutes par jour. Commence gratuitement.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mysaga.fr/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mysaga.fr/">
+<meta property="og:title" content="Saga Comprends ce qui te bloque. Avance pour de vrai.">
+<meta property="og:description" content="Des parcours de 12 jours, 5 minutes par jour, pour comprendre ce qui te bloque et vraiment avancer. Développement personnel pour les 18-30 ans.">
+<meta property="og:image" content="https://mysaga.fr/images/og-image.png">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Saga">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Saga Comprends ce qui te bloque. Avance pour de vrai.">
+<meta name="twitter:description" content="Des parcours de 12 jours, 5 minutes par jour, pour comprendre ce qui te bloque et vraiment avancer.">
+<meta name="twitter:image" content="https://mysaga.fr/images/og-image.png">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{background:#0a0a0f;color:#fff;font-family:"Inter",sans-serif;overflow-x:hidden;}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;background:rgba(10,10,15,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.05);}
-.nav-logo{display:flex;align-items:center;gap:10px;font-family:"Sora",sans-serif;font-size:17px;font-weight:800;color:#fff;letter-spacing:2px;text-decoration:none;}
-.nav-cta{padding:10px 20px;background:linear-gradient(90deg,#6366f1,#7C3AED);border:none;border-radius:10px;font-family:"Sora",sans-serif;font-size:13px;font-weight:700;color:#fff;cursor:pointer;text-decoration:none;}
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:100px 24px 52px;position:relative;overflow:hidden;}
-.hero-bg{position:absolute;inset:0;background:linear-gradient(160deg,#1a0a10 0%,#0a0a1e 40%,#0a0a10 100%);}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,15,0.97) 0%,rgba(10,10,15,0.55) 50%,rgba(10,10,15,0.15) 100%);}
-.hero-content{position:relative;z-index:1;max-width:480px;margin:0 auto;width:100%;}
-.hero-dims{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;}
-.hero-dim{padding:5px 12px;border-radius:20px;font-size:11px;font-weight:700;background:rgba(0,0,0,0.45);backdrop-filter:blur(8px);}
-.hero-tag{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#6366f1;margin-bottom:12px;}
-.hero-title{font-family:"Sora",sans-serif;font-size:clamp(24px,6vw,38px);font-weight:900;line-height:1.1;letter-spacing:-0.5px;margin-bottom:16px;}
-.hero-sub{font-size:15px;color:rgba(255,255,255,0.55);line-height:1.7;margin-bottom:28px;max-width:360px;}
-.hero-cta{display:inline-flex;padding:17px 28px;background:linear-gradient(90deg,#4F46E5,#7C3AED);border:none;border-radius:16px;font-family:"Sora",sans-serif;font-size:15px;font-weight:700;color:#fff;cursor:pointer;text-decoration:none;box-shadow:0 8px 32px rgba(79,70,229,0.4);}
-.hero-meta{margin-top:14px;font-size:12px;color:rgba(255,255,255,0.3);}
-.section{padding:64px 24px;max-width:480px;margin:0 auto;display:flex;flex-direction:column;gap:20px;}
-.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.08),transparent);max-width:480px;margin:0 auto;}
-.section-tag{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#6366f1;}
-.section-title{font-family:"Sora",sans-serif;font-size:clamp(20px,5vw,26px);font-weight:900;line-height:1.15;letter-spacing:-0.4px;}
-.section-sub{font-size:14px;color:rgba(255,255,255,0.4);line-height:1.75;}
-.fait-list{display:flex;flex-direction:column;gap:8px;}
-.fait-item{display:flex;align-items:flex-start;gap:10px;padding:11px 14px;border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);}
-.fait-icon{font-size:13px;flex-shrink:0;margin-top:2px;color:#6366f1;}
-.fait-text{font-size:14px;color:rgba(255,255,255,0.65);line-height:1.6;}
-.vivre-text{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.85;}
-.vivre-text strong{color:rgba(255,255,255,0.85);font-weight:600;}
-.profils-grid{display:flex;flex-direction:column;gap:10px;}
-.profil-card{border-radius:14px;padding:14px 16px;display:flex;align-items:flex-start;gap:12px;background:#141420;border:1.5px solid rgba(255,255,255,0.07);}
-.profil-emoji{font-size:22px;flex-shrink:0;}
-.profil-name{font-family:"Sora",sans-serif;font-size:14px;font-weight:800;color:#fff;margin-bottom:3px;}
-.profil-desc{font-size:12px;color:rgba(255,255,255,0.45);line-height:1.5;}
-.profil-tag{display:inline-block;margin-top:5px;padding:2px 9px;border-radius:20px;font-size:9px;font-weight:700;}
-.jours-list{display:flex;flex-direction:column;gap:0;margin-top:8px;}
-.jour-row{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,0.05);}
-.jour-row:last-child{border-bottom:none;}
-.jour-num{font-family:"Sora",sans-serif;font-size:10px;font-weight:700;border:1px solid;border-radius:6px;padding:2px 7px;flex-shrink:0;margin-top:2px;}
-.jour-body{flex:1;}
-.jour-title{font-family:"Sora",sans-serif;font-size:13px;font-weight:700;color:#fff;margin-bottom:1px;}
-.jour-sub{font-size:11px;color:rgba(255,255,255,0.3);}
-.acte-sep{margin:10px 0 6px;padding:7px 12px;background:rgba(255,255,255,0.03);border-radius:8px;border-left:2px solid;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;}
-.dims-cards{display:flex;flex-direction:column;gap:12px;}
-.dim-card{background:#141420;border:1.5px solid rgba(255,255,255,0.08);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:12px;}
-.dim-card-top{display:flex;align-items:flex-start;gap:12px;}
-.dim-dot-large{width:12px;height:12px;border-radius:50%;flex-shrink:0;margin-top:5px;}
-.dim-name-big{font-family:"Sora",sans-serif;font-size:16px;font-weight:800;margin-bottom:2px;}
-.dim-desc-short{font-size:12px;color:rgba(255,255,255,0.4);}
-.dim-how{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.75;padding:10px 12px;background:rgba(255,255,255,0.03);border-radius:10px;}
-.dim-how strong{color:rgba(255,255,255,0.85);font-weight:600;}
-.final{padding:80px 24px;max-width:480px;margin:0 auto;text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px;}
-.final-title{font-family:"Sora",sans-serif;font-size:clamp(22px,5vw,28px);font-weight:900;line-height:1.15;letter-spacing:-0.4px;}
-.final-sub{font-size:14px;color:rgba(255,255,255,0.4);line-height:1.7;max-width:300px;}
-.final-meta{font-size:11px;color:rgba(255,255,255,0.2);}
-.reveal{opacity:0;transform:translateY(16px);transition:opacity 0.6s ease,transform 0.6s ease;}
-.reveal.visible{opacity:1;transform:translateY(0);}
-@media(max-width:600px){
-  nav{padding:14px 20px;}
-  .nav-cta{display:none;}
-  .hero{padding:90px 20px 44px;}
-  .hero-cta{padding:15px;width:100%;justify-content:center;}
-  .section{padding:52px 20px;}
+:root {
+  --bg: #0A0A0F;
+  --bg2: #0f0f1a;
+  --card: #141420;
+  --primary: #6366f1;
+  --primary2: #7C3AED;
+  --border: rgba(255,255,255,0.08);
+  --muted: rgba(255,255,255,0.35);
+  --text: #e8e8f0;
 }
-.waitlist-form{display:flex;gap:10px;max-width:460px;margin:0 auto;width:100%;}
-.waitlist-input{flex:1;padding:14px 18px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:12px;font-family:"Inter",sans-serif;font-size:15px;color:#fff;outline:none;transition:border-color 0.2s;}
-.waitlist-input::placeholder{color:rgba(255,255,255,0.3);}
-.waitlist-input:focus{border-color:rgba(99,102,241,0.6);}
-.waitlist-btn{padding:14px 22px;background:linear-gradient(90deg,#6366f1,#7C3AED);border:none;border-radius:12px;font-family:"Sora",sans-serif;font-size:14px;font-weight:700;color:#fff;cursor:pointer;white-space:nowrap;transition:transform 0.2s;}
-.waitlist-btn:hover{transform:translateY(-2px);}
-.waitlist-success{font-size:15px;color:#bef264;text-align:center;padding:14px;background:rgba(190,242,100,0.08);border:1px solid rgba(190,242,100,0.2);border-radius:12px;max-width:460px;margin:0 auto;}
-@media(max-width:480px){.waitlist-form{flex-direction:column;}.waitlist-btn{width:100%;}}
-.demo-phone-wrap2{display:flex;flex-direction:column;align-items:center;gap:16px;}
-.demo-phone2{width:260px;height:500px;border-radius:36px;background:#0e0e1a;border:1.5px solid rgba(255,255,255,0.1);box-shadow:0 0 0 8px rgba(255,255,255,0.03),0 40px 80px rgba(0,0,0,0.7),0 0 80px rgba(99,102,241,0.12);overflow:hidden;position:relative;}
-.demo-notch2{position:absolute;top:0;left:50%;transform:translateX(-50%);width:70px;height:18px;background:#0e0e1a;border-radius:0 0 10px 10px;z-index:100;}
-.demo-prog2{position:absolute;top:0;left:0;width:100%;height:2px;z-index:99;background:rgba(255,255,255,0.08);}
-.demo-prog2-fill{height:100%;background:linear-gradient(90deg,#4F46E5,#7C3AED);border-radius:0 2px 2px 0;width:20%;transition:width 0.5s ease;}
-.demo-screens{position:absolute;inset:0;}
-.dscreen{position:absolute;inset:0;display:flex;flex-direction:column;background:#0a0a0f;opacity:0;transform:translateX(100%);transition:opacity 0.5s ease,transform 0.5s ease;}
-.dscreen.active{opacity:1;transform:translateX(0);}
-.dscreen.exit{opacity:0;transform:translateX(-100%);}
-.dglow{position:absolute;inset:0;pointer-events:none;}
-.dheader{padding:28px 14px 10px;flex-shrink:0;position:relative;z-index:1;}
-.dheader-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px;}
-.dstep{font-size:8px;color:rgba(255,255,255,0.2);}
-.dclose{width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:center;font-size:8px;color:rgba(255,255,255,0.2);}
-.dtitle{font-size:7px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#6366f1;}
-.dbtn{margin:6px 14px 18px;padding:11px;background:linear-gradient(90deg,#4F46E5,#7C3AED);border-radius:12px;text-align:center;font-family:"Sora",sans-serif;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;position:relative;z-index:1;box-shadow:0 4px 16px rgba(79,70,229,0.4);cursor:pointer;}
-.dbtn.disabled{opacity:0.3;pointer-events:none;}
-.ds1-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 20px;gap:8px;position:relative;z-index:1;text-align:center;}
-.ds1-tag{font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#6366f1;}
-.ds1-name{font-family:"Sora",sans-serif;font-size:14px;font-weight:900;color:#fff;line-height:1.2;letter-spacing:-0.2px;}
-.ds1-desc{font-size:10px;color:rgba(255,255,255,0.4);line-height:1.7;}
-.dmsgs{flex:1;overflow:hidden;padding:0 12px;display:flex;flex-direction:column;gap:4px;position:relative;z-index:1;}
-.dmsg{max-width:82%;padding:6px 10px;border-radius:12px;font-size:10px;line-height:1.45;color:rgba(255,255,255,0.85);opacity:0;transform:translateY(4px);transition:opacity 0.4s ease,transform 0.4s ease;}
-.dmsg.show{opacity:1;transform:translateY(0);}
-.dL{background:#1f1f2e;border-bottom-left-radius:3px;align-self:flex-start;}
-.dR{background:#1a3a2a;border-bottom-right-radius:3px;align-self:flex-end;}
-.dmsender{font-size:7px;font-weight:600;color:rgba(255,255,255,0.3);margin-bottom:2px;}
-.dconc{margin:6px 12px 0;padding:8px 10px;background:rgba(99,102,241,0.07);border-left:2px solid #6366f1;border-radius:0 8px 8px 0;font-size:9px;color:rgba(255,255,255,0.45);font-style:italic;line-height:1.5;opacity:0;transition:opacity 0.5s ease;flex-shrink:0;position:relative;z-index:1;}
-.dconc.show{opacity:1;}
-.ds3-body{flex:1;padding:0 12px;display:flex;flex-direction:column;gap:8px;position:relative;z-index:1;}
-.ds3-counter{font-size:9px;font-weight:600;color:rgba(255,255,255,0.2);text-align:center;}
-.ds3-card{background:#141420;border:1.5px solid rgba(255,255,255,0.08);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:10px;}
-.ds3-label{font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.3);}
-.ds3-text{font-family:"Sora",sans-serif;font-size:11px;font-weight:800;color:#fff;line-height:1.35;}
-.ds3-choices{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
-.ds3-mythe{padding:9px 6px;border-radius:8px;font-family:"Sora",sans-serif;font-size:9px;font-weight:700;text-align:center;background:rgba(239,68,68,0.08);border:1.5px solid rgba(239,68,68,0.25);color:rgba(255,100,100,0.8);cursor:pointer;transition:all 0.3s ease;}
-.ds3-realite{padding:9px 6px;border-radius:8px;font-family:"Sora",sans-serif;font-size:9px;font-weight:700;text-align:center;background:rgba(16,185,129,0.08);border:1.5px solid rgba(16,185,129,0.25);color:rgba(80,220,140,0.8);}
-.ds3-fb{background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);border-radius:8px;padding:8px 10px;font-size:9px;color:rgba(255,255,255,0.5);font-style:italic;line-height:1.55;opacity:0;transition:opacity 0.5s ease;}
-.ds3-fb.show{opacity:1;}
-.ds3-verdict{font-family:"Sora",sans-serif;font-size:10px;font-weight:700;color:#6ee7b7;margin-bottom:3px;}
-.ds4-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 14px;gap:12px;position:relative;z-index:1;}
-.ds4-card{background:#141420;border:1.5px solid rgba(255,255,255,0.08);border-radius:16px;padding:16px 14px;width:100%;display:flex;flex-direction:column;align-items:center;gap:12px;}
-.ds4-orb{position:relative;width:70px;height:70px;display:flex;align-items:center;justify-content:center;}
-.ds4-ring{position:absolute;width:70px;height:70px;border-radius:50%;border:1px solid rgba(99,102,241,0.15);animation:drp 3s ease-in-out infinite;}
-.ds4-ring2{position:absolute;width:48px;height:48px;border-radius:50%;border:1px solid rgba(99,102,241,0.15);animation:drp 3s ease-in-out 0.4s infinite;}
-@keyframes drp{0%,100%{transform:scale(1);opacity:0.4}50%{transform:scale(1.08);opacity:0.9}}
-.ds4-emoji{font-size:26px;z-index:1;}
-.ds4-tbar{width:100%;height:2px;background:rgba(255,255,255,0.08);border-radius:1px;overflow:hidden;}
-.ds4-tfill{height:100%;background:linear-gradient(90deg,#4F46E5,#7C3AED);border-radius:1px;transition:width 0.1s linear;width:0%;}
-.dexo-step{display:flex;align-items:flex-start;gap:8px;padding:6px 0;opacity:0.3;transition:opacity 0.3s ease;}
-.dexo-step:first-child{opacity:1;}
-.dexo-emoji{font-size:16px;flex-shrink:0;}
-.dexo-instr{font-family:"Sora",sans-serif;font-size:11px;font-weight:700;color:#fff;margin-bottom:2px;}
-.dexo-sub{font-size:9px;color:rgba(255,255,255,0.4);line-height:1.4;}
-.ds5-body{flex:1;padding:0 12px;display:flex;flex-direction:column;gap:8px;position:relative;z-index:1;}
-.ds5-card{background:#141420;border:1.5px solid rgba(99,102,241,0.2);border-radius:16px;overflow:hidden;}
-.ds5-inner{padding:14px 14px 10px;display:flex;flex-direction:column;gap:8px;border-bottom:1px solid rgba(255,255,255,0.06);}
-.ds5-tag{font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#6366f1;}
-.ds5-title{font-family:"Sora",sans-serif;font-size:12px;font-weight:800;color:#fff;line-height:1.3;}
-.ds5-text{font-size:10px;color:rgba(255,255,255,0.4);line-height:1.6;}
-.ds5-hold{padding:12px 14px;background:#0f0f1e;display:flex;align-items:center;gap:8px;position:relative;overflow:hidden;cursor:pointer;}
-.ds5-hfill{position:absolute;top:0;left:0;bottom:0;width:0%;background:linear-gradient(90deg,rgba(79,70,229,0.4),rgba(124,58,237,0.4));transition:width 0.05s linear;}
-.ds5-hicon{font-size:14px;position:relative;z-index:1;}
-.ds5-htxt{font-family:"Sora",sans-serif;font-size:11px;font-weight:700;color:#a5b4fc;position:relative;z-index:1;}
-.ds5-hsub{font-size:8px;color:rgba(255,255,255,0.25);position:relative;z-index:1;}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; background:#0A0A0F; }
+body {
+  background:#0A0A0F;
+  color:#e8e8f0;
+  font-family:"Inter",sans-serif;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+
+/* ── FORMULAIRE LISTE D'ATTENTE ── */
+.waitlist-form {
+  display:flex;
+  gap:10px;
+  max-width:460px;
+  margin:0 auto;
+  width:100%;
+}
+.waitlist-input {
+  flex:1;
+  padding:14px 18px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:12px;
+  font-family:"Inter",sans-serif;
+  font-size:15px;
+  color:#fff;
+  outline:none;
+  transition:border-color 0.2s;
+}
+.waitlist-input::placeholder { color:rgba(255,255,255,0.3); }
+.waitlist-input:focus { border-color:rgba(99,102,241,0.6); background:rgba(255,255,255,0.08); }
+.waitlist-btn {
+  padding:16px 32px;
+  background:linear-gradient(90deg,#6366f1,#7C3AED);
+  border:none;
+  border-radius:12px;
+  font-family:"Sora",sans-serif;
+  font-size:16px;
+  font-weight:700;
+  color:#fff;
+  cursor:pointer;
+  white-space:nowrap;
+  transition:transform 0.2s, box-shadow 0.2s;
+  box-shadow:0 4px 14px rgba(99,102,241,0.2);
+}
+.waitlist-btn:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(99,102,241,0.3); }
+.waitlist-btn:disabled { opacity:0.6; cursor:default; transform:none; }
+.waitlist-error { font-size:12px; color:rgba(239,68,68,0.8); text-align:center; margin-top:6px; display:none; }
+.waitlist-success {
+  display:none;
+  font-family:"Inter",sans-serif;
+  font-size:15px;
+  color:#bef264;
+  text-align:center;
+  padding:14px;
+  background:rgba(190,242,100,0.08);
+  border:1px solid rgba(190,242,100,0.2);
+  border-radius:12px;
+  max-width:460px;
+  margin:0 auto;
+}
+@media(max-width:480px) {
+  .waitlist-form { flex-direction:column; }
+  .waitlist-btn { width:100%; padding:13px 18px; font-size:13px; border-radius:10px; }
+  .waitlist-input { padding:12px 14px; font-size:14px; }
+}
+
+  
+/* ── SCROLL REVEAL ── */
+.reveal {
+  opacity:1; transform:translateY(0);
+  transition:opacity 0.8s ease, transform 0.8s ease;
+}
+.tension-phrase {
+  opacity:1; transform:translateY(0);
+  transition:opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* ── NAV ── */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  padding:16px 20px;
+  display:flex; align-items:center; justify-content:space-between;
+  background:rgba(10,10,15,0.8);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(255,255,255,0.04);
+}
+.nav-logo {
+  display:flex; align-items:center; gap:10px;
+  font-family:"Sora",sans-serif; font-size:18px; font-weight:800;
+  color:#fff; letter-spacing:2px; text-decoration:none;
+}
+.nav-cta {
+  padding:10px 22px;
+  background:linear-gradient(90deg,#6366f1,#7C3AED);
+  border:none; border-radius:10px;
+  font-family:"Sora",sans-serif; font-size:13px; font-weight:700;
+  color:#fff; cursor:pointer; text-decoration:none;
+  box-shadow:0 2px 8px rgba(99,102,241,0.15);
+  transition:opacity 0.2s;
+}
+.nav-cta:hover { opacity:0.85; }
+
+/* ── HERO ── */
+.hero {
+  min-height:100vh;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  text-align:center;
+  padding:120px 24px 80px;
+  position:relative; overflow:hidden;
+}
+
+/* Orb animation */
+.hero-bg {
+  position:absolute; inset:0; pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 40%, rgba(89,22,139,0.35) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 30% at 20% 80%, rgba(99,102,241,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 30% at 80% 70%, rgba(139,92,246,0.06) 0%, transparent 60%);
+}
+
+/* Orbiting dots */
+.hero-orbits {
+  position:absolute; top:50%; left:50%;
+  transform:translate(-50%,-55%);
+  pointer-events:none;
+}
+.horbit {
+  position:absolute; top:50%; left:50%;
+  border-radius:50%;
+  border:1px solid rgba(139,92,246,0.08);
+  animation:hspin linear infinite;
+}
+.hdot {
+  position:absolute; border-radius:50%;
+  top:-4px; left:50%; transform:translateX(-50%);
+  animation:dotFadeIn 0.4s ease forwards; opacity:0;
+}
+@keyframes hspin {
+  from { transform:translate(-50%,-50%) rotate(var(--s,0deg)); }
+  to   { transform:translate(-50%,-50%) rotate(calc(var(--s,0deg) + 360deg)); }
+}
+@keyframes dotFadeIn { to { opacity:1; } }
+
+.h1 { width:240px;height:240px;animation-duration:10s;--s:0deg; }
+.h2 { width:240px;height:240px;animation-duration:10s;--s:120deg; }
+.h3 { width:240px;height:240px;animation-duration:10s;--s:240deg; }
+.h4 { width:380px;height:380px;animation-duration:18s;--s:60deg; }
+.h5 { width:380px;height:380px;animation-duration:18s;--s:220deg; }
+.h6 { width:520px;height:520px;animation-duration:28s;--s:30deg; }
+.h7 { width:520px;height:520px;animation-duration:28s;--s:150deg; }
+.h8 { width:520px;height:520px;animation-duration:28s;--s:270deg; }
+.h1 .hdot{width:9px;height:9px;background:#f472b6;box-shadow:0 0 12px #f472b6;animation-delay:0.5s}
+.h2 .hdot{width:9px;height:9px;background:#67e8f9;box-shadow:0 0 12px #67e8f9;animation-delay:0.7s}
+.h3 .hdot{width:9px;height:9px;background:#fdba74;box-shadow:0 0 12px #fdba74;animation-delay:0.9s}
+.h4 .hdot{width:8px;height:8px;background:#bef264;box-shadow:0 0 10px #bef264;animation-delay:0.8s}
+.h5 .hdot{width:8px;height:8px;background:#c4b5fd;box-shadow:0 0 10px #c4b5fd;animation-delay:1.0s}
+.h6 .hdot{width:7px;height:7px;background:#fde047;box-shadow:0 0 8px #fde047;animation-delay:1.0s}
+.h7 .hdot{width:7px;height:7px;background:#fda4af;box-shadow:0 0 8px #fda4af;animation-delay:1.2s}
+.h8 .hdot{width:7px;height:7px;background:#5eead4;box-shadow:0 0 8px #5eead4;animation-delay:1.4s}
+
+.hero-content { position:relative; z-index:1; max-width:680px; }
+
+.hero-badge {
+  display:inline-flex; align-items:center; gap:8px;
+  background:rgba(99,102,241,0.1);
+  border:1px solid rgba(99,102,241,0.25);
+  border-radius:20px; padding:6px 16px;
+  font-size:12px; font-weight:600; color:#a5b4fc;
+  letter-spacing:0.5px; margin-bottom:32px;
+  animation:fadeUp 0.6s ease 0.2s both;
+}
+
+.hero-title {
+  font-family:"Sora",sans-serif;
+  font-size:clamp(40px,8vw,72px);
+  font-weight:900; color:#fff;
+  line-height:1.05; letter-spacing:-1.5px;
+  margin-bottom:24px;
+  animation:fadeUp 0.7s ease 0.4s both;
+}
+.hero-title span {
+  background:linear-gradient(135deg,#a5b4fc,#7c3aed);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+}
+
+.hero-sub {
+  font-size:clamp(15px,2vw,18px); color:rgba(255,255,255,0.5);
+  line-height:1.7; margin-bottom:40px;
+  max-width:520px; margin-left:auto; margin-right:auto;
+  animation:fadeUp 0.7s ease 0.6s both;
+}
+
+.hero-cta-wrap {
+  display:flex; flex-direction:column; align-items:center; gap:12px;
+  animation:fadeUp 0.7s ease 0.8s both;
+}
+.hero-cta {
+  padding:18px 48px;
+  background:linear-gradient(90deg,#6366f1,#7C3AED);
+  border:none; border-radius:16px;
+  font-family:"Sora",sans-serif; font-size:17px; font-weight:700;
+  color:#fff; cursor:pointer; text-decoration:none;
+  box-shadow:0 4px 16px rgba(99,102,241,0.18);
+  transition:transform 0.2s, box-shadow 0.2s;
+  display:inline-block;
+}
+.hero-cta:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(99,102,241,0.2); }
+.hero-meta {
+  font-size:12px; color:rgba(255,255,255,0.2);
+  display:flex; align-items:center; gap:8px;
+}
+.hmeta-dot { width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,0.15); }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+@keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
+
+/* ── TENSION SECTION ── */
+.tension {
+  padding:100px 24px;
+  text-align:center;
+  position:relative; overflow:hidden;
+  min-height:380px;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+}
+.tension-bg {
+  position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(ellipse 50% 60% at 50% 50%, rgba(89,22,139,0.12) 0%, transparent 70%);
+}
+.tension-label {
+  font-size:11px; font-weight:600; letter-spacing:2px;
+  text-transform:uppercase; color:#6366f1;
+  margin-bottom:48px; position:relative; z-index:1;
+}
+.tension-display {
+  position:relative; z-index:1;
+  min-height:160px; max-width:680px; width:100%;
+  display:flex; align-items:center; justify-content:center;
+}
+.tension-phrase {
+  font-family:"Sora",sans-serif;
+  font-size:clamp(22px,4vw,34px);
+  font-weight:800; color:#fff;
+  line-height:1.2; letter-spacing:-0.3px;
+  position:absolute; width:100%; text-align:center;
+  opacity:0; transform:translateY(20px);
+  transition:opacity 0.6s ease, transform 0.6s ease;
+}
+.tension-phrase.active { opacity:1; transform:translateY(0); }
+.tension-phrase.exit   { opacity:0; transform:translateY(-20px); }
+.tension-dim {
+  font-family:"Inter",sans-serif; font-size:11px; font-weight:600;
+  letter-spacing:2px; text-transform:uppercase;
+  margin-top:72px; position:relative; z-index:1;
+  transition:color 0.6s ease;
+}
+.tension-dots {
+  display:flex; gap:6px; margin-top:20px;
+  position:relative; z-index:1; justify-content:center;
+}
+.tension-dot {
+  width:6px; height:6px; border-radius:3px;
+  background:rgba(255,255,255,0.15); transition:all 0.3s ease;
+}
+.tension-dot.active { width:20px; }
+
+/* ── STAT SECTION ── */
+.stat-section {
+  padding:100px 24px;
+  display:flex; justify-content:center;
+}
+.stat-inner {
+  max-width:480px; width:100%;
+  text-align:center;
+}
+.stat-title {
+  font-family:"Sora",sans-serif;
+  font-size:clamp(28px,5vw,40px);
+  font-weight:800; color:#fff;
+  line-height:1.2; margin-bottom:32px;
+}
+.stat-card {
+  background:rgba(99,102,241,0.08);
+  border:1.5px solid rgba(99,102,241,0.2);
+  border-radius:24px; padding:40px;
+  margin-bottom:0;
+}
+.stat-num {
+  font-family:"Sora",sans-serif;
+  font-size:80px; font-weight:900; line-height:1;
+  background:linear-gradient(135deg,#a5b4fc,#7c3aed);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  margin-bottom:12px;
+}
+.stat-divider { width:40px;height:1px;background:rgba(255,255,255,0.1);margin:0 auto 16px; }
+.stat-label { font-size:15px; color:rgba(255,255,255,0.5); line-height:1.6; }
+
+/* ── HOW IT WORKS ── */
+.how {
+  padding:100px 20px;
+  max-width:960px; margin:0 auto;
+  width:100%; box-sizing:border-box;
+}
+.how-label {
+  font-size:11px; font-weight:600; letter-spacing:2px;
+  text-transform:uppercase; color:#6366f1;
+  text-align:center; margin-bottom:16px;
+}
+.how-title {
+  font-family:"Sora",sans-serif;
+  font-size:clamp(28px,5vw,44px);
+  font-weight:800; color:#fff;
+  text-align:center; line-height:1.2;
+  letter-spacing:-0.5px; margin-bottom:64px;
+}
+.how-steps {
+  display:grid; grid-template-columns:1fr; gap:20px;
+}
+
+@media(min-width:560px) { .how-steps { grid-template-columns:repeat(2,1fr); } }
+@media(min-width:768px) { .how-steps { grid-template-columns:repeat(4,1fr); } }
+/* ── RESPONSIVE MOBILE ── */
+@media(max-width:600px) {
+
+  /* Nav  cache le CTA, garde juste le logo */
+  nav { padding:14px 20px; }
+  .nav-logo { font-size:15px; }
+  .nav-cta { display:none; }
+
+  /* Hero */
+  .hero { padding:100px 20px 60px; }
+  .hero-title { font-size:32px; }
+  .hero-sub { font-size:15px; }
+  .hero-cta { padding:17px; font-size:16px; width:100%; justify-content:center; }
+  .hero-cta-wrap { flex-direction:column; align-items:stretch; gap:10px; }
+  .hero-meta { flex-direction:column; gap:8px; align-items:center; }
+
+  /* How  1 colonne sur mobile */
+  .how-steps { grid-template-columns:1fr; gap:14px; }
+
+  /* Carnets  1 colonne sur mobile */
+  .carnets-grid { grid-template-columns:repeat(2,1fr); gap:12px; }
+
+  /* Parcours section */
+  .parcours-grid, .formats-grid { grid-template-columns:1fr; gap:12px; }
+
+  /* Témoignages  1 colonne */
+  .testimonials { grid-template-columns:1fr; }
+
+  /* CTA section */
+  .cta-section { padding:60px 20px; }
+  .cta-title { font-size:28px; }
+
+  /* Profil section */
+  .profil-row { flex-direction:column; }
+  .radar-wrap { max-width:100%; }
+
+  /* Demo section */
+  .demo-phone { width:240px; height:460px; }
+
+}
+
+@media(max-width:480px) {
+  .hero-title { font-size:28px; }
+  .carnets-grid { grid-template-columns:repeat(2,1fr); }
+  .how-steps { grid-template-columns:1fr; }
+}
+
+
+
+.how-step {
+  background:#141420;
+  border:1.5px solid rgba(255,255,255,0.08);
+  border-radius:20px; padding:20px;
+  display:flex; flex-direction:column; gap:14px;
+  transition:border-color 0.3s ease, transform 0.3s ease;
+  min-width:0; box-sizing:border-box;
+}
+.how-step:hover { border-color:rgba(99,102,241,0.3); transform:translateY(-4px); }
+
+.how-step-illus {
+  width:100%; height:120px;
+  display:flex; align-items:center; justify-content:center;
+  background:rgba(255,255,255,0.02); border-radius:12px;
+  overflow:hidden; flex-shrink:0;
+}
+.how-step-num {
+  font-family:"Sora",sans-serif; font-size:48px; font-weight:900;
+  letter-spacing:-2px; color:rgba(99,102,241,0.25); line-height:1; margin-bottom:8px;
+}
+.how-step-title {
+  font-family:"Sora",sans-serif; font-size:16px; font-weight:800;
+  color:#fff; line-height:1.3;
+}
+.how-step-desc {
+  font-size:13px; color:rgba(255,255,255,0.5); line-height:1.6;
+}
+
+.how-step {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.how-step.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── DIMENSIONS ── */
+/* ── PROFIL & DIMENSIONS ── */
+.profil-section { padding:100px 24px; display:flex; flex-direction:column; align-items:center; gap:24px; max-width:520px; margin:0 auto; }
+.profil-label { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#6366f1; text-align:center; }
+.profil-title { font-family:"Sora",sans-serif; font-size:clamp(26px,5vw,36px); font-weight:900; color:#fff; text-align:center; line-height:1.15; letter-spacing:-0.5px; }
+.profil-sub { font-size:13px; color:rgba(255,255,255,0.5); text-align:center; line-height:1.7; }
+.profil-cta-btn { padding:15px 28px; background:linear-gradient(90deg,#4F46E5,#7C3AED); border-radius:14px; font-family:"Sora",sans-serif; font-size:14px; font-weight:700; color:#fff; text-decoration:none; box-shadow:0 6px 20px rgba(79,70,229,0.35); }
+
+/* Radar + card row */
+.profil-row { width:100%; display:flex; flex-direction:column; gap:14px; }
+.radar-wrap { width:100%; max-width:300px; margin:0 auto; }
+.radar-wrap svg { width:100%; height:auto; display:block; }
+
+/* Profile card  simple horizontal */
+.profil-card-simple {
+  width:100%;
+  background:#141420;
+  border:1.5px solid rgba(196,181,253,0.2);
+  border-radius:16px; padding:14px 18px;
+  display:flex; align-items:center; gap:14px;
+  box-shadow:0 0 20px rgba(196,181,253,0.06);
+}
+.profil-card-simple-icon { font-size:32px; flex-shrink:0; }
+.profil-card-simple-body { display:flex; flex-direction:column; gap:3px; }
+.profil-card-simple-tag { font-size:9px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:rgba(196,181,253,0.5); }
+.profil-card-simple-name { font-family:"Sora",sans-serif; font-size:16px; font-weight:800; color:#fff; letter-spacing:-0.2px; }
+
+
+
+
+/* dimension colors */
+.dc1{background:rgba(244,63,94,0.08);border-color:rgba(244,63,94,0.2)}.dc1 .dim-name{color:#fda4af}
+.dc2{background:rgba(56,189,248,0.08);border-color:rgba(56,189,248,0.2)}.dc2 .dim-name{color:#67e8f9}
+.dc3{background:rgba(0,220,220,0.08);border-color:rgba(0,220,220,0.2)}.dc3 .dim-name{color:#5eead4}
+.dc4{background:rgba(236,72,153,0.08);border-color:rgba(236,72,153,0.2)}.dc4 .dim-name{color:#f9a8d4}
+.dc5{background:rgba(249,115,22,0.08);border-color:rgba(249,115,22,0.2)}.dc5 .dim-name{color:#fdba74}
+.dc6{background:rgba(234,179,8,0.08);border-color:rgba(234,179,8,0.2)}.dc6 .dim-name{color:#fde047}
+.dc7{background:rgba(132,204,22,0.08);border-color:rgba(132,204,22,0.2)}.dc7 .dim-name{color:#bef264}
+.dc8{background:rgba(139,92,246,0.08);border-color:rgba(139,92,246,0.2)}.dc8 .dim-name{color:#c4b5fd}
+
+/* ── CARNETS ── */
+.carnets {
+  padding:100px 24px;
+  max-width:960px; margin:0 auto;
+}
+.carnets-label {
+  font-size:11px; font-weight:600; letter-spacing:2px;
+  text-transform:uppercase; color:#6366f1;
+  text-align:center; margin-bottom:16px;
+}
+.carnets-title {
+  font-family:"Sora",sans-serif;
+  font-size:clamp(28px,5vw,42px);
+  font-weight:800; color:#fff;
+  text-align:center; line-height:1.2;
+  letter-spacing:-0.5px; margin-bottom:12px;
+}
+.carnets-sub {
+  font-size:15px; color:rgba(255,255,255,0.5);
+  text-align:center; margin-bottom:48px; line-height:1.6;
+}
+.carnets-grid {
+  display:grid;
+  grid-template-columns:1fr;
+  gap:12px;
+  width:100%;
+  margin:0 auto;
+}
+@media(min-width:720px) {
+  .carnets-grid { grid-template-columns:repeat(4,1fr); }
+}
+
+/* Card Netflix style  image plein écran + overlay texte */
+.carnet-item {
+  position:relative;
+  border-radius:16px;
+  overflow:hidden;
+  cursor:pointer; text-decoration:none;
+  aspect-ratio:2/3;
+  display:block;
+  background:#141420;
+  transition:transform 0.3s ease, box-shadow 0.3s ease;
+}
+.carnet-item:hover {
+  transform:translateY(-6px) scale(1.02);
+  box-shadow:0 24px 60px rgba(0,0,0,0.6);
+}
+
+/* Image plein écran */
+.carnet-img {
+  position:absolute; inset:0;
+  width:100%; height:100%; object-fit:cover;
+  transition:transform 0.5s ease;
+}
+.carnet-item:hover .carnet-img { transform:scale(1.08); }
+
+/* Placeholder quand pas d'image */
+.carnet-placeholder {
+  position:absolute; inset:0;
+  display:flex; align-items:center; justify-content:center;
+}
+
+/* Gradient overlay sombre en bas */
+.carnet-overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(
+    to bottom,
+    rgba(0,0,0,0) 20%,
+    rgba(0,0,0,0.3) 50%,
+    rgba(0,0,0,0.85) 80%,
+    rgba(0,0,0,0.95) 100%
+  );
+}
+
+/* Contenu texte en bas */
+.carnet-content {
+  position:absolute; bottom:0; left:0; right:0;
+  padding:16px 14px;
+  display:flex; flex-direction:column; gap:7px;
+}
+.carnet-item-dims {
+  display:flex; gap:6px; flex-wrap:wrap;
+}
+.dim-label {
+  display:flex; align-items:center; gap:4px;
+  font-family:"Inter",sans-serif; font-size:10px; font-weight:600;
+  color:rgba(255,255,255,0.6); letter-spacing:0.2px;
+}
+.dim-dot {
+  width:6px; height:6px; border-radius:50%; flex-shrink:0;
+}
+.carnet-item-title {
+  font-family:"Sora",sans-serif;
+  font-size:13px; font-weight:800;
+  color:#fff; line-height:1.3;
+}
+.carnet-item-meta {
+  font-family:"Inter",sans-serif; font-size:10px;
+  color:rgba(255,255,255,0.5);
+}
+
+/* ── SOCIAL PROOF ── */
+.social {
+  padding:80px 24px;
+  max-width:900px; margin:0 auto;
+}
+.social-title {
+  font-family:"Sora",sans-serif;
+  font-size:clamp(24px,4vw,36px);
+  font-weight:800; color:#fff;
+  text-align:center; margin-bottom:16px;
+  line-height:1.2;
+}
+/* Carrousel témoignages */
+.testimonials-carousel {
+  overflow:hidden; position:relative; width:100%;
+}
+.testimonials-track {
+  display:flex; gap:16px;
+  transition:transform 0.5s cubic-bezier(0.4,0,0.2,1);
+  will-change:transform;
+}
+.testimonial {
+  flex:0 0 280px; perspective:1000px; cursor:pointer; height:230px;
+}
+@media(min-width:600px){ .testimonial { flex:0 0 300px; } }
+.testimonial-inner {
+  position:relative; width:100%; height:100%;
+  transform-style:preserve-3d;
+  transition:transform 0.6s cubic-bezier(0.4,0,0.2,1);
+  border-radius:20px;
+}
+.testimonial.flipped .testimonial-inner { transform:rotateY(180deg); }
+.testimonial-front, .testimonial-back {
+  position:absolute; inset:0; border-radius:20px;
+  backface-visibility:hidden; -webkit-backface-visibility:hidden;
+  display:flex; flex-direction:column; padding:24px;
+}
+.testimonial-front {
+  align-items:center; justify-content:center; gap:12px; text-align:center;
+  transition:opacity 0.2s;
+}
+.testimonial-front:hover { opacity:0.9; }
+.testimonial-back {
+  transform:rotateY(180deg); justify-content:space-between; gap:10px;
+}
+.t-avatar-big {
+  width:52px; height:52px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-family:"Sora",sans-serif; font-size:22px; font-weight:900; color:#fff;
+}
+.t-name { font-family:"Sora",sans-serif; font-size:15px; font-weight:800; color:#fff; }
+.t-carnet { font-size:11px; color:rgba(255,255,255,0.5); line-height:1.5; }
+.t-hint { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.t-question { font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:rgba(99,102,241,0.8); margin-bottom:6px; }
+.t-quote { font-size:13px; color:rgba(255,255,255,0.75); line-height:1.7; font-style:italic; flex:1; }
+.t-source { font-size:10px; color:rgba(255,255,255,0.2); }
+.carousel-controls {
+  display:flex; align-items:center; justify-content:center; gap:12px; margin-top:20px;
+}
+.carousel-nav {
+  display:flex; align-items:center; gap:8px;
+}
+.carousel-dot {
+  width:6px; height:6px; border-radius:50%;
+  background:rgba(255,255,255,0.15); cursor:pointer; transition:all 0.3s;
+}
+.carousel-dot.active { background:#6366f1; width:20px; border-radius:3px; }
+.carousel-btn {
+  width:36px; height:36px; border-radius:50%;
+  background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1);
+  color:rgba(255,255,255,0.5); font-size:16px; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  transition:all 0.2s;
+}
+.carousel-btn:hover { background:rgba(99,102,241,0.15); border-color:rgba(99,102,241,0.4); color:#fff; }
+
+/* ── FINAL CTA ── */
+
+             
+.final-cta {
+  padding:120px 24px;
+  text-align:center; position:relative; overflow:hidden;
+}
+.final-cta-bg {
+  position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(ellipse 60% 70% at 50% 50%, rgba(89,22,139,0.25) 0%, transparent 70%);
+}
+.final-cta-title {
+  font-family:"Sora",sans-serif;
+  font-size:clamp(32px,6vw,56px);
+  font-weight:900; color:#fff;
+  line-height:1.1; letter-spacing:-1px;
+  margin-bottom:16px; position:relative; z-index:1;
+}
+.final-cta-sub {
+  font-size:16px; color:rgba(255,255,255,0.5);
+  margin-bottom:40px; position:relative; z-index:1;
+}
+.final-cta-btn {
+  padding:20px 56px;
+  background:linear-gradient(90deg,#6366f1,#7C3AED);
+  border:none; border-radius:18px;
+  font-family:"Sora",sans-serif; font-size:18px; font-weight:700;
+  color:#fff; cursor:pointer; text-decoration:none;
+  box-shadow:0 4px 16px rgba(99,102,241,0.18);
+  transition:transform 0.2s, box-shadow 0.2s;
+  display:inline-block; position:relative; z-index:1;
+}
+.final-cta-btn:hover { transform:translateY(-3px); box-shadow:0 6px 20px rgba(99,102,241,0.22); }
+.final-meta {
+  margin-top:16px; font-size:12px; color:rgba(255,255,255,0.2);
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  position:relative; z-index:1;
+}
+.store-badges {
+  display:flex; align-items:center; justify-content:center; gap:12px;
+  margin-top:24px; position:relative; z-index:1;
+}
+.store-badge {
+  display:flex; align-items:center; gap:8px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:12px; padding:10px 18px;
+  font-family:"Sora",sans-serif; font-size:13px; font-weight:600;
+  color:rgba(255,255,255,0.7); text-decoration:none;
+  transition:background 0.2s;
+}
+.store-badge:hover { background:rgba(255,255,255,0.1); }
+
+/* ── FOOTER ── */
+footer {
+  padding:32px 40px;
+  border-top:1px solid rgba(255,255,255,0.06);
+  display:flex; align-items:center; justify-content:space-between;
+  flex-wrap:wrap; gap:16px;
+}
+.footer-logo {
+  font-family:"Sora",sans-serif; font-size:16px; font-weight:800;
+  color:rgba(255,255,255,0.4); letter-spacing:2px;
+}
+.footer-links {
+  display:flex; gap:24px;
+}
+.footer-link {
+  font-size:13px; color:rgba(255,255,255,0.25);
+  text-decoration:none; transition:color 0.2s;
+}
+.footer-link:hover { color:rgba(255,255,255,0.5); }
+
+
+/* ── UNE JOURNÉE ── */
+.jour { padding:80px 0 60px; overflow:hidden; }
+.jour-label { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#6366f1; text-align:center; margin-bottom:12px; }
+.jour-title { font-family:"Sora",sans-serif; font-size:32px; font-weight:900; color:#fff; text-align:center; line-height:1.15; letter-spacing:-0.5px; margin-bottom:14px; padding:0 24px; }
+.jour-sub { font-size:15px; color:rgba(255,255,255,0.4); text-align:center; line-height:1.7; margin-bottom:40px; max-width:300px; margin-left:auto; margin-right:auto; padding:0 24px; }
+
+/* Scroll horizontal */
+.jour-scroll-wrap { overflow-x:auto; scrollbar-width:none; -webkit-overflow-scrolling:touch; }
+.jour-scroll-wrap::-webkit-scrollbar { display:none; }
+.jour-scroll { display:flex; gap:16px; padding:16px 24px 20px; width:max-content; }
+
+/* Phone card */
+.phone-card { display:flex; flex-direction:column; align-items:center; gap:12px; flex-shrink:0; }
+.phone-shell {
+  width:200px; height:360px; border-radius:24px;
+  background:#0e0e1a; border:1px solid rgba(255,255,255,0.1);
+  box-shadow:0 24px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
+  display:flex; flex-direction:column; overflow:hidden;
+  position:relative;
+}
+.phone-bar { height:2px; background:linear-gradient(90deg,#4F46E5,#7C3AED); width:60%; }
+
+/* Phone header */
+.phone-header {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:10px 12px 6px;
+}
+.ph-step { font-family:"Inter",sans-serif; font-size:8px; color:rgba(255,255,255,0.2); }
+.ph-title { font-family:"Inter",sans-serif; font-size:7px; font-weight:700; letter-spacing:1.5px; color:#6366f1; }
+.ph-close { font-size:9px; color:rgba(255,255,255,0.2); }
+
+/* WA header */
+.phone-wa-header { display:flex; align-items:center; gap:8px; padding:6px 12px 8px; background:#0d0d1a; margin:0 8px; border-radius:10px; }
+.ph-avatars { display:flex; }
+.ph-av { width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; border:1.5px solid #0e0e1a; }
+.ph-names { font-family:"Sora",sans-serif; font-size:9px; font-weight:700; color:#fff; }
+.ph-sub { font-family:"Inter",sans-serif; font-size:7px; color:rgba(255,255,255,0.3); }
+
+/* Messages */
+.phone-msgs { display:flex; flex-direction:column; gap:4px; padding:8px 10px; flex:1; }
+.ph-msg { max-width:80%; padding:6px 9px; border-radius:10px; font-family:"Inter",sans-serif; font-size:9px; line-height:1.4; color:rgba(255,255,255,0.8); }
+.ph-msg.ph-l { background:#1f1f2e; border-bottom-left-radius:2px; align-self:flex-start; }
+.ph-msg.ph-r { background:#1a3a2a; border-bottom-right-radius:2px; align-self:flex-end; }
+.ph-sender { font-size:7px; color:rgba(255,255,255,0.3); font-weight:600; margin-bottom:2px; }
+
+/* Conclusion */
+.phone-conclusion {
+  margin:4px 10px 6px; padding:8px 10px;
+  background:rgba(99,102,241,0.07); border-left:2px solid #6366f1;
+  border-radius:0 8px 8px 0;
+  font-family:"Inter",sans-serif; font-size:9px;
+  color:rgba(255,255,255,0.45); font-style:italic; line-height:1.5;
+}
+
+/* Generic content pad */
+.phone-content-pad { padding:6px 10px; flex:1; display:flex; flex-direction:column; gap:8px; }
+.ph-counter { font-family:"Inter",sans-serif; font-size:8px; font-weight:600; color:rgba(255,255,255,0.2); text-align:center; }
+
+/* Q card inside phone */
+.ph-q-card { background:#141420; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:10px; display:flex; flex-direction:column; gap:8px; }
+.ph-q-label { font-family:"Inter",sans-serif; font-size:7px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:rgba(255,255,255,0.3); }
+.ph-q-text { font-family:"Sora",sans-serif; font-size:10px; font-weight:800; color:#fff; line-height:1.35; }
+.ph-choices { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+.ph-choice { padding:7px 6px; border-radius:8px; font-family:"Sora",sans-serif; font-size:9px; font-weight:700; text-align:center; }
+.ph-mythe { background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.25); color:rgba(255,100,100,0.8); }
+.ph-realite { background:rgba(16,185,129,0.08); border:1px solid rgba(16,185,129,0.25); color:rgba(80,220,140,0.8); }
+
+/* Gradient bar (eval) */
+.ph-grad-bar { width:100%; height:6px; border-radius:3px; background:linear-gradient(90deg,#22c55e,#eab308,#ef4444); position:relative; }
+.ph-grad-thumb { position:absolute; top:50%; transform:translate(-50%,-50%); width:14px; height:14px; border-radius:50%; background:#fff; box-shadow:0 1px 4px rgba(0,0,0,0.4); }
+
+/* Orb (exercise) */
+.ph-orb-wrap { position:relative; width:70px; height:70px; display:flex; align-items:center; justify-content:center; }
+.ph-orb-ring { position:absolute; border-radius:50%; border:1px solid rgba(99,102,241,0.15); }
+.ph-orb-ring.r1 { width:70px; height:70px; }
+.ph-orb-ring.r2 { width:48px; height:48px; }
+.ph-orb-emoji { font-size:22px; z-index:1; }
+.ph-instr-title { font-family:"Sora",sans-serif; font-size:12px; font-weight:800; color:#fff; text-align:center; }
+.ph-instr-sub { font-family:"Inter",sans-serif; font-size:9px; color:rgba(255,255,255,0.4); text-align:center; }
+.ph-timer-bar { width:100%; height:2px; background:rgba(255,255,255,0.08); border-radius:1px; overflow:hidden; }
+.ph-timer-fill { height:100%; background:linear-gradient(90deg,#4F46E5,#7C3AED); border-radius:1px; }
+
+/* Defi card inside phone */
+.ph-defi-card { background:#141420; border:1px solid rgba(99,102,241,0.2); border-radius:12px; overflow:hidden; }
+.ph-defi-tag { font-family:"Inter",sans-serif; font-size:7px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#6366f1; padding:8px 10px 0; }
+.ph-defi-title { font-family:"Sora",sans-serif; font-size:10px; font-weight:800; color:#fff; line-height:1.3; padding:4px 10px; }
+.ph-defi-body { font-family:"Inter",sans-serif; font-size:8px; color:rgba(255,255,255,0.4); line-height:1.6; padding:0 10px 8px; border-bottom:1px solid rgba(255,255,255,0.06); }
+.ph-hold-zone { padding:10px; display:flex; align-items:center; gap:8px; background:#0f0f1e; }
+
+/* Bottom button in phone */
+.phone-btn {
+  margin:6px 10px 10px; padding:10px;
+  background:linear-gradient(90deg,#4F46E5,#7C3AED);
+  border-radius:10px; text-align:center;
+  font-family:"Sora",sans-serif; font-size:10px; font-weight:700; color:#fff;
+  flex-shrink:0;
+}
+.phone-btn-disabled { opacity:0.3; }
+
+/* Card label */
+.phone-card-label { font-family:"Inter",sans-serif; font-size:11px; font-weight:700; letter-spacing:1px; }
+
+/* Scroll hint */
+.jour-scroll-hint { text-align:center; font-family:"Inter",sans-serif; font-size:12px; color:rgba(255,255,255,0.2); margin-top:4px; }
+
+/* ── DIVIDER ── */
+.section-divider {
+  width:100%; height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.06),transparent);
+  margin:40px auto;
+}
+
+/* Carnet dim labels */
+.carnet-item-dims { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:4px; }
+.dim-label {
+  display:flex; align-items:center; gap:5px;
+  font-family:"Inter",sans-serif; font-size:11px; font-weight:600;
+  color:rgba(255,255,255,0.5); letter-spacing:0.3px;
+}
+.dim-dot {
+  width:7px; height:7px; border-radius:50%; flex-shrink:0;
+}
+.carnet-item-illus {
+  width:64px; height:64px; border-radius:16px;
+  background:linear-gradient(135deg,#1a1028,#0f0a1e);
+  border:1px solid rgba(255,255,255,0.06);
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; overflow:hidden;
+}
+
+/* ── DEMO SECTION ── */
+.demo-section { padding:100px 24px 80px; display:flex; flex-direction:column; align-items:center; }
+.demo-label-top { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#6366f1; text-align:center; margin-bottom:12px; }
+.demo-title { font-family:"Sora",sans-serif; font-size:32px; font-weight:900; color:#fff; text-align:center; line-height:1.15; letter-spacing:-0.5px; margin-bottom:14px; }
+.demo-sub { font-size:13px; color:rgba(255,255,255,0.5); text-align:center; margin-bottom:40px; line-height:1.6; }
+.demo-phone-wrap { display:flex; flex-direction:column; align-items:center; gap:20px; }
+
+/* Phone */
+.demo-phone { width:280px; height:540px; border-radius:38px; background:#0e0e1a; border:1.5px solid rgba(255,255,255,0.1); box-shadow:0 0 0 8px rgba(255,255,255,0.03), 0 40px 80px rgba(0,0,0,0.7), 0 0 100px rgba(99,102,241,0.12); overflow:hidden; position:relative; }
+.demo-notch { position:absolute; top:0; left:50%; transform:translateX(-50%); width:80px; height:22px; background:#0e0e1a; border-radius:0 0 12px 12px; z-index:100; }
+.demo-top-bar { position:absolute; top:0; left:0; width:100%; height:2px; z-index:99; background:rgba(255,255,255,0.08); }
+.demo-top-fill { height:100%; background:linear-gradient(90deg,#4F46E5,#7C3AED); border-radius:0 2px 2px 0; transition:width 1s ease; }
+.demo-cursor { position:absolute; width:16px; height:16px; border-radius:50%; background:rgba(255,255,255,0.9); box-shadow:0 0 10px rgba(255,255,255,0.4); pointer-events:none; z-index:200; transition:all 0.6s cubic-bezier(0.4,0,0.2,1); opacity:0; }
+.demo-cursor.vis { opacity:1; }
+
+/* Screens */
+.demo-screens { position:absolute; inset:0; }
+.dscreen { position:absolute; inset:0; display:flex; flex-direction:column; background:#0a0a0f; opacity:0; transform:translateX(100%); transition:opacity 0.5s ease, transform 0.5s ease; }
+.dscreen.active { opacity:1; transform:translateX(0); }
+.dscreen.exit { opacity:0; transform:translateX(-100%); }
+.dglow { position:absolute; inset:0; pointer-events:none; }
+
+/* Header */
+.dheader { padding:36px 14px 10px; flex-shrink:0; position:relative; z-index:1; }
+.dheader-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:5px; }
+.dstep { font-size:8px; color:rgba(255,255,255,0.2); }
+.dclose { width:18px; height:18px; border-radius:50%; background:rgba(255,255,255,0.05); display:flex; align-items:center; justify-content:center; font-size:8px; color:rgba(255,255,255,0.2); }
+.dtitle { font-size:7px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#6366f1; }
+
+/* Btn */
+.dbtn { margin:6px 14px 18px; padding:11px; background:linear-gradient(90deg,#4F46E5,#7C3AED); border-radius:12px; text-align:center; font-family:"Sora",sans-serif; font-size:11px; font-weight:700; color:#fff; flex-shrink:0; position:relative; z-index:1; box-shadow:0 4px 16px rgba(79,70,229,0.4); }
+.dbtn.disabled { opacity:0.3; }
+
+/* S1 */
+.ds1-body { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:0 20px; gap:10px; position:relative; z-index:1; text-align:center; }
+.ds1-tag { font-size:8px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#6366f1; }
+.ds1-name { font-family:"Sora",sans-serif; font-size:15px; font-weight:900; color:#fff; line-height:1.2; letter-spacing:-0.2px; }
+.ds1-desc { font-size:10px; color:rgba(255,255,255,0.4); line-height:1.7; }
+.ds1-meta { display:flex; gap:8px; font-size:9px; color:rgba(255,255,255,0.25); align-items:center; }
+.ds1-dot { width:3px; height:3px; border-radius:50%; background:rgba(255,255,255,0.2); }
+
+/* S2 */
+.dwa-header { display:flex; align-items:center; gap:7px; padding:5px 10px 7px; background:#111118; margin:0 12px 6px; border-radius:10px; flex-shrink:0; position:relative; z-index:1; }
+.dwa-avs { display:flex; }
+.dwa-av { width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; border:1.5px solid #0a0a0f; }
+.dwa-names { font-family:"Sora",sans-serif; font-size:10px; font-weight:700; color:#fff; }
+.dwa-sub { font-size:8px; color:rgba(255,255,255,0.3); }
+.dmsgs { flex:1; overflow:hidden; padding:0 12px; display:flex; flex-direction:column; gap:4px; position:relative; z-index:1; }
+.dmsg { max-width:82%; padding:6px 10px; border-radius:12px; font-size:10px; line-height:1.45; color:rgba(255,255,255,0.85); opacity:0; transform:translateY(4px); transition:opacity 0.4s ease, transform 0.4s ease; }
+.dmsg.show { opacity:1; transform:translateY(0); }
+.dL { background:#1f1f2e; border-bottom-left-radius:3px; align-self:flex-start; }
+.dR { background:#1a3a2a; border-bottom-right-radius:3px; align-self:flex-end; }
+.dmsender { font-size:7px; font-weight:600; color:rgba(255,255,255,0.3); margin-bottom:2px; }
+.dconc { margin:6px 12px 0; padding:8px 10px; background:rgba(99,102,241,0.07); border-left:2px solid #6366f1; border-radius:0 8px 8px 0; font-size:9px; color:rgba(255,255,255,0.45); font-style:italic; line-height:1.5; opacity:0; transition:opacity 0.5s ease; flex-shrink:0; position:relative; z-index:1; }
+.dconc.show { opacity:1; }
+
+/* S3 */
+.ds3-body { flex:1; padding:0 12px; display:flex; flex-direction:column; gap:8px; position:relative; z-index:1; }
+.ds3-counter { font-size:9px; font-weight:600; color:rgba(255,255,255,0.2); text-align:center; }
+.ds3-card { background:#141420; border:1.5px solid rgba(255,255,255,0.08); border-radius:14px; padding:12px; display:flex; flex-direction:column; gap:10px; transition:border-color 0.3s ease; }
+.ds3-label { font-size:7px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:rgba(255,255,255,0.3); }
+.ds3-text { font-family:"Sora",sans-serif; font-size:11px; font-weight:800; color:#fff; line-height:1.35; }
+.ds3-choices { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+.ds3-mythe { padding:9px 6px; border-radius:8px; font-family:"Sora",sans-serif; font-size:9px; font-weight:700; text-align:center; background:rgba(239,68,68,0.08); border:1.5px solid rgba(239,68,68,0.25); color:rgba(255,100,100,0.8); transition:all 0.3s ease; }
+.ds3-realite { padding:9px 6px; border-radius:8px; font-family:"Sora",sans-serif; font-size:9px; font-weight:700; text-align:center; background:rgba(16,185,129,0.08); border:1.5px solid rgba(16,185,129,0.25); color:rgba(80,220,140,0.8); }
+.ds3-fb { background:rgba(16,185,129,0.08); border:1px solid rgba(16,185,129,0.2); border-radius:8px; padding:8px 10px; font-size:9px; color:rgba(255,255,255,0.5); font-style:italic; line-height:1.55; opacity:0; transition:opacity 0.5s ease; }
+.ds3-fb.show { opacity:1; }
+.ds3-verdict { font-family:"Sora",sans-serif; font-size:10px; font-weight:700; color:#6ee7b7; margin-bottom:3px; }
+
+/* S4 */
+.ds4-body { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:0 14px; gap:12px; position:relative; z-index:1; }
+.ds4-dots { display:flex; gap:5px; }
+.ds4-dot { height:3px; border-radius:2px; background:rgba(255,255,255,0.12); width:14px; transition:all 0.35s ease; }
+.ds4-dot.done { background:rgba(99,102,241,0.5); }
+.ds4-dot.active { background:#6366f1; width:22px; }
+.ds4-card { background:#141420; border:1.5px solid rgba(255,255,255,0.08); border-radius:16px; padding:16px 14px; width:100%; display:flex; flex-direction:column; align-items:center; gap:12px; }
+.ds4-orb { position:relative; width:70px; height:70px; display:flex; align-items:center; justify-content:center; }
+.ds4-ring { position:absolute; width:70px; height:70px; border-radius:50%; border:1px solid rgba(99,102,241,0.15); animation:drp 3s ease-in-out infinite; }
+.ds4-ring2 { position:absolute; width:48px; height:48px; border-radius:50%; border:1px solid rgba(99,102,241,0.15); animation:drp 3s ease-in-out 0.4s infinite; }
+@keyframes drp { 0%,100%{transform:scale(1);opacity:0.4} 50%{transform:scale(1.08);opacity:0.9} }
+.ds4-emoji { font-size:26px; z-index:1; transition:opacity 0.3s ease; }
+.ds4-instr { font-family:"Sora",sans-serif; font-size:13px; font-weight:800; color:#fff; text-align:center; line-height:1.3; transition:opacity 0.3s ease; }
+.ds4-sub { font-size:10px; color:rgba(255,255,255,0.4); text-align:center; line-height:1.55; transition:opacity 0.3s ease; }
+.ds4-tbar { width:100%; height:2px; background:rgba(255,255,255,0.08); border-radius:1px; overflow:hidden; }
+.ds4-tfill { height:100%; background:linear-gradient(90deg,#4F46E5,#7C3AED); border-radius:1px; transition:width 0.1s linear; width:0%; }
+.ds4-times { display:flex; justify-content:space-between; width:100%; font-size:8px; color:rgba(255,255,255,0.25); }
+
+/* S5 */
+.ds5-body { flex:1; padding:0 12px; display:flex; flex-direction:column; gap:8px; position:relative; z-index:1; }
+.ds5-card { background:#141420; border:1.5px solid rgba(99,102,241,0.2); border-radius:16px; overflow:hidden; }
+.ds5-inner { padding:14px 14px 10px; display:flex; flex-direction:column; gap:8px; border-bottom:1px solid rgba(255,255,255,0.06); }
+.ds5-tag { font-size:7px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#6366f1; }
+.ds5-title { font-family:"Sora",sans-serif; font-size:12px; font-weight:800; color:#fff; line-height:1.3; }
+.ds5-text { font-size:10px; color:rgba(255,255,255,0.4); line-height:1.6; }
+.ds5-hold { padding:12px 14px; background:#0f0f1e; display:flex; align-items:center; gap:8px; position:relative; overflow:hidden; }
+.ds5-hfill { position:absolute; top:0; left:0; bottom:0; width:0%; background:linear-gradient(90deg,rgba(79,70,229,0.4),rgba(124,58,237,0.4)); transition:width 0.05s linear; }
+.ds5-hicon { font-size:14px; position:relative; z-index:1; }
+.ds5-htxt { font-family:"Sora",sans-serif; font-size:11px; font-weight:700; color:#a5b4fc; position:relative; z-index:1; }
+.ds5-hsub { font-size:8px; color:rgba(255,255,255,0.25); position:relative; z-index:1; }
+
+/* Progress dots */
+.demo-progress-dots { display:flex; gap:6px; }
+.dpd { width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.15); transition:all 0.3s ease; }
+.dpd.active { background:#6366f1; transform:scale(1.2); }
+.demo-replay-btn { padding:10px 24px; background:rgba(99,102,241,0.1); border:1px solid rgba(99,102,241,0.3); border-radius:20px; color:#a5b4fc; font-size:12px; font-weight:600; cursor:pointer; display:none; font-family:"Inter",sans-serif; }
+.demo-replay-btn.show { display:block; }
+
+
+/* Parcours générique landing */
+.parcours-generique { padding:100px 24px; max-width:560px; margin:0 auto; width:100%; box-sizing:border-box; }
+.parcours-gen-header { text-align:center; margin-bottom:52px; }
+.parcours-gen-label { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#6366f1; margin-bottom:14px; }
+.parcours-gen-title { font-family:"Sora",sans-serif; font-size:clamp(26px,5vw,36px); font-weight:900; line-height:1.15; letter-spacing:-0.5px; color:#fff; }
+.parcours-gen-sub { font-size:15px; color:rgba(255,255,255,0.5); margin-top:12px; line-height:1.7; }
+.parcours-actes { display:flex; flex-direction:column; gap:0; position:relative; }
+.parcours-acte { display:flex; gap:20px; padding-bottom:0; }
+.parcours-acte-left { display:flex; flex-direction:column; align-items:center; flex-shrink:0; width:48px; }
+.parcours-acte-badge { width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:18px; border:1.5px solid; flex-shrink:0; }
+.parcours-acte-line { width:1.5px; flex:1; min-height:32px; background:rgba(255,255,255,0.07); transform-origin: top; animation: none; }
+.parcours-acte:last-child .parcours-acte-line { display:none; }
+.parcours-acte-body { padding:10px 0 36px; }
+.parcours-acte-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:6px; }
+.parcours-acte-title { font-family:"Sora",sans-serif; font-size:clamp(17px,3vw,20px); font-weight:900; color:#fff; margin-bottom:8px; line-height:1.2; }
+.parcours-acte-desc { font-size:14px; color:rgba(255,255,255,0.4); line-height:1.75; max-width:480px; }
+.parcours-acte-jours { display:flex; gap:6px; flex-wrap:wrap; margin-top:12px; }
+.parcours-jour-chip { font-size:10px; font-weight:700; padding:3px 9px; border-radius:20px; border:1px solid; }
+@media(max-width:600px){
+  .parcours-generique { padding:72px 20px; max-width:100%; }
+  .parcours-actes { width:100%; }
+  .parcours-acte { width:100%; }
+  .parcours-acte-body { padding-bottom:28px; width:100%; }
+  .parcours-gen-header { padding:0 4px; }
+}
+
+
+@media(max-width:559px) {
+  .carnets-grid { grid-template-columns:repeat(2,1fr); gap:10px; }
+  .carnet-item { aspect-ratio:1/1; border-radius:14px; }
+  .carnet-item-title { font-size:13px; }
+}
+
+
+/* ── ANIMATIONS SECTIONS ── */
+.anim-fade-up {
+  opacity:0; transform:translateY(28px);
+  transition:opacity 0.65s ease, transform 0.65s ease;
+}
+.anim-fade-up.visible { opacity:1; transform:translateY(0); }
+
+.anim-fade-left {
+  opacity:0; transform:translateX(-24px);
+  transition:opacity 0.6s ease, transform 0.6s ease;
+}
+.anim-fade-left.visible { opacity:1; transform:translateX(0); }
+
+.anim-scale {
+  opacity:0; transform:scale(0.94);
+  transition:opacity 0.6s ease, transform 0.6s ease;
+}
+.anim-scale.visible { opacity:1; transform:scale(1); }
+
+.anim-stagger-1 { transition-delay:0.05s; }
+.anim-stagger-2 { transition-delay:0.12s; }
+.anim-stagger-3 { transition-delay:0.19s; }
+.anim-stagger-4 { transition-delay:0.26s; }
+.anim-stagger-5 { transition-delay:0.33s; }
+.anim-stagger-6 { transition-delay:0.40s; }
+
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
-  <a href="index.html" class="nav-logo">
-    <svg width="22" height="22" viewBox="0 0 72 72" fill="none">
+  <a href="/" class="nav-logo" aria-label="Saga - Accueil">
+    <svg width="24" height="24" viewBox="0 0 72 72" fill="none" aria-hidden="true" focusable="false">
       <path d="M36 10C36 10 24 18 24 29C24 37 29 41 36 41C43 41 48 37 48 29C48 18 36 10 36 10Z" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
       <path d="M36 41C36 41 24 47 24 56C24 63 29 66 36 66C43 66 48 63 48 56C48 47 36 41 36 41Z" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
     SAGA
   </a>
-  <a href="#waitlist-carnet" class="nav-cta">Rejoindre la liste d'attente →</a>
+  <a href="#final-cta" class="nav-cta">Rejoindre la liste d'attente →</a>
 </nav>
 
-<div class="hero">
-  <div class="hero-bg"></div>
-  <img src="images/carnet-accroche.png" alt="Je m'accroche à des personnes qui me font du mal" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.45;"/>
-  <div class="hero-overlay"></div>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-orbits" aria-hidden="true">
+    <div class="horbit h1"><div class="hdot"></div></div>
+    <div class="horbit h2"><div class="hdot"></div></div>
+    <div class="horbit h3"><div class="hdot"></div></div>
+    <div class="horbit h4"><div class="hdot"></div></div>
+    <div class="horbit h5"><div class="hdot"></div></div>
+    <div class="horbit h6"><div class="hdot"></div></div>
+    <div class="horbit h7"><div class="hdot"></div></div>
+    <div class="horbit h8"><div class="hdot"></div></div>
+  </div>
   <div class="hero-content">
-    <div class="hero-dims">
-      <div class="hero-dim" style="color:#f9a8d4;border:1px solid #f9a8d440;">Émotion</div>
-      <div class="hero-dim" style="color:#67e8f9;border:1px solid #67e8f940;">Relations</div>
-    </div>
-    <div class="hero-tag">Carnet &middot; 12 jours &middot; 5 min/jour</div>
-    <h1 class="hero-title">Je m'accroche à des personnes qui me font du mal</h1>
-    <p class="hero-sub">Tu sais que cette relation te fait du mal. Mais tu n'arrives pas à lâcher. Tu reviens, tu espères, tu excuses. Et tu souffres — encore.</p>
-    <a href="#waitlist-carnet" class="hero-cta">Rejoindre la liste d'attente →</a>
-    <div class="hero-meta">Disponible le 14 juillet &middot; Accès anticipé gratuit</div>
-  </div>
-</div>
+    <div class="hero-badge">✦ &nbsp;📱 App mobile · Disponible le 14 juillet</div>
+    <h1 class="hero-title">Comprends ce qui te bloque.<br><span>Avance pour de vrai.</span></h1>
+    <p class="hero-sub">Une application de carnets interactifs de 12 jours pour comprendre tes blocages et passer à l'action.</p>
 
-<div class="divider"></div>
-<div class="section reveal">
-  <div class="section-tag">Ce carnet est fait pour toi si</div>
-  <div class="fait-list">
-    <div class="fait-item"><div class="fait-icon">→</div><div class="fait-text">Tu sais que quelqu'un ne te fait pas du bien — mais tu n'arrives pas à t'éloigner vraiment.</div></div>
-    <div class="fait-item"><div class="fait-icon">→</div><div class="fait-text">Tu passes du temps à analyser ce que cette personne a dit ou fait, en cherchant des explications.</div></div>
-    <div class="fait-item"><div class="fait-icon">→</div><div class="fait-text">Tu t'accroches à l'espoir que ça va changer — même quand les signaux disent le contraire.</div></div>
-    <div class="fait-item"><div class="fait-icon">→</div><div class="fait-text">Tu t'en veux de ne pas réussir à partir, et tu culpabilises de ressentir ce que tu ressens.</div></div>
-    <div class="fait-item"><div class="fait-icon">→</div><div class="fait-text">Tu excuses souvent le comportement de cette personne — même quand ça te blesse.</div></div>
-    <div class="fait-item"><div class="fait-icon">→</div><div class="fait-text">L'idée de ne plus avoir cette personne dans ta vie te fait plus peur que de continuer à souffrir.</div></div>
-  </div>
-</div>
-
-<div class="divider"></div>
-<div class="section reveal">
-  <div class="section-tag">Ce que tu vas vivre</div>
-  <h2 class="section-title">Comprendre pourquoi tu t'accroches — et apprendre à lâcher sans te perdre.</h2>
-  <p class="vivre-text">Pendant 12 jours, tu vas explorer les mécanismes derrière l'attachement douloureux : <strong>peur de la solitude, dépendance affective, espoir tenace, besoins non comblés</strong>.<br><br>À travers des réflexions guidées et des défis concrets, tu vas <strong>comprendre ce que tu cherches vraiment — et commencer à te le donner autrement</strong>.</p>
-</div>
-
-<div class="divider"></div>
-<div class="section reveal">
-  <div class="section-tag">Ton profil</div>
-  <h2 class="section-title">Le carnet commence par identifier comment tu t'accroches.</h2>
-  <div class="profils-grid">
-    <div class="profil-card">
-      <div class="profil-emoji">🔧</div>
-      <div class="profil-body">
-        <div class="profil-name">Le Réparateur</div>
-        <div class="profil-desc">Tu penses que si tu fais assez, tu pourras changer cette personne. Tu t'épuises à réparer ce qui ne t'appartient pas.</div>
-        <div class="profil-tag" style="background:rgba(249,168,212,0.1);color:#f9a8d4;">Réparation</div>
-      </div>
-    </div>
-    <div class="profil-card">
-      <div class="profil-emoji">🫀</div>
-      <div class="profil-body">
-        <div class="profil-name">Le Dépendant affectif</div>
-        <div class="profil-desc">La présence de cette personne comble un vide. Sans elle, tu ne sais pas trop qui tu es.</div>
-        <div class="profil-tag" style="background:rgba(103,232,249,0.1);color:#67e8f9;">Dépendance</div>
-      </div>
-    </div>
-    <div class="profil-card">
-      <div class="profil-emoji">📷</div>
-      <div class="profil-body">
-        <div class="profil-name">Le Nostalgique</div>
-        <div class="profil-desc">Tu t'accroches à ce que c'était avant. Tu cherches à retrouver quelque chose qui n'existe plus.</div>
-        <div class="profil-tag" style="background:rgba(196,181,253,0.1);color:#c4b5fd;">Nostalgie</div>
-      </div>
-    </div>
-    <div class="profil-card">
-      <div class="profil-emoji">🌅</div>
-      <div class="profil-body">
-        <div class="profil-name">L'Espoir éternel</div>
-        <div class="profil-desc">Tu crois que ça va changer. Demain, la semaine prochaine, quand les circonstances seront différentes.</div>
-        <div class="profil-tag" style="background:rgba(253,186,116,0.1);color:#fdba74;">Espoir</div>
+ 
+      <form class="waitlist-form" id="waitlistForm1" novalidate>
+        <input class="waitlist-input" type="email" name="email" placeholder="ton@email.com" autocomplete="email"/>
+        <button class="waitlist-btn" type="submit">Rejoindre →</button>
+      </form>
+      <div class="waitlist-error" id="waitlistError1">Cet email ne semble pas valide.</div>
+      <div class="waitlist-success" id="waitlistSuccess1">🎉 C'est noté ! Tu seras parmi les premiers le 14 juillet.</div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.25);text-align:center;margin-top:12px;">
+        Aucun engagement · Juste un email le jour du lancement
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<div class="divider"></div>
-<div class="section reveal">
-  <div class="section-tag">Le parcours &middot; 12 jours</div>
-  <h2 class="section-title">Lâcher. Jour après jour.</h2>
-  <div class="jours-list">
-    <div class="acte-sep" style="border-color:#f9a8d440;color:#f9a8d4;">Comprendre</div>
-    <div class="jour-row"><div class="jour-num" style="color:#f9a8d4;border-color:#f9a8d440;">J1</div><div class="jour-body"><div class="jour-title">Comment tu t'accroches</div><div class="jour-sub">Identifier ton profil d'attachement</div></div></div>
-    <div class="jour-row"><div class="jour-num" style="color:#f9a8d4;border-color:#f9a8d440;">J2</div><div class="jour-body"><div class="jour-title">D'où vient cette difficulté à lâcher</div><div class="jour-sub">Les origines de ton attachement</div></div></div>
-    <div class="jour-row"><div class="jour-num" style="color:#f9a8d4;border-color:#f9a8d440;">J3</div><div class="jour-body"><div class="jour-title">Ce que cette personne représente vraiment</div><div class="jour-sub">Au-delà de la personne, quel besoin ?</div></div></div>
-    <div class="jour-row"><div class="jour-num" style="color:#f9a8d4;border-color:#f9a8d440;">J4</div><div class="jour-body"><div class="jour-title">Ce que ça te coûte de rester</div><div class="jour-sub">Voir l'impact réel sur ta vie</div></div></div>
-    <div class="acte-sep" style="border-color:#67e8f940;color:#67e8f9;">Prendre conscience</div>
-    <div class="jour-row"><div class="jour-num" style="color:#67e8f9;border-color:#67e8f940;">J5</div><div class="jour-body"><div class="jour-title">Amour ou attachement douloureux ?</div><div class="jour-sub">Apprendre à faire la différence</div></div></div>
-    <div class="jour-row"><div class="jour-num" style="color:#67e8f9;border-color:#67e8f940;">J6</div><div class="jour-body"><div class="jour-title">Ce que tu peux te donner toi-même</div><div class="jour-sub">Les besoins que tu cherches ailleurs</div></div></div>
-    <div class="jour-row"><div class="jour-num" style="color:#67e8f9;border-color:#67e8f940;">J7</div><div class="jour-body"><div class="jour-title">Les signaux que tu ignores</div><div class="jour-sub">Voir ce qui est là depuis longtemps</div></div></div>
-    <div class="jour-row"><div class="jour-num" style="color:#67e8f9;border-color:#67e8f940;">J8</div><div class="jour-body"><div class="jour-title">Ce que la solitude te fait vraiment</div><div class="jour-sub">Explorer la peur derrière l'accrochage</div></div></div>
-    <div class="acte-sep" style="border-color:#bef26440;color:#bef264;">Passer à l'action</div>
-    <div class="jour-row"><div class="jour-num" style="color:#bef264;border-color:#bef26440;">J9</div><div class="jour-body"><div class="jour-title">Créer de la distance</div><div class="jour-sub">Sans tout couper d'un coup</div></div></div>
-    <div class="jour-row"><div class="jour-num" style="color:#bef264;border-color:#bef26440;">J10</div><div class="jour-body"><div class="jour-title">Prendre soin de toi d'abord</div><div class="jour-sub">Redevenir ta propre priorité</div></div></div>
-    <div class="jour-row"><div class="jour-num" style="color:#bef264;border-color:#bef26440;">J11</div><div class="jour-body"><div class="jour-title">Reconstruire d'autres liens</div><div class="jour-sub">Ne pas rester seul·e dans ce processus</div></div></div>
-    <div class="jour-row"><div class="jour-num" style="color:#bef264;border-color:#bef26440;">J12</div><div class="jour-body"><div class="jour-title">Lâcher — pas abandonner, choisir</div><div class="jour-sub">Repartir avec ta propre force</div></div></div>
+<div class="section-divider"></div>
+
+<!-- TENSION -->
+<section class="tension">
+  <div class="tension-bg"></div>
+  <div class="tension-label anim-fade-up">Ça te parle ?</div>
+  <div class="tension-display">
+    <div class="tension-phrase active" data-dim="Clarté" data-color="#fda4af">"Tu sais ce que tu veux. Mais au moment de choisir, tu te perds."</div>
+    <div class="tension-phrase" data-dim="Relations" data-color="#67e8f9">"Tu donnes beaucoup. Mais t'as l'impression que personne te voit vraiment."</div>
+    <div class="tension-phrase" data-dim="Action" data-color="#5eead4">"Tu commences demain. Puis demain devient la semaine prochaine."</div>
+    <div class="tension-phrase" data-dim="Émotion" data-color="#f9a8d4">"Tu ressens des trucs forts. Mais tu saurais pas les expliquer."</div>
+    <div class="tension-phrase" data-dim="Courage" data-color="#fdba74">"Tu sais ce que t'aurais dû dire. Mais t'as rien dit."</div>
+    <div class="tension-phrase" data-dim="Choix" data-color="#fde047">"Tu fais des trucs pour les autres. Rarement pour toi."</div>
+    <div class="tension-phrase" data-dim="Ancrage" data-color="#bef264">"T'as l'impression que tout le monde avance… sauf toi."</div>
+    <div class="tension-phrase" data-dim="Identité" data-color="#c4b5fd">"Tu voudrais changer. Mais tu sais pas par où commencer."</div>
   </div>
-</div>
+  <div class="tension-dim" id="tensionDim" style="color:#fda4af;">Clarté</div>
+  <div class="tension-dots" id="tensionDots">
+    <div class="tension-dot active" style="background:#fda4af"></div>
+    <div class="tension-dot" style="background:#67e8f9"></div>
+    <div class="tension-dot" style="background:#5eead4"></div>
+    <div class="tension-dot" style="background:#f9a8d4"></div>
+    <div class="tension-dot" style="background:#fdba74"></div>
+    <div class="tension-dot" style="background:#fde047"></div>
+    <div class="tension-dot" style="background:#bef264"></div>
+    <div class="tension-dot" style="background:#c4b5fd"></div>
+  </div>
+</section>
 
-<div class="divider"></div>
-<div class="section reveal">
-  <div class="section-tag">Les contenus &middot; En vrai</div>
-  <h2 class="section-title">Ce que tu vas vivre.</h2>
-  <p class="section-sub">Voici à quoi ressemble le Jour 1 de ce carnet.</p>
-  <div class="demo-phone-wrap2">
-    <div class="demo-phone2" id="phone_acc">
-      <div class="demo-notch2"></div>
-      <div class="demo-prog2"><div class="demo-prog2-fill" id="pacc_prog"></div></div>
+<div class="section-divider"></div>
+
+<!-- STAT -->
+<section class="stat-section">
+  <div class="stat-inner">
+    <h2 class="stat-title anim-fade-up">T'es pas seul·e<br>à ressentir ça.</h2>
+   <div class="stat-card anim-scale">
+  <div class="stat-num" id="statCounter" aria-live="polite" style="opacity:0;">0%</div>
+  <div class="stat-divider"></div>
+  <div class="stat-label">des jeunes estiment que leur vie<br>ne correspond pas à leurs attentes.<br><span style="font-size:12px;color:rgba(255,255,255,0.25);margin-top:6px;display:block;">Baromètre DJEPVA/INJEP, 2025 · 4 500 jeunes interrogés</span></div>
+</div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- HOW IT WORKS -->
+<section class="how">
+  <div class="how-label reveal">Comment ça marche</div>
+  <h2 class="how-title reveal">Concret. Ciblé.<br>5 minutes qui changent quelque chose.</h2>
+  <div class="how-steps">
+
+    <div class="how-step reveal reveal-delay-1">
+      <div class="how-step-illus">
+        <svg width="120" height="120" viewBox="0 0 180 180" fill="none" aria-hidden="true" focusable="false">
+          <circle cx="90" cy="90" r="24" stroke="rgba(139,92,246,0.25)" stroke-width="1"/>
+          <circle cx="90" cy="90" r="44" stroke="rgba(139,92,246,0.15)" stroke-width="1"/>
+          <circle cx="90" cy="90" r="64" stroke="rgba(139,92,246,0.08)" stroke-width="1"/>
+          <circle cx="90" cy="26" r="6" fill="#f472b6"/><circle cx="90" cy="26" r="10" fill="#f472b6" opacity="0.2"/>
+          <circle cx="136" cy="46" r="5.5" fill="#67e8f9"/><circle cx="136" cy="46" r="9" fill="#67e8f9" opacity="0.2"/>
+          <circle cx="154" cy="90" r="5" fill="#fdba74"/><circle cx="154" cy="90" r="8" fill="#fdba74" opacity="0.2"/>
+          <circle cx="136" cy="134" r="5.5" fill="#bef264"/><circle cx="136" cy="134" r="9" fill="#bef264" opacity="0.2"/>
+          <circle cx="90" cy="154" r="5" fill="#fde047"/><circle cx="90" cy="154" r="8" fill="#fde047" opacity="0.2"/>
+          <circle cx="44" cy="134" r="5" fill="#fda4af"/><circle cx="44" cy="134" r="8" fill="#fda4af" opacity="0.2"/>
+          <circle cx="26" cy="90" r="5.5" fill="#5eead4"/><circle cx="26" cy="90" r="9" fill="#5eead4" opacity="0.2"/>
+          <circle cx="44" cy="46" r="5" fill="#c4b5fd"/><circle cx="44" cy="46" r="8" fill="#c4b5fd" opacity="0.2"/>
+          <circle cx="90" cy="90" r="10" fill="rgba(139,92,246,0.3)" stroke="rgba(139,92,246,0.6)" stroke-width="1.5"/>
+          <circle cx="90" cy="90" r="4" fill="white" opacity="0.8"/>
+        </svg>
+      </div>
+      <div class="how-step-num">01</div>
+      <div class="how-step-title">Comprends ce qui te bloque vraiment</div>
+      <div class="how-step-desc">Un test approfondi pour identifier les forces qui t'aident à avancer dans la vraie vie et les blocages qui te ralentissent aujourd'hui.</div>
+    </div>
+
+    <div class="how-step reveal reveal-delay-2">
+      <div class="how-step-illus">
+        <svg width="140" height="100" viewBox="0 0 200 150" fill="none" aria-hidden="true" focusable="false">
+          <rect x="10" y="8" width="180" height="134" rx="16" fill="#1f1f2e" stroke="rgba(99,102,241,0.25)" stroke-width="1.2"/>
+          <rect x="10" y="8" width="180" height="34" rx="16" fill="rgba(99,102,241,0.15)"/>
+          <rect x="10" y="30" width="180" height="12" fill="rgba(99,102,241,0.15)"/>
+          <text x="100" y="28" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="11" font-family="Inter" font-weight="600">12 jours · 5 min / jour</text>
+          <rect x="22" y="52" width="32" height="26" rx="6" fill="rgba(99,102,241,0.7)"/>
+          <rect x="60" y="52" width="32" height="26" rx="6" fill="rgba(99,102,241,0.7)"/>
+          <rect x="98" y="52" width="32" height="26" rx="6" fill="rgba(99,102,241,0.7)"/>
+          <rect x="136" y="52" width="32" height="26" rx="6" fill="rgba(99,102,241,0.35)"/>
+          <rect x="22" y="84" width="32" height="26" rx="6" fill="rgba(255,255,255,0.06)"/>
+          <rect x="60" y="84" width="32" height="26" rx="6" fill="rgba(255,255,255,0.06)"/>
+          <rect x="98" y="84" width="32" height="26" rx="6" fill="rgba(255,255,255,0.06)"/>
+          <rect x="136" y="84" width="32" height="26" rx="6" fill="rgba(255,255,255,0.06)"/>
+          <rect x="22" y="116" width="32" height="26" rx="6" fill="rgba(255,255,255,0.06)"/>
+          <rect x="60" y="116" width="32" height="26" rx="6" fill="rgba(255,255,255,0.06)"/>
+          <rect x="98" y="116" width="32" height="26" rx="6" fill="rgba(255,255,255,0.06)"/>
+          <rect x="136" y="116" width="32" height="26" rx="6" fill="rgba(255,255,255,0.06)"/>
+          <path d="M30 65 L36 71 L46 59" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M68 65 L74 71 L84 59" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M106 65 L112 71 L122 59" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="how-step-num">02</div>
+      <div class="how-step-title">Commence par ce qui compte le plus</div>
+      <div class="how-step-desc">À partir de ton profil, Saga identifie les sujets qui auront le plus d'impact sur ta vie aujourd'hui. Au fil des carnets, ton profil évolue et ton parcours s'adapte.</div>
+    </div>
+
+    <div class="how-step reveal reveal-delay-3">
+      <div class="how-step-illus">
+        <svg width="140" height="100" viewBox="0 0 200 150" fill="none" aria-hidden="true" focusable="false">
+          <rect x="10" y="10" width="120" height="36" rx="13" fill="#1f1f2e"/>
+          <path d="M24 46 L10 60 L38 46Z" fill="#1f1f2e"/>
+          <text x="70" y="26" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="9" font-family="Inter">Tu évites quelque chose</text>
+          <text x="70" y="38" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="9" font-family="Inter">en ce moment ?</text>
+          <rect x="10" y="68" width="86" height="26" rx="10" fill="rgba(99,102,241,0.15)" stroke="rgba(99,102,241,0.4)" stroke-width="1"/>
+          <text x="53" y="85" text-anchor="middle" fill="#a5b4fc" font-size="9" font-family="Inter">✓  Oui, clairement</text>
+          <rect x="104" y="68" width="86" height="26" rx="10" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+          <text x="147" y="85" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="9" font-family="Inter">→  Pas vraiment</text>
+          <rect x="10" y="104" width="180" height="38" rx="12" fill="#141420" stroke="rgba(249,115,22,0.3)" stroke-width="1"/>
+          <text x="100" y="118" text-anchor="middle" fill="#f97316" font-size="8" font-family="Inter" font-weight="700">⚡ MISSION DU JOUR</text>
+          <text x="100" y="133" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="8.5" font-family="Inter">Envoie ce message que tu repousses.</text>
+        </svg>
+      </div>
+      <div class="how-step-num">03</div>
+      <div class="how-step-title">Avance dès que tu as 5 minutes</div>
+      <div class="how-step-desc">Une conversation qui te pose les bonnes questions. Un exercice de 2 minutes. Un défi pour le lendemain. Chaque jour, une chose à comprendre et une chose à faire.</div>
+    </div>
+
+    <div class="how-step reveal reveal-delay-4">
+      <div class="how-step-illus">
+        <svg width="120" height="120" viewBox="0 0 200 160" fill="none" aria-hidden="true" focusable="false">
+          <circle cx="90" cy="82" r="34" fill="url(#og3)" stroke="rgba(0,220,220,0.35)" stroke-width="1.5"/>
+          <circle cx="90" cy="82" r="52" stroke="rgba(0,220,220,0.12)" stroke-width="1"/>
+          <circle cx="90" cy="30" r="6" fill="#5eead4"/>
+          <circle cx="90" cy="30" r="10" fill="#5eead4" opacity="0.2"/>
+          <rect x="150" y="52" width="40" height="4" rx="2" fill="rgba(255,255,255,0.08)"/>
+          <rect x="150" y="52" width="30" height="4" rx="2" fill="#5eead4"/>
+          <text x="150" y="48" fill="rgba(255,255,255,0.3)" font-size="8" font-family="Inter">Action</text>
+          <rect x="150" y="70" width="40" height="4" rx="2" fill="rgba(255,255,255,0.08)"/>
+          <rect x="150" y="70" width="18" height="4" rx="2" fill="#c4b5fd"/>
+          <text x="150" y="66" fill="rgba(255,255,255,0.3)" font-size="8" font-family="Inter">Identité</text>
+          <defs>
+            <radialGradient id="og3" cx="40%" cy="35%">
+              <stop offset="0%" stop-color="rgba(0,220,220,0.55)"/>
+              <stop offset="100%" stop-color="transparent"/>
+            </radialGradient>
+          </defs>
+        </svg>
+      </div>
+      <div class="how-step-num">04</div>
+      <div class="how-step-title">Passe à l'action dans la vraie vie</div>
+      <div class="how-step-desc">Chaque carnet t'aide à transformer tes prises de conscience en actions concrètes. Tu avances sur ce qui compte vraiment.</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+
+<!-- PARCOURS GÉNÉRIQUE -->
+<section class="parcours-generique">
+  <div class="parcours-gen-header">
+    <div class="parcours-gen-label">Le parcours</div>
+    <h2 class="parcours-gen-title">12 jours structurés<br>en 3 actes.</h2>
+    <p class="parcours-gen-sub">Trois étapes pour transformer ce que tu découvres sur toi-même en changements réels dans ta vie.</p>
+  </div>
+  <div class="parcours-actes">
+
+    <div class="parcours-acte">
+      <div class="parcours-acte-left">
+        <div class="parcours-acte-badge" style="background:rgba(99,102,241,0.08);border-color:rgba(99,102,241,0.3);color:#6366f1;">🔍</div>
+        <div class="parcours-acte-line"></div>
+      </div>
+      <div class="parcours-acte-body">
+        <div class="parcours-acte-num" style="color:#6366f1;">Acte 1 · Jours 1 à 4</div>
+        <div class="parcours-acte-title">Comprendre.</div>
+        <div class="parcours-acte-desc">Tu explores tes choix passés, les situations que tu reproduis et tes modes de fonctionnement. Une première étape pour prendre du recul et mieux comprendre ce qui influence aujourd'hui ta vie.</div>
+        <div class="parcours-acte-jours">
+          <div class="parcours-jour-chip" style="color:#6366f1;border-color:rgba(99,102,241,0.25);">J1</div>
+          <div class="parcours-jour-chip" style="color:#6366f1;border-color:rgba(99,102,241,0.25);">J2</div>
+          <div class="parcours-jour-chip" style="color:#6366f1;border-color:rgba(99,102,241,0.25);">J3</div>
+          <div class="parcours-jour-chip" style="color:#6366f1;border-color:rgba(99,102,241,0.25);">J4</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="parcours-acte">
+      <div class="parcours-acte-left">
+        <div class="parcours-acte-badge" style="background:rgba(249,168,212,0.08);border-color:rgba(249,168,212,0.3);color:#f9a8d4;">🪞</div>
+        <div class="parcours-acte-line"></div>
+      </div>
+      <div class="parcours-acte-body">
+        <div class="parcours-acte-num" style="color:#f9a8d4;">Acte 2 · Jours 5 à 8</div>
+        <div class="parcours-acte-title">Prendre conscience.</div>
+        <div class="parcours-acte-desc">Tu vas au-delà des comportements visibles pour explorer les croyances, les peurs et les mécanismes qui les alimentent. Ce qui semblait évident commence à prendre un autre sens.</div>
+        <div class="parcours-acte-jours">
+          <div class="parcours-jour-chip" style="color:#f9a8d4;border-color:rgba(249,168,212,0.25);">J5</div>
+          <div class="parcours-jour-chip" style="color:#f9a8d4;border-color:rgba(249,168,212,0.25);">J6</div>
+          <div class="parcours-jour-chip" style="color:#f9a8d4;border-color:rgba(249,168,212,0.25);">J7</div>
+          <div class="parcours-jour-chip" style="color:#f9a8d4;border-color:rgba(249,168,212,0.25);">J8</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="parcours-acte">
+      <div class="parcours-acte-left">
+        <div class="parcours-acte-badge" style="background:rgba(94,234,212,0.08);border-color:rgba(94,234,212,0.3);color:#5eead4;">⚡</div>
+      </div>
+      <div class="parcours-acte-body">
+        <div class="parcours-acte-num" style="color:#5eead4;">Acte 3 · Jours 9 à 12</div>
+        <div class="parcours-acte-title">Passer à l'action.</div>
+        <div class="parcours-acte-desc">Tu mets à l'épreuve ce que tu as découvert sur toi-même. À travers des actions concrètes, tu expérimentes de nouveaux comportements et observes ce qui change dans ta vie.</div>
+        <div class="parcours-acte-jours">
+          <div class="parcours-jour-chip" style="color:#5eead4;border-color:rgba(94,234,212,0.25);">J9</div>
+          <div class="parcours-jour-chip" style="color:#5eead4;border-color:rgba(94,234,212,0.25);">J10</div>
+          <div class="parcours-jour-chip" style="color:#5eead4;border-color:rgba(94,234,212,0.25);">J11</div>
+          <div class="parcours-jour-chip" style="color:#5eead4;border-color:rgba(94,234,212,0.25);">J12</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- CARNETS -->
+<section class="carnets" id="carnets">
+  <div class="carnets-label anim-fade-up">Les parcours</div>
+  <h2 class="carnets-title anim-fade-up">8 parcours pour<br>avancer.</h2>
+  <p class="carnets-sub anim-fade-up">Chaque carnet cible un blocage précis. 12 jours, 5 minutes par jour.</p>
+  <div class="carnets-grid">
+    <a class="carnet-item anim-fade-up anim-stagger-1" href="saga_carnet_stagne.html">
+      <img class="carnet-img" src="images/carnet-stagner.png" alt="Je regarde les autres avancer et moi je stagne" width="400" height="225" loading="lazy"/>
+      <div class="carnet-overlay"></div>
+      <div class="carnet-content">
+        <div class="carnet-item-dims"><span class="dim-label"><span class="dim-dot" style="background:#5eead4;box-shadow:0 0 5px #5eead4;"></span>Action</span><span class="dim-label"><span class="dim-dot" style="background:#fdba74;box-shadow:0 0 5px #fdba74;"></span>Courage</span></div>
+        <div class="carnet-item-title">Je regarde les autres avancer et moi je stagne</div>
+        <div class="carnet-item-meta">12 jours · 5 min / jour</div>
+      </div>
+    </a>
+    <a class="carnet-item anim-fade-up anim-stagger-2" href="saga_carnet_choix.html">
+      <img class="carnet-img" src="images/carnet-choix.png" alt="J'ai peur de faire les mauvais choix" width="400" height="225" loading="lazy"/>
+      <div class="carnet-overlay"></div>
+      <div class="carnet-content">
+        <div class="carnet-item-dims"><span class="dim-label"><span class="dim-dot" style="background:#fde047;box-shadow:0 0 5px #fde047;"></span>Choix</span><span class="dim-label"><span class="dim-dot" style="background:#fda4af;box-shadow:0 0 5px #fda4af;"></span>Clarté</span></div>
+        <div class="carnet-item-title">J'ai peur de faire les mauvais choix</div>
+        <div class="carnet-item-meta">12 jours · 5 min / jour</div>
+      </div>
+    </a>
+    <a class="carnet-item anim-fade-up anim-stagger-3" href="saga_carnet_comparaison.html">
+      <img class="carnet-img" src="images/carnet-comparaison.png" alt="Je me compare tout le temps aux autres" width="400" height="225" loading="lazy"/>
+      <div class="carnet-overlay"></div>
+      <div class="carnet-content">
+        <div class="carnet-item-dims"><span class="dim-label" style="font-size:10px;"><span class="dim-dot" style="background:#67e8f9;box-shadow:0 0 5px #67e8f9;"></span>Relations</span><span class="dim-label" style="font-size:10px;"><span class="dim-dot" style="background:#c4b5fd;box-shadow:0 0 5px #c4b5fd;"></span>Identité</span></div>
+        <div class="carnet-item-title">Je me compare tout le temps aux autres</div>
+        <div class="carnet-item-meta">12 jours · 5 min / jour</div>
+      </div>
+    </a>
+    <a class="carnet-item anim-fade-up anim-stagger-4" href="saga_carnet_cerveau.html">
+      <img class="carnet-img" src="images/carnet-cerveau.png" alt="Mon cerveau ne s'arrête jamais" width="400" height="225" loading="lazy"/>
+      <div class="carnet-overlay"></div>
+      <div class="carnet-content">
+     <span class="dim-label" style="font-size:10px;"><span class="dim-dot" style="background:#fda4af;box-shadow:0 0 5px #fda4af;"></span>Clarté</span><span class="dim-label" style="font-size:10px;"><span class="dim-dot" style="background:#bef264;box-shadow:0 0 5px #bef264;"></span>Ancrage</span>
+        <div class="carnet-item-title">Mon cerveau ne s'arrête jamais</div>
+        <div class="carnet-item-meta">12 jours · 5 min / jour</div>
+      </div>
+    </a>
+    <a class="carnet-item anim-fade-up anim-stagger-5" href="saga_carnet_non.html">
+      <img class="carnet-img" src="images/carnet-oui-non.png" alt="Je dis oui alors que j'ai envie de dire non" width="400" height="225" loading="lazy"/>
+      <div class="carnet-overlay"></div>
+      <div class="carnet-content">
+        <div class="carnet-item-dims"><span class="dim-label"><span class="dim-dot" style="background:#bef264;box-shadow:0 0 5px #bef264;"></span>Ancrage</span><span class="dim-label"><span class="dim-dot" style="background:#67e8f9;box-shadow:0 0 5px #67e8f9;"></span>Relations</span></div>
+        <div class="carnet-item-title">Je dis oui alors que j'ai envie de dire non</div>
+        <div class="carnet-item-meta">12 jours · 5 min / jour</div>
+      </div>
+    </a>
+    <a class="carnet-item anim-fade-up anim-stagger-6" href="saga_carnet_moi.html">
+      <img class="carnet-img" src="images/carnet-moi-meme.png" alt="Je n'ose pas être totalement moi-même" width="400" height="225" loading="lazy"/>
+      <div class="carnet-overlay"></div>
+      <div class="carnet-content">
+        <span class="dim-label" style="font-size:10px;"><span class="dim-dot" style="background:#f9a8d4;box-shadow:0 0 5px #f9a8d4;"></span>Émotion</span><span class="dim-label" style="font-size:10px;"><span class="dim-dot" style="background:#67e8f9;box-shadow:0 0 5px #67e8f9;"></span>Relations</span>
+        <div class="carnet-item-title">Je n'ose pas être totalement moi-même</div>
+        <div class="carnet-item-meta">12 jours · 5 min / jour</div>
+      </div>
+    </a>
+    <a class="carnet-item anim-fade-up anim-stagger-1" href="saga_carnet_mal.html">
+      <img class="carnet-img" src="images/carnet-accroche.png" alt="Je m'accroche à des personnes qui me font du mal" width="400" height="225" loading="lazy"/>
+      <div class="carnet-overlay"></div>
+      <div class="carnet-content">
+        <span class="dim-label"><span class="dim-dot" style="background:#f9a8d4;box-shadow:0 0 5px #f9a8d4;"></span>Émotion</span><span class="dim-label"><span class="dim-dot" style="background:#67e8f9;box-shadow:0 0 5px #67e8f9;"></span>Relations</span>
+        <div class="carnet-item-title">Je m'accroche à des personnes qui me font du mal</div>
+        <div class="carnet-item-meta">12 jours · 5 min / jour</div>
+      </div>
+    </a>
+    <a class="carnet-item anim-fade-up anim-stagger-2" href="saga_carnet_avenir.html">
+      <img class="carnet-img" src="images/carnet-avenir.png" alt="J'angoisse quand je pense à l'avenir" width="400" height="225" loading="lazy"/>
+      <div class="carnet-overlay"></div>
+      <div class="carnet-content">
+        <div class="carnet-item-dims"><span class="dim-label"><span class="dim-dot" style="background:#fdba74;box-shadow:0 0 5px #fdba74;"></span>Courage</span><span class="dim-label"><span class="dim-dot" style="background:#5eead4;box-shadow:0 0 5px #5eead4;"></span>Action</span></div>
+        <div class="carnet-item-title">J'angoisse quand je pense à l'avenir</div>
+        <div class="carnet-item-meta">12 jours · 5 min / jour</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SOCIAL PROOF -->
+<section class="social">
+  <h2 class="social-title anim-fade-up">Ce qu'ils disent.</h2>
+  <p class="social-sub anim-fade-up" style="font-size:14px;color:rgba(255,255,255,0.4);text-align:center;margin-bottom:24px;line-height:1.6;">On a demandé à nos premiers testeurs ce qui les avait le plus surpris.<br>Clique sur une carte pour lire leur retour.</p>
+
+  <div class="testimonials-carousel anim-fade-up">
+    <div class="testimonials-track" id="testimonialsTrack">
+
+      <div class="testimonial" onclick="this.classList.toggle('flipped')">
+        <div class="testimonial-inner">
+          <div class="testimonial-front" style="background:linear-gradient(135deg,#1a1040,#2d1060);">
+            <div class="t-avatar-big" style="background:linear-gradient(135deg,#4F46E5,#7C3AED);">C</div>
+            <div class="t-name">Clara, 24 ans</div>
+            <div class="t-carnet">Je dis oui alors que j'ai envie de dire non</div>
+            <div class="t-hint">Lire son retour →</div>
+          </div>
+          <div class="testimonial-back" style="background:linear-gradient(160deg,#1e1450,#120a35);border:1.5px solid rgba(99,102,241,0.35);">
+            <div class="t-question">Ce qui t'a le plus surpris ?</div>
+            <div class="t-quote">"Je pensais apprendre des techniques. En fait j'ai surtout compris pourquoi je faisais ce que je faisais depuis des années."</div>
+            <div class="t-source">Inspiré d'un retour de testeur</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial" onclick="this.classList.toggle('flipped')">
+        <div class="testimonial-inner">
+          <div class="testimonial-front" style="background:linear-gradient(135deg,#0a2040,#0d3060);">
+            <div class="t-avatar-big" style="background:linear-gradient(135deg,#0891b2,#6366f1);">M</div>
+            <div class="t-name">Maxime, 27 ans</div>
+            <div class="t-carnet">Je regarde les autres avancer et moi je stagne</div>
+            <div class="t-hint">Lire son retour →</div>
+          </div>
+          <div class="testimonial-back" style="background:linear-gradient(160deg,#0a2848,#071830);border:1.5px solid rgba(8,145,178,0.35);">
+            <div class="t-question">Ce qui t'a le plus surpris ?</div>
+            <div class="t-quote">"Le jour 3 m'a mis mal à l'aise. Pas parce que c'était dur, mais parce que c'était trop juste. Je m'attendais pas à ça en 5 minutes."</div>
+            <div class="t-source">Inspiré d'un retour de testeur</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial" onclick="this.classList.toggle('flipped')">
+        <div class="testimonial-inner">
+          <div class="testimonial-front" style="background:linear-gradient(135deg,#2d0a28,#4a0a40);">
+            <div class="t-avatar-big" style="background:linear-gradient(135deg,#ec4899,#8b5cf6);">I</div>
+            <div class="t-name">Inès, 22 ans</div>
+            <div class="t-carnet">Je me compare tout le temps aux autres</div>
+            <div class="t-hint">Lire son retour →</div>
+          </div>
+          <div class="testimonial-back" style="background:linear-gradient(160deg,#2d0a28,#1a0520);border:1.5px solid rgba(236,72,153,0.35);">
+            <div class="t-question">Ce qui t'a le plus surpris ?</div>
+            <div class="t-quote">"J'ai l'habitude d'abandonner ce genre de truc au bout de 2 jours. Là j'ai tenu les 12 jours. Je pense que c'est parce que c'est court et que ça parle vraiment de moi."</div>
+            <div class="t-source">Inspiré d'un retour de testeur</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial" onclick="this.classList.toggle('flipped')">
+        <div class="testimonial-inner">
+          <div class="testimonial-front" style="background:linear-gradient(135deg,#0a2818,#0d4020);">
+            <div class="t-avatar-big" style="background:linear-gradient(135deg,#059669,#6366f1);">A</div>
+            <div class="t-name">Axel, 25 ans</div>
+            <div class="t-carnet">J'angoisse quand je pense à l'avenir</div>
+            <div class="t-hint">Lire son retour →</div>
+          </div>
+          <div class="testimonial-back" style="background:linear-gradient(160deg,#0a2818,#061510);border:1.5px solid rgba(5,150,105,0.35);">
+            <div class="t-question">Ce qui t'a le plus surpris ?</div>
+            <div class="t-quote">"J'pensais que ça allait me donner un plan. Mais en fait ça m'a juste aidé à arrêter de fuir la question. C'est déjà beaucoup."</div>
+            <div class="t-source">Inspiré d'un retour de testeur</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial" onclick="this.classList.toggle('flipped')">
+        <div class="testimonial-inner">
+          <div class="testimonial-front" style="background:linear-gradient(135deg,#281808,#402010);">
+            <div class="t-avatar-big" style="background:linear-gradient(135deg,#d97706,#dc2626);">N</div>
+            <div class="t-name">Noémie, 23 ans</div>
+            <div class="t-carnet">J'ai peur de faire les mauvais choix</div>
+            <div class="t-hint">Lire son retour →</div>
+          </div>
+          <div class="testimonial-back" style="background:linear-gradient(160deg,#281808,#180e05);border:1.5px solid rgba(217,119,6,0.35);">
+            <div class="t-question">Ce qui t'a le plus surpris ?</div>
+            <div class="t-quote">"Que la peur de choisir c'est pas un défaut de caractère. C'est quelque chose qui se comprend et qui se travaille. Ça change tout dans ma tête."</div>
+            <div class="t-source">Inspiré d'un retour de testeur</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial" onclick="this.classList.toggle('flipped')">
+        <div class="testimonial-inner">
+          <div class="testimonial-front" style="background:linear-gradient(135deg,#1a0a2e,#2e0a4a);">
+            <div class="t-avatar-big" style="background:linear-gradient(135deg,#7c3aed,#c026d3);">L</div>
+            <div class="t-name">Lucas, 26 ans</div>
+            <div class="t-carnet">Je n'ose pas être totalement moi-même</div>
+            <div class="t-hint">Lire son retour →</div>
+          </div>
+          <div class="testimonial-back" style="background:linear-gradient(160deg,#1a0a2e,#0e0620);border:1.5px solid rgba(124,58,237,0.35);">
+            <div class="t-question">Ce qui t'a le plus surpris ?</div>
+            <div class="t-quote">"Le jour 1 j'ai réalisé que je savais même plus ce que j'aimais vraiment. Tellement j'avais pris l'habitude de m'adapter à tout le monde."</div>
+            <div class="t-source">Inspiré d'un retour de testeur</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="carousel-controls">
+    <button class="carousel-btn" onclick="carouselPrev()">←</button>
+    <div class="carousel-nav" id="carouselDots"></div>
+    <button class="carousel-btn" onclick="carouselNext()">→</button>
+  </div>
+
+</section>
+
+<div class="section-divider"></div>
+
+<!-- DÉMO INTERACTIVE -->
+<section class="demo-section">
+  <div class="demo-label-top anim-fade-up">En vrai</div>
+  <h2 class="demo-title anim-fade-up">Voilà à quoi<br>ressemble une journée.</h2>
+  <p class="demo-sub anim-fade-up anim-stagger-1">Jour 1 · Je dis oui alors que j'ai envie de dire non.</p>
+
+  <div class="demo-phone-wrap anim-scale anim-stagger-2">
+    <div class="demo-phone" id="demoPhone">
+      <div class="demo-notch"></div>
+      <div class="demo-top-bar"><div class="demo-top-fill" id="dTopFill" style="width:0%"></div></div>
+      <div class="demo-cursor" id="demoCursor"></div>
+
       <div class="demo-screens">
 
-<div class="dscreen active" id="pacc_s1">
-  <div class="dglow" style="background:radial-gradient(ellipse 70% 50% at 50% 30%,rgba(249,168,212,0.08) 0%,transparent 70%)"></div>
-  <div class="dheader"><div class="dheader-top"><span class="dstep">Jour 1 / 12</span><div class="dclose">✕</div></div><div class="dtitle">TON CARNET</div></div>
-  <div class="ds1-body">
-    <div style="font-size:42px;">🫀</div>
-    <div class="ds1-tag">Émotion · Relations</div>
-    <div class="ds1-name">Je m'accroche à des personnes qui me font du mal</div>
-    <div class="ds1-desc">12 jours pour comprendre et apprendre à lâcher, 5 min par jour.</div>
-  </div>
-  <div class="dbtn" onclick="goTo_acc(1)">Commencer J1 →</div>
-</div>
+        <!-- S1 -->
+        <div class="dscreen active" id="ds1">
+          <div class="dglow" style="background:radial-gradient(ellipse 70% 50% at 50% 30%,rgba(99,102,241,0.15) 0%,transparent 70%)"></div>
+          <div class="dheader">
+            <div class="dheader-top"><span class="dstep">Jour 1 / 12</span><div class="dclose">✕</div></div>
+            <div class="dtitle">TON CARNET</div>
+          </div>
+          <div class="ds1-body">
+            <div style="font-size:48px;">🧠</div>
+            <div class="ds1-tag">Relations + Courage</div>
+            <div class="ds1-name">Je dis oui alors que j'ai envie de dire non</div>
+            <div class="ds1-desc">12 jours pour comprendre pourquoi tu cèdes  et apprendre à choisir vraiment.</div>
+            <div class="ds1-meta"><span>12 jours</span><span class="ds1-dot"></span><span>5 min/jour</span></div>
+          </div>
+          <div class="dbtn">Commencer le Jour 1 →</div>
+        </div>
 
-<div class="dscreen" id="pacc_s2">
-  <div class="dglow" style="background:radial-gradient(ellipse 60% 40% at 50% 30%,rgba(99,102,241,0.08) 0%,transparent 70%)"></div>
-  <div class="dheader"><div class="dheader-top"><span class="dstep">1 / 4</span><div class="dclose">✕</div></div><div class="dtitle">UNE CONVERSATION</div></div>
-  <div class="dmsgs" id="pacc_msgs">
-    <div class="dmsg dL"><div class="dmsender">Léa</div>Il t'a encore laissé un message ?</div>
-    <div class="dmsg dR"><div class="dmsender">Sara</div>Ouais… il dit qu'il a changé</div>
-    <div class="dmsg dL"><div class="dmsender">Léa</div>Il dit ça à chaque fois 😔</div>
-    <div class="dmsg dR"><div class="dmsender">Sara</div>Je sais. Mais et si cette fois c'est vrai ?</div>
-    <div class="dmsg dR"><div class="dmsender">Sara</div>J'arrive pas à ignorer</div>
-  </div>
-  <div class="dconc" id="pacc_conc">Tu t'es déjà dit exactement ça ?</div>
-  <div class="dbtn" id="pacc_btn2" style="opacity:0.3">Continuer →</div>
-</div>
+        <!-- S2  WA -->
+        <div class="dscreen" id="ds2">
+          <div class="dglow" style="background:radial-gradient(ellipse 60% 40% at 50% 30%,rgba(99,102,241,0.1) 0%,transparent 70%)"></div>
+          <div class="dheader">
+            <div class="dheader-top"><span class="dstep">1 / 4</span><div class="dclose">✕</div></div>
+            <div class="dtitle">UNE CONVERSATION</div>
+          </div>
+          <div class="dwa-header">
+            <div class="dwa-avs">
+              <div class="dwa-av" style="background:linear-gradient(135deg,#f472b6,#8b5cf6);">👧</div>
+              <div class="dwa-av" style="background:linear-gradient(135deg,#67e8f9,#6366f1);margin-left:-8px;">👦</div>
+            </div>
+            <div><div class="dwa-names">Léa &amp; Thomas</div><div class="dwa-sub">Ce matin · 9h14</div></div>
+          </div>
+          <div class="dmsgs" id="dmsgs">
+            <div class="dmsg dL" id="dm1"><div class="dmsender">Léa</div>T'es libre ce week-end ? On organise un truc</div>
+            <div class="dmsg dR" id="dm2"><div class="dmsender">Thomas</div>Euh... ouais je crois 😅</div>
+            <div class="dmsg dL" id="dm3"><div class="dmsender">Léa</div>Super ! Tu peux prendre les boissons ?</div>
+            <div class="dmsg dR" id="dm4"><div class="dmsender">Thomas</div>Ok pas de souci !</div>
+            <div class="dmsg dR" id="dm5" style="font-size:9px;color:rgba(255,255,255,0.3);font-style:italic;">[Il voulait rester chez lui.]</div>
+          </div>
+          <div class="dconc" id="dconc">Tu t'es déjà reconnu·e dans ce message ?</div>
+          <div class="dbtn disabled" id="ds2btn">Continuer →</div>
+        </div>
 
-<div class="dscreen" id="pacc_s3">
-  <div class="dglow" style="background:radial-gradient(ellipse 60% 40% at 50% 30%,rgba(99,102,241,0.08) 0%,transparent 70%)"></div>
-  <div class="dheader"><div class="dheader-top"><span class="dstep">2 / 4</span><div class="dclose">✕</div></div><div class="dtitle">MYTHE OU RÉALITÉ ?</div></div>
-  <div class="ds3-body">
-    <div class="ds3-counter">Affirmation 1 sur 5</div>
-    <div class="ds3-card" id="pacc_card3">
-      <div class="ds3-label">Affirmation</div>
-      <div class="ds3-text">"Si tu t'accroches, c'est parce que tu aimes vraiment cette personne."</div>
-      <div class="ds3-choices">
-        <div class="ds3-mythe" id="pacc_mythe" onclick="pickMythe_acc()">🚫 Mythe</div>
-        <div class="ds3-realite">✓ Réalité</div>
+        <!-- S3  Mythe -->
+        <div class="dscreen" id="ds3">
+          <div class="dglow" style="background:radial-gradient(ellipse 60% 40% at 50% 30%,rgba(99,102,241,0.1) 0%,transparent 70%)"></div>
+          <div class="dheader">
+            <div class="dheader-top"><span class="dstep">2 / 4</span><div class="dclose">✕</div></div>
+            <div class="dtitle">MYTHE OU RÉALITÉ ?</div>
+          </div>
+          <div class="ds3-body">
+            <div class="ds3-counter">Affirmation 1 sur 5</div>
+            <div class="ds3-card" id="ds3card">
+              <div class="ds3-label">Affirmation</div>
+              <div class="ds3-text">Dire oui pour éviter le conflit, c'est une preuve de gentillesse.</div>
+              <div class="ds3-choices">
+                <div class="ds3-mythe" id="ds3m">🚫 Mythe</div>
+                <div class="ds3-realite">✓ Réalité</div>
+              </div>
+              <div class="ds3-fb" id="ds3fb">
+                <div class="ds3-verdict">Bien vu, c'est un mythe.</div>
+                Ce n'est pas de la gentillesse  c'est de la peur.
+              </div>
+            </div>
+          </div>
+          <div class="dbtn disabled" id="ds3btn">Suivant →</div>
+        </div>
+
+        <!-- S4  Exercice -->
+        <div class="dscreen" id="ds4">
+          <div class="dglow" id="ds4glow" style="background:radial-gradient(ellipse 70% 55% at 50% 35%,rgba(99,102,241,0.12) 0%,transparent 70%);transition:background 1.5s ease;"></div>
+          <div class="dheader">
+            <div class="dheader-top"><span class="dstep" id="ds4step">Étape 1 / 3</span><div class="dclose">✕</div></div>
+            <div class="dtitle">EXERCICE GUIDÉ</div>
+          </div>
+          <div class="ds4-body">
+            <div class="ds4-dots" id="ds4dots">
+              <div class="ds4-dot active"></div><div class="ds4-dot"></div><div class="ds4-dot"></div>
+            </div>
+            <div class="ds4-card">
+              <div class="ds4-orb"><div class="ds4-ring"></div><div class="ds4-ring2"></div><div class="ds4-emoji" id="ds4emoji">😌</div></div>
+              <div class="ds4-instr" id="ds4instr">Pose tes deux pieds au sol.</div>
+              <div class="ds4-sub" id="ds4sub">Sens le contact. Tout ton poids.</div>
+              <div class="ds4-tbar"><div class="ds4-tfill" id="ds4fill"></div></div>
+              <div class="ds4-times"><span id="ds4cur">0:00</span><span id="ds4tot">0:05</span></div>
+            </div>
+          </div>
+          <div class="dbtn disabled" id="ds4btn">Continuer →</div>
+        </div>
+
+        <!-- S5  Défi -->
+        <div class="dscreen" id="ds5">
+          <div class="dglow" style="background:radial-gradient(ellipse 65% 45% at 50% 30%,rgba(99,102,241,0.1) 0%,transparent 70%)"></div>
+          <div class="dheader">
+            <div class="dheader-top"><span class="dstep">4 / 4</span><div class="dclose">✕</div></div>
+            <div class="dtitle">DÉFI DU JOUR</div>
+          </div>
+          <div class="ds5-body">
+            <div class="ds5-card">
+              <div class="ds5-inner">
+                <div class="ds5-tag">⚡ Mission · Jour 1</div>
+                <div class="ds5-title">La prochaine fois qu'on te demande quelque chose, attends 3 secondes.</div>
+                <div class="ds5-text">Juste assez pour sentir ce que tu veux  avant que la peur décide à ta place.</div>
+              </div>
+              <div class="ds5-hold" id="ds5hold">
+                <div class="ds5-hfill" id="ds5hfill"></div>
+                <div class="ds5-hicon" id="ds5hicon">🤝</div>
+                <div>
+                  <div class="ds5-htxt" id="ds5htxt">Je le fais aujourd'hui</div>
+                  <div class="ds5-hsub">Maintiens appuyé</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="dbtn disabled" id="ds5btn">Terminer J1 ✓</div>
+        </div>
+
+
+        <!-- S6 fin -->
+        <div class="dscreen" id="ds6">
+          <div class="dglow" style="background:radial-gradient(ellipse 70% 60% at 50% 40%,rgba(99,102,241,0.2) 0%,transparent 70%)"></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 20px;gap:16px;text-align:center;position:relative;z-index:1;">
+            <div style="font-size:48px;">✨</div>
+            <div style="font-family:'Sora',sans-serif;font-size:16px;font-weight:900;color:#fff;line-height:1.2;">J1 terminé.</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.4);line-height:1.7;">Demain, on continue.<br>5 minutes. Jour 2 sur 12.</div>
+            <div style="display:flex;gap:8px;margin-top:8px;">
+              <div style="width:12px;height:4px;border-radius:2px;background:#6366f1;"></div>
+              <div style="width:6px;height:4px;border-radius:2px;background:rgba(255,255,255,0.15);"></div>
+              <div style="width:6px;height:4px;border-radius:2px;background:rgba(255,255,255,0.15);"></div>
+            </div>
+          </div>
+        </div>
+
       </div>
-      <div class="ds3-fb" id="pacc_fb3"><div class="ds3-verdict">Bien vu, c'est un mythe.</div>S'accrocher, c'est souvent de la peur — pas de l'amour. La peur de la solitude, du vide, de ne pas trouver mieux.</div>
     </div>
-  </div>
-  <div class="dbtn disabled" id="pacc_btn3">Suivant →</div>
-</div>
 
-<div class="dscreen" id="pacc_s4">
-  <div class="dglow" style="background:radial-gradient(ellipse 70% 55% at 50% 35%,rgba(99,102,241,0.1) 0%,transparent 70%)"></div>
-  <div class="dheader"><div class="dheader-top"><span class="dstep">3 / 4</span><div class="dclose">✕</div></div><div class="dtitle">EXERCICE GUIDÉ</div></div>
-  <div class="ds4-body">
-    <div class="ds4-card" style="gap:14px;">
-      <div class="ds4-orb"><div class="ds4-ring"></div><div class="ds4-ring2"></div><div class="ds4-emoji" id="pacc_exo_emoji">🫀</div></div>
-      <div id="pacc_exo_steps">
-        <div class="dexo-step"><div class="dexo-emoji">🫀</div><div><div class="dexo-instr">Pense à cette personne.</div><div class="dexo-sub">Sans juger ce que tu ressens.</div></div></div>
-        <div class="dexo-step"><div class="dexo-emoji">🔍</div><div><div class="dexo-instr">Qu'est-ce qu'elle te donne que tu n'as pas ailleurs ?</div><div class="dexo-sub">Un sentiment, pas une personne.</div></div></div>
-        <div class="dexo-step"><div class="dexo-emoji">💡</div><div><div class="dexo-instr">Est-ce que tu pourrais te le donner autrement ?</div><div class="dexo-sub">Pas maintenant. Juste comme question.</div></div></div>
-      </div>
-      <div class="ds4-tbar"><div class="ds4-tfill" id="pacc_exofill"></div></div>
+    <div class="demo-progress-dots" id="dProgressDots">
+      <div class="dpd active"></div><div class="dpd"></div><div class="dpd"></div><div class="dpd"></div><div class="dpd"></div><div class="dpd"></div>
     </div>
+    <button class="demo-replay-btn" id="dReplayBtn" onclick="dRestart()">↺ Rejouer la démo</button>
   </div>
-  <div class="dbtn disabled" id="pacc_btn4">Continuer →</div>
-</div>
+</section>
 
-<div class="dscreen" id="pacc_s5">
-  <div class="dglow" style="background:radial-gradient(ellipse 65% 45% at 50% 30%,rgba(99,102,241,0.1) 0%,transparent 70%)"></div>
-  <div class="dheader"><div class="dheader-top"><span class="dstep">4 / 4</span><div class="dclose">✕</div></div><div class="dtitle">DÉFI DU JOUR</div></div>
-  <div class="ds5-body">
-    <div class="ds5-card">
-      <div class="ds5-inner">
-        <div class="ds5-tag">⚡ Défi · Jour 1</div>
-        <div class="ds5-title">Aujourd'hui, fais une chose pour toi — sans lien avec cette personne.</div>
-        <div class="ds5-text">Quelque chose qui te fait du bien à toi. Un repas, une sortie, un appel à quelqu'un d'autre.</div>
-      </div>
-      <div class="ds5-hold" id="pacc_hold">
-        <div class="ds5-hfill" id="pacc_hfill"></div>
-        <div class="ds5-hicon">🫀</div>
-        <div><div class="ds5-htxt" id="pacc_htxt">Je le fais aujourd'hui</div><div class="ds5-hsub">Maintiens appuyé</div></div>
-      </div>
-    </div>
-  </div>
-  <div class="dbtn disabled" id="pacc_btn5">Terminer J1 ✓</div>
-</div>
+<div class="section-divider"></div>
 
-      </div>
-    </div>
-  </div>
-</div>
+<!-- PROFIL & DIMENSIONS -->
+<section class="profil-section">
 
-<div class="divider"></div>
-<div class="section reveal">
-  <div class="section-tag">Pour avancer dans la vraie vie</div>
-  <h2 class="section-title">Ce que ce carnet va changer.</h2>
-  <p class="section-sub">Chaque carnet est conçu pour renforcer des dimensions précises de ton profil afin de créer des changements visibles dans la vraie vie.</p>
-  <div class="dims-cards">
-    <div class="dim-card">
-      <div class="dim-card-top">
-        <div class="dim-dot-large" style="background:#f9a8d4;box-shadow:0 0 10px #f9a8d4;"></div>
-        <div><div class="dim-name-big" style="color:#f9a8d4;">Émotion</div><div class="dim-desc-short">Comprendre ce que tu ressens sans en être submergé·e.</div></div>
-      </div>
-      <div class="dim-how">Ce carnet renforce ton rapport à l'<strong>Émotion</strong> : nommer ce que tu ressens, comprendre d'où ça vient, et ne plus laisser la douleur décider à ta place.</div>
-    </div>
-    <div class="dim-card">
-      <div class="dim-card-top">
-        <div class="dim-dot-large" style="background:#67e8f9;box-shadow:0 0 10px #67e8f9;"></div>
-        <div><div class="dim-name-big" style="color:#67e8f9;">Relations</div><div class="dim-desc-short">Choisir des liens qui te font du bien.</div></div>
-      </div>
-      <div class="dim-how">Il améliore tes <strong>Relations</strong> : reconnaître ce qui est sain, poser des limites affectives, et construire des liens à partir de choix — pas de peur.</div>
-    </div>
-  </div>
-</div>
+  <div class="profil-label anim-fade-up">Ton profil</div>
+  <h2 class="profil-title anim-fade-up">Comprends tes forces. <br>Repère tes angles morts.</h2>
+  <p class="profil-sub anim-fade-up" style="margin-bottom:32px;">Ton profil est construit à partir d'un questionnaire approfondi autour de 8 dimensions qui influencent ta capacité à avancer dans la vie. Il évolue ensuite au fil des carnets.</p>
 
-<div class="divider"></div>
-<div class="final reveal" id="final">
-  <div class="section-tag">Bientôt disponible</div>
-  <h2 class="final-title">Ce carnet sort<br>le 14 juillet.</h2>
-  <p class="final-sub">Inscris-toi pour être notifié en avant-première et accéder en premier.</p>
-  <div id="waitlist-carnet" style="width:100%;max-width:460px;">
-    <form class="waitlist-form" id="waitlistFormCarnet">
-      <input class="waitlist-input" type="email" name="email" placeholder="ton@email.com" required autocomplete="email"/>
-      <button class="waitlist-btn" type="submit">Rejoindre →</button>
-    </form>
-    <div class="waitlist-success" id="waitlistSuccessCarnet" style="display:none;">🎉 C'est noté ! Tu seras parmi les premiers le 14 juillet.</div>
+  <div class="profil-row anim-scale anim-stagger-1">
+
+    <!-- Radar interactif -->
+    <div class="radar-wrap">
+      <svg id="radarSvg" viewBox="-20 0 280 240" xmlns="http://www.w3.org/2000/svg" style="touch-action:none;">
+        <!-- Grid -->
+        <circle cx="120" cy="120" r="95" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+        <circle cx="120" cy="120" r="71" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+        <circle cx="120" cy="120" r="47" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+        <circle cx="120" cy="120" r="24" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+        <!-- Axes -->
+        <line x1="120" y1="120" x2="120" y2="25" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+        <line x1="120" y1="120" x2="187" y2="53" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+        <line x1="120" y1="120" x2="215" y2="120" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+        <line x1="120" y1="120" x2="187" y2="187" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+        <line x1="120" y1="120" x2="120" y2="215" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+        <line x1="120" y1="120" x2="53" y2="187" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+        <line x1="120" y1="120" x2="25" y2="120" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+        <line x1="120" y1="120" x2="53" y2="53" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+        <!-- Polygon dynamique -->
+        <polygon id="radarPolygon" fill="rgba(99,102,241,0.12)" stroke="rgba(99,102,241,0.4)" stroke-width="1.5" stroke-linejoin="round"/>
+        <!-- Labels fixes -->
+        <text x="120" y="13" text-anchor="middle" fill="#fda4af" font-size="8" font-family="Inter" font-weight="700">Clarté</text>
+        <text x="200" y="50" text-anchor="start" fill="#67e8f9" font-size="8" font-family="Inter" font-weight="700">Relations</text>
+        <text x="228" y="124" text-anchor="start" fill="#5eead4" font-size="8" font-family="Inter" font-weight="700">Action</text>
+        <text x="196" y="208" text-anchor="start" fill="#f9a8d4" font-size="8" font-family="Inter" font-weight="700">Émotion</text>
+        <text x="120" y="234" text-anchor="middle" fill="#fdba74" font-size="8" font-family="Inter" font-weight="700">Courage</text>
+        <text x="44" y="208" text-anchor="end" fill="#fde047" font-size="8" font-family="Inter" font-weight="700">Choix</text>
+        <text x="12" y="124" text-anchor="end" fill="#bef264" font-size="8" font-family="Inter" font-weight="700">Ancrage</text>
+        <text x="44" y="50" text-anchor="end" fill="#c4b5fd" font-size="8" font-family="Inter" font-weight="700">Identité</text>
+        <!-- Points draggables -->
+        <circle id="dot0" r="7" fill="#fda4af" cursor="grab" style="filter:drop-shadow(0 0 4px #fda4af)"/>
+        <circle id="dot1" r="6" fill="#67e8f9" cursor="grab" style="filter:drop-shadow(0 0 4px #67e8f9)"/>
+        <circle id="dot2" r="6" fill="#5eead4" cursor="grab" style="filter:drop-shadow(0 0 4px #5eead4)"/>
+        <circle id="dot3" r="6" fill="#f9a8d4" cursor="grab" style="filter:drop-shadow(0 0 4px #f9a8d4)"/>
+        <circle id="dot4" r="6" fill="#fdba74" cursor="grab" style="filter:drop-shadow(0 0 4px #fdba74)"/>
+        <circle id="dot5" r="6" fill="#fde047" cursor="grab" style="filter:drop-shadow(0 0 4px #fde047)"/>
+        <circle id="dot6" r="6" fill="#bef264" cursor="grab" style="filter:drop-shadow(0 0 4px #bef264)"/>
+        <circle id="dot7" r="6" fill="#c4b5fd" cursor="grab" style="filter:drop-shadow(0 0 4px #c4b5fd)"/>
+      </svg>
+      <div style="text-align:center;font-family:'Inter',sans-serif;font-size:11px;color:rgba(255,255,255,0.2);margin-top:6px;">
+        Glisse les points pour explorer
+      </div>
+    </div>
+
+    <!-- Profile card dynamique -->
+    <div class="profil-card-simple" id="profilCardSimple">
+      <div class="profil-card-simple-icon" id="profilIcon">🎯</div>
+      <div class="profil-card-simple-body">
+        <div class="profil-card-simple-tag">✦ Le profil</div>
+        <div class="profil-card-simple-name" id="profilName">Le Stratège Silencieux</div>
+      </div>
+    </div>
+
   </div>
-  <div class="final-meta">Gratuit &middot; Avant-première &middot; Sans engagement</div>
-</div>
+
+  <p class="profil-sub anim-fade-up anim-stagger-2">28 profils possibles • Construits à partir de 8 dimensions clés pour passer à l'action</p>
+  <a href="#final-cta" class="profil-cta-btn anim-fade-up anim-stagger-3">Rejoindre la liste d'attente →</a>
+
+</section>
+
+<div class="section-divider"></div>
+
+<!-- FINAL CTA -->
+
+  <section class="final-cta" id="final-cta">
+  <div class="final-cta-bg"></div>
+  <h2 class="final-cta-title anim-fade-up">Sois parmi<br>les premiers.</h2>
+  <p class="final-cta-sub anim-fade-up anim-stagger-1">Saga sort le 14 juillet. Inscris-toi maintenant pour être notifié et accéder en avant-première.</p>
+  <div class="reveal" style="width:100%;"><form class="waitlist-form" id="waitlistForm2" novalidate>
+        <input class="waitlist-input" type="email" name="email" placeholder="ton@email.com" required autocomplete="email"/>
+        <button class="waitlist-btn" type="submit">Rejoindre →</button>
+      </form>
+      <div class="waitlist-error" id="waitlistError2">Cet email ne semble pas valide.</div>
+      <div class="waitlist-success" id="waitlistSuccess2">🎉 C'est noté ! Tu seras parmi les premiers le 14 juillet.</div></div>
+  <div class="final-meta reveal">
+    <span>Gratuit</span>
+    <div class="hmeta-dot"></div>
+    <span>Avant-première</span>
+    <div class="hmeta-dot"></div>
+    <span>Sans engagement</span>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">SAGA</div>
+  <div style="font-family:'Inter',sans-serif;font-size:12px;color:rgba(255,255,255,0.2);margin-top:8px;">© 2026 Saga. Tous droits réservés.</div>
+  <div class="footer-links">
+    <a href="confidentialite.html" class="footer-link">Confidentialité</a>
+<a href="cgv.html" class="footer-link">CGV</a>
+<a href="cgu.html" class="footer-link">CGU</a>
+<a href="mailto:isabelle@mysaga.fr" class="footer-link">Contact</a>
+
+  </div>
+</footer>
 
 <script>
-var reveals=document.querySelectorAll('.reveal');
-function check(){reveals.forEach(function(el){if(el.getBoundingClientRect().top<window.innerHeight-60)el.classList.add('visible');});}
-window.addEventListener('scroll',check);check();
-</script>
-<script>
-var pacc_cur=0;
-function goTo_acc(idx){
-  var screens=['pacc_s1','pacc_s2','pacc_s3','pacc_s4','pacc_s5'];
-  document.getElementById(screens[pacc_cur]).classList.add('exit');
-  document.getElementById(screens[idx]).classList.add('active');
-  setTimeout(function(){document.getElementById(screens[pacc_cur]).classList.remove('active','exit');pacc_cur=idx;},500);
-  if(idx===1)startWA_acc();
-}
-function startWA_acc(){
-  var msgs=document.getElementById('pacc_msgs').querySelectorAll('.dmsg');
-  msgs.forEach(function(m,i){setTimeout(function(){m.classList.add('show');},500+i*700);});
-  setTimeout(function(){
-    document.getElementById('pacc_conc').classList.add('show');
-    document.getElementById('pacc_btn2').style.opacity='1';
-    document.getElementById('pacc_btn2').onclick=function(){goTo_acc(2);};
-  },(500+5*700));
-}
-function pickMythe_acc(){
-  var m=document.getElementById('pacc_mythe');
-  m.style.background='rgba(16,185,129,0.15)';m.style.borderColor='rgba(16,185,129,0.6)';m.style.color='#6ee7b7';
-  document.getElementById('pacc_fb3').classList.add('show');
-  document.getElementById('pacc_card3').style.borderColor='rgba(16,185,129,0.4)';
-  var btn=document.getElementById('pacc_btn3');btn.classList.remove('disabled');btn.onclick=function(){goTo_acc(3);startExo_acc();};
-}
-var pacc_exoStep=0,pacc_exoT=null;
-var pacc_exoData=[
-  ['🫀','Pense à cette personne.','Sans juger ce que tu ressens.'],
-  ['🔍','Qu\'est-ce qu\'elle te donne que tu n\'as pas ailleurs ?','Un sentiment, pas une personne.'],
-  ['💡','Est-ce que tu pourrais te le donner autrement ?','Pas maintenant. Juste comme question.']
-];
-function startExo_acc(){pacc_exoStep=0;runExoStep_acc();}
-function runExoStep_acc(){
-  var steps=document.getElementById('pacc_exo_steps').querySelectorAll('.dexo-step');
-  steps.forEach(function(s,i){s.style.opacity=i===pacc_exoStep?'1':'0.3';});
-  document.getElementById('pacc_exo_emoji').textContent=pacc_exoData[pacc_exoStep][0];
-  var fill=document.getElementById('pacc_exofill'),pct=0;
-  if(pacc_exoT)clearInterval(pacc_exoT);
-  pacc_exoT=setInterval(function(){
-    pct+=2;fill.style.width=pct+'%';
-    if(pct>=100){
-      clearInterval(pacc_exoT);pacc_exoStep++;
-      if(pacc_exoStep<pacc_exoData.length){fill.style.width='0%';setTimeout(runExoStep_acc,300);}
-      else{var btn=document.getElementById('pacc_btn4');btn.classList.remove('disabled');btn.onclick=function(){goTo_acc(4);startHold_acc();};}
+// Scroll reveal
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      // Counter animation
+      if (entry.target.id === "statCounter") {
+        animateCounter();
+      }
     }
-  },80);
-}
-function startHold_acc(){
-  var hold=document.getElementById('pacc_hold'),fill=document.getElementById('pacc_hfill'),p=0,t=null;
-  hold.addEventListener('mousedown',startH);hold.addEventListener('touchstart',startH,{passive:true});
-  hold.addEventListener('mouseup',stopH);hold.addEventListener('mouseleave',stopH);hold.addEventListener('touchend',stopH);
-  function startH(){t=setInterval(function(){p+=3;fill.style.width=p+'%';if(p>=100){clearInterval(t);document.getElementById('pacc_htxt').textContent="C'est noté !";fill.style.background='rgba(16,185,129,0.3)';var btn=document.getElementById('pacc_btn5');btn.classList.remove('disabled');btn.onclick=function(){alert('J1 terminé ! ✨');};}}  ,50);}
-  function stopH(){clearInterval(t);if(p<100){p=0;fill.style.width='0%';}}
-}
-var pacc_started=false;
-new IntersectionObserver(function(entries){
-  entries.forEach(function(e){if(e.isIntersecting&&!pacc_started){pacc_started=true;}});
-},{threshold:0.3}).observe(document.getElementById('phone_acc'));
-</script>
-<script>
-(function(){
-  var form=document.getElementById('waitlistFormCarnet');
-  if(!form)return;
-  form.addEventListener('submit',function(e){
-    e.preventDefault();
-    var email=form.querySelector('input[type="email"]').value;
-    var btn=form.querySelector('button');
-    btn.disabled=true;btn.textContent='...';
-    fetch('https://api.brevo.com/v3/contacts',{
-      method:'POST',
-      headers:{'Content-Type':'application/json','api-key':'BREVO_API_KEY'},
-      body:JSON.stringify({email:email,listIds:[3],updateEnabled:true})
-    })
-    .then(function(){form.style.display='none';document.getElementById('waitlistSuccessCarnet').style.display='block';})
-    .catch(function(){form.style.display='none';document.getElementById('waitlistSuccessCarnet').style.display='block';});
   });
+}, { threshold: 0.15 });
+
+var howSteps = document.querySelectorAll('.how-step');
+var howObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      var idx = Array.from(howSteps).indexOf(entry.target);
+      setTimeout(function() {
+        entry.target.classList.add('visible');
+      }, idx * 150);
+      howObs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+howSteps.forEach(function(s) { howObs.observe(s); });
+  
+document.querySelectorAll(".reveal, .tension-phrase, #statCounter").forEach(function(el) {
+  observer.observe(el);
+});
+
+// Tension carousel
+var tPhrases = document.querySelectorAll(".tension-phrase");
+var tDots = document.querySelectorAll(".tension-dot");
+var tDim = document.getElementById("tensionDim");
+var tCurrent = 0;
+
+setInterval(function() {
+  tPhrases[tCurrent].classList.remove("active");
+  tPhrases[tCurrent].classList.add("exit");
+  tDots[tCurrent].classList.remove("active");
+  var prev = tCurrent;
+  tCurrent = (tCurrent + 1) % tPhrases.length;
+  setTimeout(function() {
+    tPhrases[prev].classList.remove("exit");
+    tPhrases[tCurrent].classList.add("active");
+    tDots[tCurrent].classList.add("active");
+    var dim = tPhrases[tCurrent].getAttribute("data-dim");
+    var color = tPhrases[tCurrent].getAttribute("data-color");
+    tDim.textContent = dim;
+    tDim.style.color = color;
+  }, 600);
+}, 3500);
+
+// Counter
+function animateCounter() {
+  var el = document.getElementById("statCounter");
+  el.style.opacity = "1";
+  el.style.transition = "opacity 0.3s ease";
+  var start = 0, end = 65, duration = 1400;
+  var startTime = null;
+  function step(ts) {
+    if (!startTime) startTime = ts;
+    var progress = Math.min((ts - startTime) / duration, 1);
+    var eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.floor(eased * end) + "%";
+    if (progress < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+</script>
+
+<script>
+// ── DEMO LANDING ──
+var dCur = 0;
+var dScreens = ['ds1','ds2','ds3','ds4','ds5','ds6'];
+var dProg = [0,20,40,65,85];
+var dSeq = []; var dSeqIdx = 0;
+
+function dTap(x, y, cb) {
+  var c = document.getElementById('demoCursor');
+  c.style.left = x+'px'; c.style.top = y+'px';
+  c.classList.add('vis');
+  c.style.transform = 'scale(0.7)';
+  setTimeout(function(){
+    c.style.transform = 'scale(1)';
+    setTimeout(function(){ c.classList.remove('vis'); if(cb) cb(); }, 300);
+  }, 250);
+}
+
+function dGoTo(idx) {
+  var old = document.getElementById(dScreens[dCur]);
+  var nxt = document.getElementById(dScreens[idx]);
+  old.classList.add('exit');
+  nxt.classList.add('active');
+  setTimeout(function(){ old.classList.remove('active','exit'); }, 500);
+  dCur = idx;
+  document.getElementById('dTopFill').style.width = dProg[idx]+'%';
+  document.querySelectorAll('.dpd').forEach(function(d,i){ d.classList.toggle('active',i===idx); });
+}
+
+function dRun() {
+  if (dSeqIdx >= dSeq.length) { document.getElementById('dReplayBtn').classList.add('show'); return; }
+  var step = dSeq[dSeqIdx++];
+  if (step.wait) setTimeout(dRun, step.wait);
+  else if (step.fn) { step.fn(); setTimeout(dRun, step.after||600); }
+}
+
+function dRestart() {
+  document.getElementById('dReplayBtn').classList.remove('show');
+  dScreens.forEach(function(id,i){ var el=document.getElementById(id); el.classList.remove('active','exit'); if(i===0) el.classList.add('active'); });
+  dCur=0;
+  document.getElementById('dTopFill').style.width='0%';
+  document.querySelectorAll('.dpd').forEach(function(d,i){ d.classList.toggle('active',i===0); });
+  ['dm1','dm2','dm3','dm4','dm5'].forEach(function(id){ document.getElementById(id).classList.remove('show'); });
+  document.getElementById('dconc').classList.remove('show');
+  document.getElementById('ds2btn').classList.add('disabled');
+  document.getElementById('ds3m').className='ds3-mythe';
+  document.getElementById('ds3m').style='';
+  document.getElementById('ds3m').textContent='🚫 Mythe';
+  document.getElementById('ds3fb').classList.remove('show');
+  document.getElementById('ds3btn').classList.add('disabled');
+  document.getElementById('ds3card').style.borderColor='';
+  dResetS4();
+  document.getElementById('ds5hfill').style.width='0%';
+  document.getElementById('ds5hicon').textContent='🤝';
+  document.getElementById('ds5htxt').textContent="Je le fais aujourd'hui";
+  document.getElementById('ds5htxt').style.color='';
+  document.getElementById('ds5btn').classList.add('disabled');
+  dSeqIdx=0;
+  // Reset ds6
+  var ds6=document.getElementById('ds6');
+  if(ds6){ds6.classList.remove('active','exit');}
+  // Reset ds5btn text
+  document.getElementById('ds5btn').textContent='Terminer J1 ✓';
+  document.getElementById('ds5btn').style.opacity='';
+  document.getElementById('ds5hicon').textContent='🤝';
+  document.getElementById('ds5hfill').style.background='';
+  // Force repaint
+  void document.getElementById('demoPhone').offsetHeight;
+  setTimeout(dRun,800);
+}
+
+// S1
+dSeq.push({wait:1000});
+dSeq.push({fn:function(){dTap(140,490);},after:800});
+dSeq.push({fn:function(){dGoTo(1);dStartS2();},after:200});
+
+// S2
+function dStartS2(){
+  var msgs=['dm1','dm2','dm3','dm4','dm5'];
+  msgs.forEach(function(id,i){ setTimeout(function(){ document.getElementById(id).classList.add('show'); var a=document.getElementById('dmsgs'); if(a) a.scrollTop=9999; }, 500+i*800); });
+  setTimeout(function(){ document.getElementById('dconc').classList.add('show'); document.getElementById('ds2btn').classList.remove('disabled'); }, 5000);
+}
+dSeq.push({wait:6200});
+dSeq.push({fn:function(){dTap(140,490);},after:800});
+dSeq.push({fn:function(){dGoTo(2);},after:200});
+
+// S3
+dSeq.push({wait:900});
+dSeq.push({fn:function(){
+  dTap(80,330);
+  var m=document.getElementById('ds3m');
+  m.style.background='rgba(16,185,129,0.15)'; m.style.borderColor='rgba(16,185,129,0.6)'; m.style.color='#6ee7b7';
+  // Flash "Bien vu !" sur le bouton mythe
+  m.textContent = '✓ Bien vu !';
+  setTimeout(function(){
+    document.getElementById('ds3fb').classList.add('show');
+    document.getElementById('ds3btn').classList.remove('disabled');
+    document.getElementById('ds3card').style.borderColor='rgba(16,185,129,0.4)';
+  },400);
+},after:2000});
+dSeq.push({fn:function(){dTap(140,490);},after:800});
+dSeq.push({fn:function(){dGoTo(3);dStartS4();},after:200});
+
+// S4
+var ds4steps=[
+  {emoji:'😌',text:'Pose tes deux pieds au sol.',sub:'Sens le contact.',dur:4,color:'rgba(99,102,241,0.12)'},
+  {emoji:'🌬️',text:'Inspire lentement.',sub:'4 secondes.',dur:4,color:'rgba(56,189,248,0.1)'},
+  {emoji:'💨',text:'Expire doucement.',sub:'Relâche tout.',dur:4,color:'rgba(16,185,129,0.1)'}
+];
+var ds4cur=0,ds4el=0,ds4t=null;
+
+function dResetS4(){ds4cur=0;ds4el=0;if(ds4t)clearInterval(ds4t);document.getElementById('ds4fill').style.width='0%';document.getElementById('ds4cur').textContent='0:00';document.getElementById('ds4emoji').textContent='😌';document.getElementById('ds4instr').textContent='Pose tes deux pieds au sol.';document.getElementById('ds4sub').textContent='Sens le contact.';document.getElementById('ds4btn').classList.add('disabled');dUpdateS4Dots();}
+function dUpdateS4Dots(){document.querySelectorAll('.ds4-dot').forEach(function(d,i){d.className='ds4-dot'+(i<ds4cur?' done':i===ds4cur?' active':'');});document.getElementById('ds4step').textContent='Étape '+(ds4cur+1)+' / '+ds4steps.length;}
+function dStartS4(){dResetS4();setTimeout(dRunS4,600);}
+function dRunS4(){
+  var s=ds4steps[ds4cur];ds4el=0;
+  var e=document.getElementById('ds4emoji'),i=document.getElementById('ds4instr'),sub=document.getElementById('ds4sub');
+  e.style.opacity='0';i.style.opacity='0';sub.style.opacity='0';
+  document.getElementById('ds4glow').style.background='radial-gradient(ellipse 70% 55% at 50% 35%,'+s.color+' 0%,transparent 70%)';
+  setTimeout(function(){
+    e.textContent=s.emoji;i.textContent=s.text;sub.textContent=s.sub;
+    document.getElementById('ds4tot').textContent='0:0'+s.dur;
+    document.getElementById('ds4fill').style.width='0%';
+    e.style.opacity='1';i.style.opacity='1';sub.style.opacity='1';
+    dUpdateS4Dots();
+    if(ds4t)clearInterval(ds4t);
+    ds4t=setInterval(function(){
+      ds4el++;
+      document.getElementById('ds4fill').style.width=(ds4el/s.dur*100)+'%';
+      document.getElementById('ds4cur').textContent='0:0'+ds4el;
+      if(ds4el>=s.dur){clearInterval(ds4t);ds4cur++;if(ds4cur<ds4steps.length)setTimeout(dRunS4,500);else document.getElementById('ds4btn').classList.remove('disabled');}
+    },1000);
+  },300);
+}
+var s4totalMs = ds4steps.reduce(function(a,s){return a+s.dur*1000+800;},0)+1200;
+dSeq.push({wait:s4totalMs});
+dSeq.push({fn:function(){dTap(140,490);},after:800});
+dSeq.push({fn:function(){dGoTo(4);dStartHold();},after:200});
+
+// S5
+function dStartHold(){
+  var f=document.getElementById('ds5hfill'),p=0;
+  var holdEl=document.getElementById('ds5hold');
+
+  function runFill(){
+    var t=setInterval(function(){
+      p+=4; f.style.width=p+'%';
+      if(p>=100){
+        clearInterval(t);
+        document.getElementById('ds5hicon').textContent='✓';
+        document.getElementById('ds5htxt').textContent="C'est noté !";
+        document.getElementById('ds5htxt').style.color='#6ee7b7';
+        f.style.background='rgba(16,185,129,0.2)';
+        var btn=document.getElementById('ds5btn');
+        btn.classList.remove('disabled');
+        btn.style.opacity='1';
+        btn.onclick = function(){ dGoTo(5); };
+        document.getElementById('dTopFill').style.width='100%';
+      }
+    },50);
+  }
+
+  // Support desktop click + mobile longpress
+  setTimeout(function(){
+    dTap(140,400);
+    // Desktop: simple click déclenche le fill
+    holdEl.addEventListener('click', function onHoldClick(){
+      holdEl.removeEventListener('click', onHoldClick);
+      runFill();
+    });
+    // Mobile: longpress
+    var pressT=null;
+    holdEl.addEventListener('touchstart',function(){ pressT=setTimeout(runFill,200); },{passive:true});
+    holdEl.addEventListener('touchend',function(){ clearTimeout(pressT); },{passive:true});
+  },1000);
+}
+dSeq.push({wait:2500});
+dSeq.push({fn:function(){dTap(140,490);},after:800});
+dSeq.push({fn:function(){dGoTo(5);},after:200});
+dSeq.push({wait:2000});
+dSeq.push({fn:function(){document.getElementById('dReplayBtn').classList.add('show');},after:0});
+
+// Auto start when section is visible
+var dStarted = false;
+var dObs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){ if(e.isIntersecting && !dStarted){ dStarted=true; setTimeout(dRun,600); } });
+},{threshold:0.3});
+var dSection = document.querySelector('.demo-section');
+if(dSection) dObs.observe(dSection);
+</script>
+
+
+<script>
+// ── RADAR INTERACTIF ──
+var CX = 120, CY = 120, MAX_R = 95, MIN_R = 10;
+
+// 8 dimensions, angles en degrés depuis le haut, sens horaire
+var dims = [
+  { name:'Clarté',    angle:-90,  color:'#fda4af', val:0.95 },
+  { name:'Relations', angle:-45,  color:'#67e8f9', val:0.75 },
+  { name:'Action',    angle:0,    color:'#5eead4', val:0.25 },
+  { name:'Émotion',   angle:45,   color:'#f9a8d4', val:0.50 },
+  { name:'Courage',   angle:90,   color:'#fdba74', val:0.50 },
+  { name:'Choix',     angle:135,  color:'#fde047', val:0.50 },
+  { name:'Ancrage',   angle:180,  color:'#bef264', val:0.75 },
+  { name:'Identité',  angle:-135, color:'#c4b5fd', val:0.75 }
+];
+
+// 28 profils selon les 2 dimensions dominantes
+var profils = {
+  'Clarté-Relations':   { name:'Le Diplomate Lucide',     icon:'🌊' },
+  'Clarté-Action':      { name:'Le Stratège Décisif',     icon:'⚡' },
+  'Clarté-Émotion':     { name:'L\'Analyste Sensible',    icon:'🔍' },
+  'Clarté-Courage':     { name:'Le Pionnier Conscient',   icon:'🏔️' },
+  'Clarté-Choix':       { name:'Le Stratège Silencieux',  icon:'🎯' },
+  'Clarté-Ancrage':     { name:'Le Sage Ancré',           icon:'🌲' },
+  'Clarté-Identité':    { name:'L\'Architecte de Soi',    icon:'🏛️' },
+  'Relations-Action':   { name:'Le Catalyseur',           icon:'🔥' },
+  'Relations-Émotion':  { name:'Le Lien Vivant',          icon:'💫' },
+  'Relations-Courage':  { name:'Le Bâtisseur de Ponts',   icon:'🌉' },
+  'Relations-Choix':    { name:'Le Connecteur',           icon:'🕸️' },
+  'Relations-Ancrage':  { name:'Le Gardien du Lien',      icon:'🤝' },
+  'Relations-Identité': { name:'L\'Empathe Affirmé',      icon:'💎' },
+  'Action-Émotion':     { name:'L\'Élan Passionné',       icon:'🌊' },
+  'Action-Courage':     { name:'Le Funambule',            icon:'🎪' },
+  'Action-Choix':       { name:'L\'Entrepreneur Intérieur',icon:'🚀' },
+  'Action-Ancrage':     { name:'Le Bâtisseur',            icon:'🔨' },
+  'Action-Identité':    { name:'L\'Acteur de Sa Vie',     icon:'🎭' },
+  'Émotion-Courage':    { name:'Le Cœur Courageux',       icon:'❤️‍🔥' },
+  'Émotion-Choix':      { name:'L\'Intuitif',             icon:'🌀' },
+  'Émotion-Ancrage':    { name:'Le Gardien Sensible',     icon:'🍃' },
+  'Émotion-Identité':   { name:'L\'Artiste de l\'Âme',   icon:'🎨' },
+  'Courage-Choix':      { name:'L\'Explorateur',          icon:'🧭' },
+  'Courage-Ancrage':    { name:'Le Roc Courageux',        icon:'⛰️' },
+  'Courage-Identité':   { name:'L\'Affirmatif',           icon:'🦁' },
+  'Choix-Ancrage':      { name:'Le Décideur Stable',      icon:'⚖️' },
+  'Choix-Identité':     { name:'L\'Auteur de Sa Vie',     icon:'✍️' },
+  'Ancrage-Identité':   { name:'La Racine Profonde',      icon:'🌿' }
+};
+
+function getPoint(dim) {
+  var rad = dim.angle * Math.PI / 180;
+  var r = MIN_R + dim.val * (MAX_R - MIN_R);
+  return { x: CX + r * Math.cos(rad), y: CY + r * Math.sin(rad) };
+}
+
+function updatePolygon() {
+  var pts = dims.map(getPoint);
+  var poly = pts.map(function(p){ return p.x.toFixed(1)+','+p.y.toFixed(1); }).join(' ');
+  document.getElementById('radarPolygon').setAttribute('points', poly);
+  pts.forEach(function(p, i) {
+    var dot = document.getElementById('dot'+i);
+    dot.setAttribute('cx', p.x.toFixed(1));
+    dot.setAttribute('cy', p.y.toFixed(1));
+  });
+  updateProfil();
+}
+
+function updateProfil() {
+  // Find top 2 dimensions
+  var sorted = dims.slice().sort(function(a,b){ return b.val - a.val; });
+  var d1 = sorted[0].name, d2 = sorted[1].name;
+  var key = d1+'-'+d2;
+  var p = profils[key] || profils[d2+'-'+d1];
+  if (!p) p = { name: d1 + ' & ' + d2, icon: '✨' };
+  document.getElementById('profilIcon').textContent = p.icon;
+  document.getElementById('profilName').textContent = p.name;
+  // Update card border color
+  document.getElementById('profilCardSimple').style.borderColor = sorted[0].color + '40';
+}
+
+// Drag logic
+var dragging = null;
+
+function projectOnAxis(dim, mx, my) {
+  var rad = dim.angle * Math.PI / 180;
+  var dx = mx - CX, dy = my - CY;
+  // Project mouse onto axis
+  var proj = dx * Math.cos(rad) + dy * Math.sin(rad);
+  return Math.max(MIN_R, Math.min(MAX_R, proj));
+}
+
+function getSVGPoint(svg, e) {
+  var rect = svg.getBoundingClientRect();
+  var clientX = e.touches ? e.touches[0].clientX : e.clientX;
+  var clientY = e.touches ? e.touches[0].clientY : e.clientY;
+  var scaleX = 240 / rect.width;
+  var scaleY = 240 / rect.height;
+  return { x: (clientX - rect.left) * scaleX, y: (clientY - rect.top) * scaleY };
+}
+
+var svg = document.getElementById('radarSvg');
+
+for (var i = 0; i < 8; i++) {
+  (function(idx) {
+    var dot = document.getElementById('dot'+idx);
+    dot.addEventListener('mousedown', function(e){ dragging = idx; e.preventDefault(); });
+    dot.addEventListener('touchstart', function(e){ dragging = idx; }, {passive:true});
+  })(i);
+}
+
+document.addEventListener('mousemove', function(e) {
+  if (dragging === null) return;
+  var pt = getSVGPoint(svg, e);
+  var r = projectOnAxis(dims[dragging], pt.x, pt.y);
+  dims[dragging].val = (r - MIN_R) / (MAX_R - MIN_R);
+  updatePolygon();
+});
+document.addEventListener('touchmove', function(e) {
+  if (dragging === null) return;
+  var pt = getSVGPoint(svg, e);
+  var r = projectOnAxis(dims[dragging], pt.x, pt.y);
+  dims[dragging].val = (r - MIN_R) / (MAX_R - MIN_R);
+  updatePolygon();
+}, {passive:true});
+document.addEventListener('mouseup', function(){ dragging = null; });
+document.addEventListener('touchend', function(){ dragging = null; });
+
+updatePolygon();
+
+// Formulaire liste d'attente Brevo
+function setupWaitlist(formId, successId, errorId) {
+  var form = document.getElementById(formId);
+  if (!form) return;
+  var input = form.querySelector('input[type="email"]');
+  var errorEl = errorId ? document.getElementById(errorId) : null;
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var email = input.value.trim();
+
+    // Validation email
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email) {
+      input.style.borderColor = 'rgba(239,68,68,0.6)';
+      input.style.animation = 'shake 0.3s ease';
+      if (errorEl) { errorEl.textContent = 'Entre ton email pour continuer.'; errorEl.style.display = 'block'; }
+      input.focus();
+      setTimeout(function() {
+        input.style.animation = '';
+        input.style.borderColor = '';
+        if (errorEl) errorEl.style.display = 'none';
+      }, 2500);
+      return;
+    }
+    if (!emailRegex.test(email)) {
+      input.style.borderColor = 'rgba(239,68,68,0.6)';
+      input.style.animation = 'shake 0.3s ease';
+      if (errorEl) { errorEl.textContent = 'Cet email ne semble pas valide.'; errorEl.style.display = 'block'; }
+      setTimeout(function() {
+        input.style.animation = '';
+        input.style.borderColor = '';
+        if (errorEl) errorEl.style.display = 'none';
+      }, 2500);
+      return;
+    }
+
+    if (errorEl) errorEl.style.display = 'none';
+    var btn = form.querySelector('button');
+    btn.disabled = true;
+    btn.textContent = '...';
+
+    fetch('https://api.brevo.com/v3/contacts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'api-key': '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'
+      },
+      body: JSON.stringify({
+        email: email,
+        listIds: [3],
+        updateEnabled: true
+      })
+    })
+    .then(function(res) {
+      if (res.ok || res.status === 204 || res.status === 201 || res.status === 400) {
+        // Animation de sortie du formulaire
+        form.style.transition = 'opacity 0.3s ease';
+        form.style.opacity = '0';
+        setTimeout(function() {
+          form.style.display = 'none';
+          var success = document.getElementById(successId);
+          success.style.opacity = '0';
+          success.style.display = 'block';
+          success.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+          success.style.transform = 'translateY(8px)';
+          setTimeout(function() {
+            success.style.opacity = '1';
+            success.style.transform = 'translateY(0)';
+          }, 50);
+        }, 300);
+      } else {
+        throw new Error('Erreur');
+      }
+    })
+    .catch(function() {
+      form.style.transition = 'opacity 0.3s ease';
+      form.style.opacity = '0';
+      setTimeout(function() {
+        form.style.display = 'none';
+        var success = document.getElementById(successId);
+        success.style.opacity = '0';
+        success.style.display = 'block';
+        success.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+        success.style.transform = 'translateY(8px)';
+        setTimeout(function() {
+          success.style.opacity = '1';
+          success.style.transform = 'translateY(0)';
+        }, 50);
+      }, 300);
+    });
+  });
+}
+
+
+
+setupWaitlist('waitlistForm1', 'waitlistSuccess1', 'waitlistError1');
+
+// ── ANIMATIONS SECTIONS ──
+var animEls = document.querySelectorAll('.anim-fade-up, .anim-fade-left, .anim-scale');
+var animObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      animObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+animEls.forEach(function(el) { animObs.observe(el); });
+
+setupWaitlist('waitlistForm2', 'waitlistSuccess2', 'waitlistError2');
+
+// ── CARROUSEL TÉMOIGNAGES ──
+(function(){
+  var track = document.getElementById('testimonialsTrack');
+  if (!track) return;
+  var cards = track.querySelectorAll('.testimonial');
+  var total = cards.length;
+  var current = 0;
+  var cardW = 300 + 16; // width + gap
+
+  function getVisible() {
+    return window.innerWidth >= 600 ? 3 : 1;
+  }
+
+  function maxIndex() {
+    return Math.max(0, total - getVisible());
+  }
+
+  function goTo(idx) {
+    current = Math.max(0, Math.min(idx, maxIndex()));
+    track.style.transform = 'translateX(-' + (current * cardW) + 'px)';
+    updateDots();
+  }
+
+  function buildDots() {
+    var nav = document.getElementById('carouselDots');
+    if (!nav) return;
+    nav.innerHTML = '';
+    var pages = maxIndex() + 1;
+    for (var i = 0; i < pages; i++) {
+      (function(i){
+        var d = document.createElement('div');
+        d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        d.onclick = function(){ goTo(i); };
+        nav.appendChild(d);
+      })(i);
+    }
+  }
+
+  function updateDots() {
+    var dots = document.querySelectorAll('.carousel-dot');
+    dots.forEach(function(d, i){ d.classList.toggle('active', i === current); });
+  }
+
+window.carouselNext = function(){ goTo(current >= maxIndex() ? 0 : current + 1); };
+window.carouselPrev = function(){ goTo(current <= 0 ? maxIndex() : current - 1); };
+
+// Auto-défilement
+var autoSlide = setInterval(function(){ carouselNext(); }, 3500);
+track.addEventListener('mouseenter', function(){ clearInterval(autoSlide); });
+track.addEventListener('mouseleave', function(){ autoSlide = setInterval(function(){ carouselNext(); }, 3500); });
+
+  buildDots();
+
+  // Touch/swipe
+  var startX = 0;
+  track.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; }, {passive:true});
+  track.addEventListener('touchend', function(e){
+    var diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) diff > 0 ? carouselNext() : carouselPrev();
+  }, {passive:true});
 })();
+
+
+// Timeline animation
+var parcoursList = document.querySelector('.parcours-actes');
+var parcourLine = document.querySelector('.parcours-acte-line');
+var parcourActes = document.querySelectorAll('.parcours-acte');
+
+if (parcoursList) {
+  parcourActes.forEach(function(a) {
+    a.style.opacity = '0';
+    a.style.transform = 'translateX(-12px)';
+    a.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  });
+
+  var lineObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        parcourActes.forEach(function(a, i) {
+          setTimeout(function() {
+            a.style.opacity = '1';
+            a.style.transform = 'translateX(0)';
+          }, i * 300);
+        });
+        lineObs.disconnect();
+      }
+    });
+  }, { threshold: 0.1 });
+
+  lineObs.observe(parcoursList);
+}
 </script>
 
 </body>
