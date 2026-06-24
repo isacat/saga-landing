@@ -104,7 +104,8 @@ body {
 }
 @media(max-width:480px) {
   .waitlist-form { flex-direction:column; }
-  .waitlist-btn { width:100%; }
+  .waitlist-btn { width:100%; padding:13px 18px; font-size:13px; border-radius:10px; }
+  .waitlist-input { padding:12px 14px; font-size:14px; }
 }
 
   
@@ -977,6 +978,33 @@ footer {
   .carnet-item-title { font-size:13px; }
 }
 
+
+/* ── ANIMATIONS SECTIONS ── */
+.anim-fade-up {
+  opacity:0; transform:translateY(28px);
+  transition:opacity 0.65s ease, transform 0.65s ease;
+}
+.anim-fade-up.visible { opacity:1; transform:translateY(0); }
+
+.anim-fade-left {
+  opacity:0; transform:translateX(-24px);
+  transition:opacity 0.6s ease, transform 0.6s ease;
+}
+.anim-fade-left.visible { opacity:1; transform:translateX(0); }
+
+.anim-scale {
+  opacity:0; transform:scale(0.94);
+  transition:opacity 0.6s ease, transform 0.6s ease;
+}
+.anim-scale.visible { opacity:1; transform:scale(1); }
+
+.anim-stagger-1 { transition-delay:0.05s; }
+.anim-stagger-2 { transition-delay:0.12s; }
+.anim-stagger-3 { transition-delay:0.19s; }
+.anim-stagger-4 { transition-delay:0.26s; }
+.anim-stagger-5 { transition-delay:0.33s; }
+.anim-stagger-6 { transition-delay:0.40s; }
+
 </style>
 </head>
 <body>
@@ -1043,7 +1071,7 @@ footer {
 <!-- TENSION -->
 <section class="tension">
   <div class="tension-bg"></div>
-  <div class="tension-label">Ça te parle ?</div>
+  <div class="tension-label anim-fade-up">Ça te parle ?</div>
   <div class="tension-display">
     <div class="tension-phrase active" data-dim="Clarté" data-color="#fda4af">"Tu sais ce que tu veux. Mais au moment de choisir, tu te perds."</div>
     <div class="tension-phrase" data-dim="Relations" data-color="#67e8f9">"Tu donnes beaucoup. Mais t'as l'impression que personne te voit vraiment."</div>
@@ -1072,8 +1100,8 @@ footer {
 <!-- STAT -->
 <section class="stat-section">
   <div class="stat-inner">
-    <h2 class="stat-title reveal">T'es pas seul·e<br>à ressentir ça.</h2>
-    <div class="stat-card reveal reveal-delay-2">
+    <h2 class="stat-title anim-fade-up">T'es pas seul·e<br>à ressentir ça.</h2>
+    <div class="stat-card anim-scale">
       <div class="stat-num" id="statCounter" aria-live="polite" style="opacity:0;">0%</div>
       <div class="stat-divider"></div>
       <div class="stat-label">des utilisateurs Saga ressentaient<br>exactement la même chose.</div>
@@ -1262,11 +1290,11 @@ footer {
 
 <!-- CARNETS -->
 <section class="carnets" id="carnets">
-  <div class="carnets-label">Les parcours</div>
-  <h2 class="carnets-title">8 parcours pour<br>avancer.</h2>
-  <p class="carnets-sub">Chaque carnet cible un blocage précis. 12 jours, 5 minutes par jour.</p>
+  <div class="carnets-label anim-fade-up">Les parcours</div>
+  <h2 class="carnets-title anim-fade-up">8 parcours pour<br>avancer.</h2>
+  <p class="carnets-sub anim-fade-up">Chaque carnet cible un blocage précis. 12 jours, 5 minutes par jour.</p>
   <div class="carnets-grid">
-    <a class="carnet-item" href="saga_carnet_stagne.html">
+    <a class="carnet-item anim-fade-up anim-stagger-1" href="saga_carnet_stagne.html">
       <img class="carnet-img" src="images/carnet-stagner.png" alt="Je regarde les autres avancer et moi je stagne" width="400" height="225" loading="lazy"/>
       <div class="carnet-overlay"></div>
       <div class="carnet-content">
@@ -1275,7 +1303,7 @@ footer {
         <div class="carnet-item-meta">12 jours · 5 min / jour</div>
       </div>
     </a>
-    <a class="carnet-item" href="saga_carnet_choix.html">
+    <a class="carnet-item anim-fade-up anim-stagger-2" href="saga_carnet_choix.html">
       <img class="carnet-img" src="images/carnet-choix.png" alt="J'ai peur de faire les mauvais choix" width="400" height="225" loading="lazy"/>
       <div class="carnet-overlay"></div>
       <div class="carnet-content">
@@ -1284,7 +1312,7 @@ footer {
         <div class="carnet-item-meta">12 jours · 5 min / jour</div>
       </div>
     </a>
-    <a class="carnet-item" href="saga_carnet_comparaison.html">
+    <a class="carnet-item anim-fade-up anim-stagger-3" href="saga_carnet_comparaison.html">
       <img class="carnet-img" src="images/carnet-comparaison.png" alt="Je me compare tout le temps aux autres" width="400" height="225" loading="lazy"/>
       <div class="carnet-overlay"></div>
       <div class="carnet-content">
@@ -1293,7 +1321,7 @@ footer {
         <div class="carnet-item-meta">12 jours · 5 min / jour</div>
       </div>
     </a>
-    <a class="carnet-item" href="saga_carnet_cerveau.html">
+    <a class="carnet-item anim-fade-up anim-stagger-4" href="saga_carnet_cerveau.html">
       <img class="carnet-img" src="images/carnet-cerveau.png" alt="Mon cerveau ne s'arrête jamais" width="400" height="225" loading="lazy"/>
       <div class="carnet-overlay"></div>
       <div class="carnet-content">
@@ -1302,7 +1330,7 @@ footer {
         <div class="carnet-item-meta">12 jours · 5 min / jour</div>
       </div>
     </a>
-    <a class="carnet-item" href="saga_carnet_non.html">
+    <a class="carnet-item anim-fade-up anim-stagger-5" href="saga_carnet_non.html">
       <img class="carnet-img" src="images/carnet-oui-non.png" alt="Je dis oui alors que j'ai envie de dire non" width="400" height="225" loading="lazy"/>
       <div class="carnet-overlay"></div>
       <div class="carnet-content">
@@ -1311,7 +1339,7 @@ footer {
         <div class="carnet-item-meta">12 jours · 5 min / jour</div>
       </div>
     </a>
-    <a class="carnet-item" href="saga_carnet_moi.html">
+    <a class="carnet-item anim-fade-up anim-stagger-6" href="saga_carnet_moi.html">
       <img class="carnet-img" src="images/carnet-moi-meme.png" alt="Je n'ose pas être totalement moi-même" width="400" height="225" loading="lazy"/>
       <div class="carnet-overlay"></div>
       <div class="carnet-content">
@@ -1320,7 +1348,7 @@ footer {
         <div class="carnet-item-meta">12 jours · 5 min / jour</div>
       </div>
     </a>
-    <a class="carnet-item" href="saga_carnet_mal.html">
+    <a class="carnet-item anim-fade-up anim-stagger-1" href="saga_carnet_mal.html">
       <img class="carnet-img" src="images/carnet-accroche.png" alt="Je m'accroche à des personnes qui me font du mal" width="400" height="225" loading="lazy"/>
       <div class="carnet-overlay"></div>
       <div class="carnet-content">
@@ -1329,7 +1357,7 @@ footer {
         <div class="carnet-item-meta">12 jours · 5 min / jour</div>
       </div>
     </a>
-    <a class="carnet-item" href="saga_carnet_avenir.html">
+    <a class="carnet-item anim-fade-up anim-stagger-2" href="saga_carnet_avenir.html">
       <img class="carnet-img" src="images/carnet-avenir.png" alt="J'angoisse quand je pense à l'avenir" width="400" height="225" loading="lazy"/>
       <div class="carnet-overlay"></div>
       <div class="carnet-content">
@@ -1345,9 +1373,9 @@ footer {
 
 <!-- SOCIAL PROOF -->
 <section class="social">
-  <h2 class="social-title reveal">Ce qu'ils disent.</h2>
+  <h2 class="social-title anim-fade-up">Ce qu'ils disent.</h2>
   <div class="testimonials">
-    <div class="testimonial reveal reveal-delay-1">
+    <div class="testimonial anim-fade-up anim-stagger-1">
       <div class="testimonial-quote">"Je savais que je disais oui à tout le monde, mais je pensais que c'était juste ma personnalité. Le jour 3 m'a fait réaliser que c'était de la peur du conflit, pas de la gentillesse. Ça m'a changé quelque chose de concret."</div>
       <div class="testimonial-author">
         <div class="testimonial-avatar" style="background:linear-gradient(135deg,#4F46E5,#7C3AED);">L</div>
@@ -1357,7 +1385,7 @@ footer {
         </div>
       </div>
     </div>
-    <div class="testimonial reveal reveal-delay-2">
+    <div class="testimonial anim-fade-up anim-stagger-2">
       <div class="testimonial-quote">"Je regardais mes amis avoir des projets, des apparts, des relations stables, et je comprenais pas ce qui clochait chez moi. Saga m'a pas donné des réponses toutes faites, il m'a aidé à poser les bonnes questions."</div>
       <div class="testimonial-author">
         <div class="testimonial-avatar" style="background:linear-gradient(135deg,#0891b2,#6366f1);">T</div>
@@ -1367,7 +1395,7 @@ footer {
         </div>
       </div>
     </div>
-    <div class="testimonial reveal reveal-delay-3">
+    <div class="testimonial anim-fade-up anim-stagger-3">
       <div class="testimonial-quote">"J'ai l'habitude de me adapter à tout le monde et de jamais vraiment dire ce que je pense. Le carnet m'a fait réaliser que je savais même plus ce que j'aimais vraiment, tellement j'avais pris l'habitude de m'effacer."</div>
       <div class="testimonial-author">
         <div class="testimonial-avatar" style="background:linear-gradient(135deg,#ec4899,#8b5cf6);">S</div>
@@ -1384,11 +1412,11 @@ footer {
 
 <!-- DÉMO INTERACTIVE -->
 <section class="demo-section">
-  <div class="demo-label-top reveal">En vrai</div>
-  <h2 class="demo-title reveal">Voilà à quoi<br>ressemble une journée.</h2>
-  <p class="demo-sub reveal">Jour 1 · Je dis oui alors que j'ai envie de dire non.</p>
+  <div class="demo-label-top anim-fade-up">En vrai</div>
+  <h2 class="demo-title anim-fade-up">Voilà à quoi<br>ressemble une journée.</h2>
+  <p class="demo-sub anim-fade-up anim-stagger-1">Jour 1 · Je dis oui alors que j'ai envie de dire non.</p>
 
-  <div class="demo-phone-wrap reveal">
+  <div class="demo-phone-wrap anim-scale anim-stagger-2">
     <div class="demo-phone" id="demoPhone">
       <div class="demo-notch"></div>
       <div class="demo-top-bar"><div class="demo-top-fill" id="dTopFill" style="width:0%"></div></div>
@@ -1527,11 +1555,11 @@ footer {
 <!-- PROFIL & DIMENSIONS -->
 <section class="profil-section">
 
-  <div class="profil-label reveal">Ton profil</div>
-  <h2 class="profil-title reveal">Comprends-toi vraiment.<br>Avance sur ce qui compte pour toi.</h2>
-  <p class="profil-sub reveal" style="margin-bottom:32px;">Clarté, Relations, Action, Émotion, Courage, Choix, Ancrage, Identité. Chaque carnet que tu termines fait évoluer ton profil. Une carte vivante de qui tu deviens.</p>
+  <div class="profil-label anim-fade-up">Ton profil</div>
+  <h2 class="profil-title anim-fade-up">Comprends-toi vraiment.<br>Avance sur ce qui compte pour toi.</h2>
+  <p class="profil-sub anim-fade-up" style="margin-bottom:32px;">Clarté, Relations, Action, Émotion, Courage, Choix, Ancrage, Identité. Chaque carnet que tu termines fait évoluer ton profil. Une carte vivante de qui tu deviens.</p>
 
-  <div class="profil-row reveal">
+  <div class="profil-row anim-scale anim-stagger-1">
 
     <!-- Radar interactif -->
     <div class="radar-wrap">
@@ -1587,8 +1615,8 @@ footer {
 
   </div>
 
-  <p class="profil-sub reveal">28 profils différents. Le tien change à chaque carnet terminé.</p>
-  <a href="#carnets" class="profil-cta-btn reveal">Rejoindre la liste d'attente →</a>
+  <p class="profil-sub anim-fade-up anim-stagger-2">28 profils différents. Le tien change à chaque carnet terminé.</p>
+  <a href="#carnets" class="profil-cta-btn anim-fade-up anim-stagger-3">Rejoindre la liste d'attente →</a>
 
 </section>
 
@@ -1597,8 +1625,8 @@ footer {
 <!-- FINAL CTA -->
 <section class="final-cta">
   <div class="final-cta-bg"></div>
-  <h2 class="final-cta-title reveal">Sois parmi<br>les premiers.</h2>
-  <p class="final-cta-sub reveal">Saga sort le 14 juillet. Inscris-toi maintenant pour être notifié et accéder en avant-première.</p>
+  <h2 class="final-cta-title anim-fade-up">Sois parmi<br>les premiers.</h2>
+  <p class="final-cta-sub anim-fade-up anim-stagger-1">Saga sort le 14 juillet. Inscris-toi maintenant pour être notifié et accéder en avant-première.</p>
   <div class="reveal" style="width:100%;"><form class="waitlist-form" id="waitlistForm2">
         <input class="waitlist-input" type="email" name="email" placeholder="ton@email.com" required autocomplete="email"/>
         <button class="waitlist-btn" type="submit">Rejoindre →</button>
@@ -2020,6 +2048,19 @@ function setupWaitlist(formId, successId) {
 
 
 setupWaitlist('waitlistForm1', 'waitlistSuccess1');
+
+// ── ANIMATIONS SECTIONS ──
+var animEls = document.querySelectorAll('.anim-fade-up, .anim-fade-left, .anim-scale');
+var animObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      animObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+animEls.forEach(function(el) { animObs.observe(el); });
+
 setupWaitlist('waitlistForm2', 'waitlistSuccess2');
 
 // Timeline animation
