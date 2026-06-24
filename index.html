@@ -89,6 +89,7 @@ body {
 }
 .waitlist-btn:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(99,102,241,0.3); }
 .waitlist-btn:disabled { opacity:0.6; cursor:default; transform:none; }
+.waitlist-error { font-size:12px; color:rgba(239,68,68,0.8); text-align:center; margin-top:6px; display:none; }
 .waitlist-success {
   display:none;
   font-family:"Inter",sans-serif;
@@ -257,6 +258,7 @@ nav {
 .hmeta-dot { width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,0.15); }
 
 @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+@keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
 
 /* ── TENSION SECTION ── */
 .tension {
@@ -1046,6 +1048,7 @@ footer {
         <input class="waitlist-input" type="email" name="email" placeholder="ton@email.com" required autocomplete="email"/>
         <button class="waitlist-btn" type="submit">Rejoindre →</button>
       </form>
+      <div class="waitlist-error" id="waitlistError1">Cet email ne semble pas valide.</div>
 
       <div class="waitlist-success" id="waitlistSuccess1">🎉 C'est noté ! Tu seras parmi les premiers le 14 juillet.</div>
           <div style="display:flex;gap:24px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:20px;">
@@ -1637,6 +1640,7 @@ footer {
         <input class="waitlist-input" type="email" name="email" placeholder="ton@email.com" required autocomplete="email"/>
         <button class="waitlist-btn" type="submit">Rejoindre →</button>
       </form>
+      <div class="waitlist-error" id="waitlistError2">Cet email ne semble pas valide.</div>
       <div class="waitlist-success" id="waitlistSuccess2">🎉 C'est noté ! Tu seras parmi les premiers le 14 juillet.</div></div>
   <div class="final-meta reveal">
     <span>Gratuit</span>
@@ -2016,17 +2020,36 @@ document.addEventListener('touchend', function(){ dragging = null; });
 updatePolygon();
 
 // Formulaire liste d'attente Brevo
-function setupWaitlist(formId, successId) {
+function setupWaitlist(formId, successId, errorId) {
   var form = document.getElementById(formId);
   if (!form) return;
+  var input = form.querySelector('input[type="email"]');
+  var errorEl = errorId ? document.getElementById(errorId) : null;
+
   form.addEventListener('submit', function(e) {
     e.preventDefault();
-    var email = form.querySelector('input[type="email"]').value;
+    var email = input.value.trim();
+
+    // Validation email
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email)) {
+      input.style.borderColor = 'rgba(239,68,68,0.6)';
+      input.style.animation = 'shake 0.3s ease';
+      if (errorEl) errorEl.style.display = 'block';
+      setTimeout(function() {
+        input.style.animation = '';
+        input.style.borderColor = '';
+        if (errorEl) errorEl.style.display = 'none';
+      }, 2500);
+      return;
+    }
+
+    if (errorEl) errorEl.style.display = 'none';
     var btn = form.querySelector('button');
     btn.disabled = true;
     btn.textContent = '...';
 
-    fetch('https://api.brevo.com/v3/contacts', { 
+    fetch('https://api.brevo.com/v3/contacts', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -2040,22 +2063,47 @@ function setupWaitlist(formId, successId) {
     })
     .then(function(res) {
       if (res.ok || res.status === 204 || res.status === 201 || res.status === 400) {
-        form.style.display = 'none';
-        document.getElementById(successId).style.display = 'block';
+        // Animation de sortie du formulaire
+        form.style.transition = 'opacity 0.3s ease';
+        form.style.opacity = '0';
+        setTimeout(function() {
+          form.style.display = 'none';
+          var success = document.getElementById(successId);
+          success.style.opacity = '0';
+          success.style.display = 'block';
+          success.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+          success.style.transform = 'translateY(8px)';
+          setTimeout(function() {
+            success.style.opacity = '1';
+            success.style.transform = 'translateY(0)';
+          }, 50);
+        }, 300);
       } else {
         throw new Error('Erreur');
       }
     })
     .catch(function() {
-      form.style.display = 'none';
-      document.getElementById(successId).style.display = 'block';
+      form.style.transition = 'opacity 0.3s ease';
+      form.style.opacity = '0';
+      setTimeout(function() {
+        form.style.display = 'none';
+        var success = document.getElementById(successId);
+        success.style.opacity = '0';
+        success.style.display = 'block';
+        success.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+        success.style.transform = 'translateY(8px)';
+        setTimeout(function() {
+          success.style.opacity = '1';
+          success.style.transform = 'translateY(0)';
+        }, 50);
+      }, 300);
     });
   });
 }
 
 
 
-setupWaitlist('waitlistForm1', 'waitlistSuccess1');
+setupWaitlist('waitlistForm1', 'waitlistSuccess1', 'waitlistError1');
 
 // ── ANIMATIONS SECTIONS ──
 var animEls = document.querySelectorAll('.anim-fade-up, .anim-fade-left, .anim-scale');
@@ -2069,7 +2117,7 @@ var animObs = new IntersectionObserver(function(entries) {
 }, { threshold: 0.1 });
 animEls.forEach(function(el) { animObs.observe(el); });
 
-setupWaitlist('waitlistForm2', 'waitlistSuccess2');
+setupWaitlist('waitlistForm2', 'waitlistSuccess2', 'waitlistError2');
 
 // Timeline animation
 var parcoursList = document.querySelector('.parcours-actes');
