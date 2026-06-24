@@ -954,7 +954,7 @@ footer {
 .parcours-acte { display:flex; gap:20px; padding-bottom:0; }
 .parcours-acte-left { display:flex; flex-direction:column; align-items:center; flex-shrink:0; width:48px; }
 .parcours-acte-badge { width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:18px; border:1.5px solid; flex-shrink:0; }
-.parcours-acte-line { width:1.5px; flex:1; min-height:32px; background:rgba(255,255,255,0.07); }
+.parcours-acte-line { width:1.5px; flex:1; min-height:32px; background:rgba(255,255,255,0.07); transform-origin: top; animation: none; }
 .parcours-acte:last-child .parcours-acte-line { display:none; }
 .parcours-acte-body { padding:10px 0 36px; }
 .parcours-acte-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:6px; }
@@ -2022,6 +2022,34 @@ function setupWaitlist(formId, successId) {
 setupWaitlist('waitlistForm1', 'waitlistSuccess1');
 setupWaitlist('waitlistForm2', 'waitlistSuccess2');
 
+// Timeline animation
+var parcoursList = document.querySelector('.parcours-actes');
+var parcourLine = document.querySelector('.parcours-acte-line');
+var parcourActes = document.querySelectorAll('.parcours-acte');
+
+if (parcoursList) {
+  parcourActes.forEach(function(a) {
+    a.style.opacity = '0';
+    a.style.transform = 'translateX(-12px)';
+    a.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  });
+
+  var lineObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        parcourActes.forEach(function(a, i) {
+          setTimeout(function() {
+            a.style.opacity = '1';
+            a.style.transform = 'translateX(0)';
+          }, i * 300);
+        });
+        lineObs.disconnect();
+      }
+    });
+  }, { threshold: 0.1 });
+
+  lineObs.observe(parcoursList);
+}
 </script>
 
 </body>
