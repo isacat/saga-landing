@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saga – Je m'accroche à des personnes qui me font du mal</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#0a0a0f;color:#fff;font-family:"Inter",sans-serif;overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;background:rgba(10,10,15,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.05);}
+.nav-logo{display:flex;align-items:center;gap:10px;font-family:"Sora",sans-serif;font-size:17px;font-weight:800;color:#fff;letter-spacing:2px;text-decoration:none;}
+.nav-cta{padding:10px 20px;background:linear-gradient(90deg,#6366f1,#7C3AED);border:none;border-radius:10px;font-family:"Sora",sans-serif;font-size:13px;font-weight:700;color:#fff;cursor:pointer;text-decoration:none;}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:100px 24px 52px;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(160deg,#1a0a10 0%,#0a0a1e 40%,#0a0a10 100%);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,15,0.97) 0%,rgba(10,10,15,0.55) 50%,rgba(10,10,15,0.15) 100%);}
+.hero-content{position:relative;z-index:1;max-width:480px;margin:0 auto;width:100%;}
+.hero-dims{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;}
+.hero-dim{padding:5px 12px;border-radius:20px;font-size:11px;font-weight:700;background:rgba(0,0,0,0.45);backdrop-filter:blur(8px);}
+.hero-tag{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#6366f1;margin-bottom:12px;}
+.hero-title{font-family:"Sora",sans-serif;font-size:clamp(24px,6vw,38px);font-weight:900;line-height:1.1;letter-spacing:-0.5px;margin-bottom:16px;}
+.hero-sub{font-size:15px;color:rgba(255,255,255,0.55);line-height:1.7;margin-bottom:28px;max-width:360px;}
+.hero-cta{display:inline-flex;padding:17px 28px;background:linear-gradient(90deg,#4F46E5,#7C3AED);border:none;border-radius:16px;font-family:"Sora",sans-serif;font-size:15px;font-weight:700;color:#fff;cursor:pointer;text-decoration:none;box-shadow:0 8px 32px rgba(79,70,229,0.4);}
+.hero-meta{margin-top:14px;font-size:12px;color:rgba(255,255,255,0.3);}
+.section{padding:64px 24px;max-width:480px;margin:0 auto;display:flex;flex-direction:column;gap:20px;}
+.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.08),transparent);max-width:480px;margin:0 auto;}
+.section-tag{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#6366f1;}
+.section-title{font-family:"Sora",sans-serif;font-size:clamp(20px,5vw,26px);font-weight:900;line-height:1.15;letter-spacing:-0.4px;}
+.section-sub{font-size:14px;color:rgba(255,255,255,0.4);line-height:1.75;}
+.fait-list{display:flex;flex-direction:column;gap:8px;}
+.fait-item{display:flex;align-items:flex-start;gap:10px;padding:11px 14px;border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);}
+.fait-icon{font-size:13px;flex-shrink:0;margin-top:2px;color:#6366f1;}
+.fait-text{font-size:14px;color:rgba(255,255,255,0.65);line-height:1.6;}
+.vivre-text{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.85;}
+.vivre-text strong{color:rgba(255,255,255,0.85);font-weight:600;}
+.profils-grid{display:flex;flex-direction:column;gap:10px;}
+.profil-card{border-radius:14px;padding:14px 16px;display:flex;align-items:flex-start;gap:12px;background:#141420;border:1.5px solid rgba(255,255,255,0.07);}
+.profil-emoji{font-size:22px;flex-shrink:0;}
+.profil-name{font-family:"Sora",sans-serif;font-size:14px;font-weight:800;color:#fff;margin-bottom:3px;}
+.profil-desc{font-size:12px;color:rgba(255,255,255,0.45);line-height:1.5;}
+.profil-tag{display:inline-block;margin-top:5px;padding:2px 9px;border-radius:20px;font-size:9px;font-weight:700;}
+.jours-list{display:flex;flex-direction:column;gap:0;margin-top:8px;}
+.jour-row{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,0.05);}
+.jour-row:last-child{border-bottom:none;}
+.jour-num{font-family:"Sora",sans-serif;font-size:10px;font-weight:700;border:1px solid;border-radius:6px;padding:2px 7px;flex-shrink:0;margin-top:2px;}
+.jour-body{flex:1;}
+.jour-title{font-family:"Sora",sans-serif;font-size:13px;font-weight:700;color:#fff;margin-bottom:1px;}
+.jour-sub{font-size:11px;color:rgba(255,255,255,0.3);}
+.acte-sep{margin:10px 0 6px;padding:7px 12px;background:rgba(255,255,255,0.03);border-radius:8px;border-left:2px solid;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;}
+.dims-cards{display:flex;flex-direction:column;gap:12px;}
+.dim-card{background:#141420;border:1.5px solid rgba(255,255,255,0.08);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:12px;}
+.dim-card-top{display:flex;align-items:flex-start;gap:12px;}
+.dim-dot-large{width:12px;height:12px;border-radius:50%;flex-shrink:0;margin-top:5px;}
+.dim-name-big{font-family:"Sora",sans-serif;font-size:16px;font-weight:800;margin-bottom:2px;}
+.dim-desc-short{font-size:12px;color:rgba(255,255,255,0.4);}
+.dim-how{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.75;padding:10px 12px;background:rgba(255,255,255,0.03);border-radius:10px;}
+.dim-how strong{color:rgba(255,255,255,0.85);font-weight:600;}
+.final{padding:80px 24px;max-width:480px;margin:0 auto;text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px;}
+.final-title{font-family:"Sora",sans-serif;font-size:clamp(22px,5vw,28px);font-weight:900;line-height:1.15;letter-spacing:-0.4px;}
+.final-sub{font-size:14px;color:rgba(255,255,255,0.4);line-height:1.7;max-width:300px;}
+.final-meta{font-size:11px;color:rgba(255,255,255,0.2);}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+@media(max-width:600px){
+  nav{padding:14px 20px;}
+  .nav-cta{display:none;}
+  .hero{padding:90px 20px 44px;}
+  .hero-cta{padding:15px;width:100%;justify-content:center;}
+  .section{padding:52px 20px;}
+}
+.waitlist-form{display:flex;gap:10px;max-width:460px;margin:0 auto;width:100%;}
+.waitlist-input{flex:1;padding:14px 18px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:12px;font-family:"Inter",sans-serif;font-size:15px;color:#fff;outline:none;transition:border-color 0.2s;}
+.waitlist-input::placeholder{color:rgba(255,255,255,0.3);}
+.waitlist-input:focus{border-color:rgba(99,102,241,0.6);}
+.waitlist-btn{padding:14px 22px;background:linear-gradient(90deg,#6366f1,#7C3AED);border:none;border-radius:12px;font-family:"Sora",sans-serif;font-size:14px;font-weight:700;color:#fff;cursor:pointer;white-space:nowrap;transition:transform 0.2s;}
+.waitlist-btn:hover{transform:translateY(-2px);}
+.waitlist-success{font-size:15px;color:#bef264;text-align:center;padding:14px;background:rgba(190,242,100,0.08);border:1px solid rgba(190,242,100,0.2);border-radius:12px;max-width:460px;margin:0 auto;}
+@media(max-width:480px){.waitlist-form{flex-direction:column;}.waitlist-btn{width:100%;}}
+.demo-phone-wrap2{display:flex;flex-direction:column;align-items:center;gap:16px;}
+.demo-phone2{width:260px;height:500px;border-radius:36px;background:#0e0e1a;border:1.5px solid rgba(255,255,255,0.1);box-shadow:0 0 0 8px rgba(255,255,255,0.03),0 40px 80px rgba(0,0,0,0.7),0 0 80px rgba(99,102,241,0.12);overflow:hidden;position:relative;}
+.demo-notch2{position:absolute;top:0;left:50%;transform:translateX(-50%);width:70px;height:18px;background:#0e0e1a;border-radius:0 0 10px 10px;z-index:100;}
+.demo-prog2{position:absolute;top:0;left:0;width:100%;height:2px;z-index:99;background:rgba(255,255,255,0.08);}
+.demo-prog2-fill{height:100%;background:linear-gradient(90deg,#4F46E5,#7C3AED);border-radius:0 2px 2px 0;width:20%;transition:width 0.5s ease;}
+.demo-screens{position:absolute;inset:0;}
+.dscreen{position:absolute;inset:0;display:flex;flex-direction:column;background:#0a0a0f;opacity:0;transform:translateX(100%);transition:opacity 0.5s ease,transform 0.5s ease;}
+.dscreen.active{opacity:1;transform:translateX(0);}
+.dscreen.exit{opacity:0;transform:translateX(-100%);}
+.dglow{position:absolute;inset:0;pointer-events:none;}
+.dheader{padding:28px 14px 10px;flex-shrink:0;position:relative;z-index:1;}
+.dheader-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px;}
+.dstep{font-size:8px;color:rgba(255,255,255,0.2);}
+.dclose{width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:center;font-size:8px;color:rgba(255,255,255,0.2);}
+.dtitle{font-size:7px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#6366f1;}
+.dbtn{margin:6px 14px 18px;padding:11px;background:linear-gradient(90deg,#4F46E5,#7C3AED);border-radius:12px;text-align:center;font-family:"Sora",sans-serif;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;position:relative;z-index:1;box-shadow:0 4px 16px rgba(79,70,229,0.4);cursor:pointer;}
+.dbtn.disabled{opacity:0.3;pointer-events:none;}
+.ds1-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 20px;gap:8px;position:relative;z-index:1;text-align:center;}
+.ds1-tag{font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#6366f1;}
+.ds1-name{font-family:"Sora",sans-serif;font-size:14px;font-weight:900;color:#fff;line-height:1.2;letter-spacing:-0.2px;}
+.ds1-desc{font-size:10px;color:rgba(255,255,255,0.4);line-height:1.7;}
+.dmsgs{flex:1;overflow:hidden;padding:0 12px;display:flex;flex-direction:column;gap:4px;position:relative;z-index:1;}
+.dmsg{max-width:82%;padding:6px 10px;border-radius:12px;font-size:10px;line-height:1.45;color:rgba(255,255,255,0.85);opacity:0;transform:translateY(4px);transition:opacity 0.4s ease,transform 0.4s ease;}
+.dmsg.show{opacity:1;transform:translateY(0);}
+.dL{background:#1f1f2e;border-bottom-left-radius:3px;align-self:flex-start;}
+.dR{background:#1a3a2a;border-bottom-right-radius:3px;align-self:flex-end;}
+.dmsender{font-size:7px;font-weight:600;color:rgba(255,255,255,0.3);margin-bottom:2px;}
+.dconc{margin:6px 12px 0;padding:8px 10px;background:rgba(99,102,241,0.07);border-left:2px solid #6366f1;border-radius:0 8px 8px 0;font-size:9px;color:rgba(255,255,255,0.45);font-style:italic;line-height:1.5;opacity:0;transition:opacity 0.5s ease;flex-shrink:0;position:relative;z-index:1;}
+.dconc.show{opacity:1;}
+.ds3-body{flex:1;padding:0 12px;display:flex;flex-direction:column;gap:8px;position:relative;z-index:1;}
+.ds3-counter{font-size:9px;font-weight:600;color:rgba(255,255,255,0.2);text-align:center;}
+.ds3-card{background:#141420;border:1.5px solid rgba(255,255,255,0.08);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:10px;}
+.ds3-label{font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.3);}
+.ds3-text{font-family:"Sora",sans-serif;font-size:11px;font-weight:800;color:#fff;line-height:1.35;}
+.ds3-choices{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.ds3-mythe{padding:9px 6px;border-radius:8px;font-family:"Sora",sans-serif;font-size:9px;font-weight:700;text-align:center;background:rgba(239,68,68,0.08);border:1.5px solid rgba(239,68,68,0.25);color:rgba(255,100,100,0.8);cursor:pointer;transition:all 0.3s ease;}
+.ds3-realite{padding:9px 6px;border-radius:8px;font-family:"Sora",sans-serif;font-size:9px;font-weight:700;text-align:center;background:rgba(16,185,129,0.08);border:1.5px solid rgba(16,185,129,0.25);color:rgba(80,220,140,0.8);}
+.ds3-fb{background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);border-radius:8px;padding:8px 10px;font-size:9px;color:rgba(255,255,255,0.5);font-style:italic;line-height:1.55;opacity:0;transition:opacity 0.5s ease;}
+.ds3-fb.show{opacity:1;}
+.ds3-verdict{font-family:"Sora",sans-serif;font-size:10px;font-weight:700;color:#6ee7b7;margin-bottom:3px;}
+.ds4-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 14px;gap:12px;position:relative;z-index:1;}
+.ds4-card{background:#141420;border:1.5px solid rgba(255,255,255,0.08);border-radius:16px;padding:16px 14px;width:100%;display:flex;flex-direction:column;align-items:center;gap:12px;}
+.ds4-orb{position:relative;width:70px;height:70px;display:flex;align-items:center;justify-content:center;}
+.ds4-ring{position:absolute;width:70px;height:70px;border-radius:50%;border:1px solid rgba(99,102,241,0.15);animation:drp 3s ease-in-out infinite;}
+.ds4-ring2{position:absolute;width:48px;height:48px;border-radius:50%;border:1px solid rgba(99,102,241,0.15);animation:drp 3s ease-in-out 0.4s infinite;}
+@keyframes drp{0%,100%{transform:scale(1);opacity:0.4}50%{transform:scale(1.08);opacity:0.9}}
+.ds4-emoji{font-size:26px;z-index:1;}
+.ds4-tbar{width:100%;height:2px;background:rgba(255,255,255,0.08);border-radius:1px;overflow:hidden;}
+.ds4-tfill{height:100%;background:linear-gradient(90deg,#4F46E5,#7C3AED);border-radius:1px;transition:width 0.1s linear;width:0%;}
+.dexo-step{display:flex;align-items:flex-start;gap:8px;padding:6px 0;opacity:0.3;transition:opacity 0.3s ease;}
+.dexo-step:first-child{opacity:1;}
+.dexo-emoji{font-size:16px;flex-shrink:0;}
+.dexo-instr{font-family:"Sora",sans-serif;font-size:11px;font-weight:700;color:#fff;margin-bottom:2px;}
+.dexo-sub{font-size:9px;color:rgba(255,255,255,0.4);line-height:1.4;}
+.ds5-body{flex:1;padding:0 12px;display:flex;flex-direction:column;gap:8px;position:relative;z-index:1;}
+.ds5-card{background:#141420;border:1.5px solid rgba(99,102,241,0.2);border-radius:16px;overflow:hidden;}
+.ds5-inner{padding:14px 14px 10px;display:flex;flex-direction:column;gap:8px;border-bottom:1px solid rgba(255,255,255,0.06);}
+.ds5-tag{font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#6366f1;}
+.ds5-title{font-family:"Sora",sans-serif;font-size:12px;font-weight:800;color:#fff;line-height:1.3;}
+.ds5-text{font-size:10px;color:rgba(255,255,255,0.4);line-height:1.6;}
+.ds5-hold{padding:12px 14px;background:#0f0f1e;display:flex;align-items:center;gap:8px;position:relative;overflow:hidden;cursor:pointer;}
+.ds5-hfill{position:absolute;top:0;left:0;bottom:0;width:0%;background:linear-gradient(90deg,rgba(79,70,229,0.4),rgba(124,58,237,0.4));transition:width 0.05s linear;}
+.ds5-hicon{font-size:14px;position:relative;z-index:1;}
+.ds5-htxt{font-family:"Sora",sans-serif;font-size:11px;font-weight:700;color:#a5b4fc;position:relative;z-index:1;}
+.ds5-hsub{font-size:8px;color:rgba(255,255,255,0.25);position:relative;z-index:1;}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg width="22" height="22" viewBox="0 0 72 72" fill="none">
+      <path d="M36 10C36 10 24 18 24 29C24 37 29 41 36 41C43 41 48 37 48 29C48 18 36 10 36 10Z" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M36 41C36 41 24 47 24 56C24 63 29 66 36 66C43 66 48 63 48 56C48 47 36 41 36 41Z" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    SAGA
+  </a>
+  <a href="#waitlist-carnet" class="nav-cta">Rejoindre la liste d'attente →</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-bg"></div>
+  <img src="images/carnet-accroche.png" alt="Je m'accroche à des personnes qui me font du mal" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.45;"/>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-dims">
+      <div class="hero-dim" style="color:#f9a8d4;border:1px solid #f9a8d440;">Émotion</div>
+      <div class="hero-dim" style="color:#67e8f9;border:1px solid #67e8f940;">Relations</div>
+    </div>
+    <div class="hero-tag">Carnet &middot; 12 jours &middot; 5 min/jour</div>
+    <h1 class="hero-title">Je m'accroche à des personnes qui me font du mal</h1>
+    <p class="hero-sub">Tu sais que cette relation te fait du mal. Mais tu n'arrives pas à lâcher. Tu reviens, tu espères, tu excuses. Et tu souffres — encore.</p>
+    <a href="#waitlist-carnet" class="hero-cta">Rejoindre la liste d'attente →</a>
+    <div class="hero-meta">Disponible le 14 juillet &middot; Accès anticipé gratuit</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="section reveal">
+  <div class="section-tag">Ce carnet est fait pour toi si</div>
+  <div class="fait-list">
+    <div class="fait-item"><div class="fait-icon">→</div><div class="fait-text">Tu sais que quelqu'un ne te fait pas du bien — mais tu n'arrives pas à t'éloigner vraiment.</div></div>
+    <div class="fait-item"><div class="fait-icon">→</div><div class="fait-text">Tu passes du temps à analyser ce que cette personne a dit ou fait, en cherchant des explications.</div></div>
+    <div class="fait-item"><div class="fait-icon">→</div><div class="fait-text">Tu t'accroches à l'espoir que ça va changer — même quand les signaux disent le contraire.</div></div>
+    <div class="fait-item"><div class="fait-icon">→</div><div class="fait-text">Tu t'en veux de ne pas réussir à partir, et tu culpabilises de ressentir ce que tu ressens.</div></div>
+    <div class="fait-item"><div class="fait-icon">→</div><div class="fait-text">Tu excuses souvent le comportement de cette personne — même quand ça te blesse.</div></div>
+    <div class="fait-item"><div class="fait-icon">→</div><div class="fait-text">L'idée de ne plus avoir cette personne dans ta vie te fait plus peur que de continuer à souffrir.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="section reveal">
+  <div class="section-tag">Ce que tu vas vivre</div>
+  <h2 class="section-title">Comprendre pourquoi tu t'accroches — et apprendre à lâcher sans te perdre.</h2>
+  <p class="vivre-text">Pendant 12 jours, tu vas explorer les mécanismes derrière l'attachement douloureux : <strong>peur de la solitude, dépendance affective, espoir tenace, besoins non comblés</strong>.<br><br>À travers des réflexions guidées et des défis concrets, tu vas <strong>comprendre ce que tu cherches vraiment — et commencer à te le donner autrement</strong>.</p>
+</div>
+
+<div class="divider"></div>
+<div class="section reveal">
+  <div class="section-tag">Ton profil</div>
+  <h2 class="section-title">Le carnet commence par identifier comment tu t'accroches.</h2>
+  <div class="profils-grid">
+    <div class="profil-card">
+      <div class="profil-emoji">🔧</div>
+      <div class="profil-body">
+        <div class="profil-name">Le Réparateur</div>
+        <div class="profil-desc">Tu penses que si tu fais assez, tu pourras changer cette personne. Tu t'épuises à réparer ce qui ne t'appartient pas.</div>
+        <div class="profil-tag" style="background:rgba(249,168,212,0.1);color:#f9a8d4;">Réparation</div>
+      </div>
+    </div>
+    <div class="profil-card">
+      <div class="profil-emoji">🫀</div>
+      <div class="profil-body">
+        <div class="profil-name">Le Dépendant affectif</div>
+        <div class="profil-desc">La présence de cette personne comble un vide. Sans elle, tu ne sais pas trop qui tu es.</div>
+        <div class="profil-tag" style="background:rgba(103,232,249,0.1);color:#67e8f9;">Dépendance</div>
+      </div>
+    </div>
+    <div class="profil-card">
+      <div class="profil-emoji">📷</div>
+      <div class="profil-body">
+        <div class="profil-name">Le Nostalgique</div>
+        <div class="profil-desc">Tu t'accroches à ce que c'était avant. Tu cherches à retrouver quelque chose qui n'existe plus.</div>
+        <div class="profil-tag" style="background:rgba(196,181,253,0.1);color:#c4b5fd;">Nostalgie</div>
+      </div>
+    </div>
+    <div class="profil-card">
+      <div class="profil-emoji">🌅</div>
+      <div class="profil-body">
+        <div class="profil-name">L'Espoir éternel</div>
+        <div class="profil-desc">Tu crois que ça va changer. Demain, la semaine prochaine, quand les circonstances seront différentes.</div>
+        <div class="profil-tag" style="background:rgba(253,186,116,0.1);color:#fdba74;">Espoir</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="section reveal">
+  <div class="section-tag">Le parcours &middot; 12 jours</div>
+  <h2 class="section-title">Lâcher. Jour après jour.</h2>
+  <div class="jours-list">
+    <div class="acte-sep" style="border-color:#f9a8d440;color:#f9a8d4;">Comprendre</div>
+    <div class="jour-row"><div class="jour-num" style="color:#f9a8d4;border-color:#f9a8d440;">J1</div><div class="jour-body"><div class="jour-title">Comment tu t'accroches</div><div class="jour-sub">Identifier ton profil d'attachement</div></div></div>
+    <div class="jour-row"><div class="jour-num" style="color:#f9a8d4;border-color:#f9a8d440;">J2</div><div class="jour-body"><div class="jour-title">D'où vient cette difficulté à lâcher</div><div class="jour-sub">Les origines de ton attachement</div></div></div>
+    <div class="jour-row"><div class="jour-num" style="color:#f9a8d4;border-color:#f9a8d440;">J3</div><div class="jour-body"><div class="jour-title">Ce que cette personne représente vraiment</div><div class="jour-sub">Au-delà de la personne, quel besoin ?</div></div></div>
+    <div class="jour-row"><div class="jour-num" style="color:#f9a8d4;border-color:#f9a8d440;">J4</div><div class="jour-body"><div class="jour-title">Ce que ça te coûte de rester</div><div class="jour-sub">Voir l'impact réel sur ta vie</div></div></div>
+    <div class="acte-sep" style="border-color:#67e8f940;color:#67e8f9;">Prendre conscience</div>
+    <div class="jour-row"><div class="jour-num" style="color:#67e8f9;border-color:#67e8f940;">J5</div><div class="jour-body"><div class="jour-title">Amour ou attachement douloureux ?</div><div class="jour-sub">Apprendre à faire la différence</div></div></div>
+    <div class="jour-row"><div class="jour-num" style="color:#67e8f9;border-color:#67e8f940;">J6</div><div class="jour-body"><div class="jour-title">Ce que tu peux te donner toi-même</div><div class="jour-sub">Les besoins que tu cherches ailleurs</div></div></div>
+    <div class="jour-row"><div class="jour-num" style="color:#67e8f9;border-color:#67e8f940;">J7</div><div class="jour-body"><div class="jour-title">Les signaux que tu ignores</div><div class="jour-sub">Voir ce qui est là depuis longtemps</div></div></div>
+    <div class="jour-row"><div class="jour-num" style="color:#67e8f9;border-color:#67e8f940;">J8</div><div class="jour-body"><div class="jour-title">Ce que la solitude te fait vraiment</div><div class="jour-sub">Explorer la peur derrière l'accrochage</div></div></div>
+    <div class="acte-sep" style="border-color:#bef26440;color:#bef264;">Passer à l'action</div>
+    <div class="jour-row"><div class="jour-num" style="color:#bef264;border-color:#bef26440;">J9</div><div class="jour-body"><div class="jour-title">Créer de la distance</div><div class="jour-sub">Sans tout couper d'un coup</div></div></div>
+    <div class="jour-row"><div class="jour-num" style="color:#bef264;border-color:#bef26440;">J10</div><div class="jour-body"><div class="jour-title">Prendre soin de toi d'abord</div><div class="jour-sub">Redevenir ta propre priorité</div></div></div>
+    <div class="jour-row"><div class="jour-num" style="color:#bef264;border-color:#bef26440;">J11</div><div class="jour-body"><div class="jour-title">Reconstruire d'autres liens</div><div class="jour-sub">Ne pas rester seul·e dans ce processus</div></div></div>
+    <div class="jour-row"><div class="jour-num" style="color:#bef264;border-color:#bef26440;">J12</div><div class="jour-body"><div class="jour-title">Lâcher — pas abandonner, choisir</div><div class="jour-sub">Repartir avec ta propre force</div></div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="section reveal">
+  <div class="section-tag">Les contenus &middot; En vrai</div>
+  <h2 class="section-title">Ce que tu vas vivre.</h2>
+  <p class="section-sub">Voici à quoi ressemble le Jour 1 de ce carnet.</p>
+  <div class="demo-phone-wrap2">
+    <div class="demo-phone2" id="phone_acc">
+      <div class="demo-notch2"></div>
+      <div class="demo-prog2"><div class="demo-prog2-fill" id="pacc_prog"></div></div>
+      <div class="demo-screens">
+
+<div class="dscreen active" id="pacc_s1">
+  <div class="dglow" style="background:radial-gradient(ellipse 70% 50% at 50% 30%,rgba(249,168,212,0.08) 0%,transparent 70%)"></div>
+  <div class="dheader"><div class="dheader-top"><span class="dstep">Jour 1 / 12</span><div class="dclose">✕</div></div><div class="dtitle">TON CARNET</div></div>
+  <div class="ds1-body">
+    <div style="font-size:42px;">🫀</div>
+    <div class="ds1-tag">Émotion · Relations</div>
+    <div class="ds1-name">Je m'accroche à des personnes qui me font du mal</div>
+    <div class="ds1-desc">12 jours pour comprendre et apprendre à lâcher, 5 min par jour.</div>
+  </div>
+  <div class="dbtn" onclick="goTo_acc(1)">Commencer J1 →</div>
+</div>
+
+<div class="dscreen" id="pacc_s2">
+  <div class="dglow" style="background:radial-gradient(ellipse 60% 40% at 50% 30%,rgba(99,102,241,0.08) 0%,transparent 70%)"></div>
+  <div class="dheader"><div class="dheader-top"><span class="dstep">1 / 4</span><div class="dclose">✕</div></div><div class="dtitle">UNE CONVERSATION</div></div>
+  <div class="dmsgs" id="pacc_msgs">
+    <div class="dmsg dL"><div class="dmsender">Léa</div>Il t'a encore laissé un message ?</div>
+    <div class="dmsg dR"><div class="dmsender">Sara</div>Ouais… il dit qu'il a changé</div>
+    <div class="dmsg dL"><div class="dmsender">Léa</div>Il dit ça à chaque fois 😔</div>
+    <div class="dmsg dR"><div class="dmsender">Sara</div>Je sais. Mais et si cette fois c'est vrai ?</div>
+    <div class="dmsg dR"><div class="dmsender">Sara</div>J'arrive pas à ignorer</div>
+  </div>
+  <div class="dconc" id="pacc_conc">Tu t'es déjà dit exactement ça ?</div>
+  <div class="dbtn" id="pacc_btn2" style="opacity:0.3">Continuer →</div>
+</div>
+
+<div class="dscreen" id="pacc_s3">
+  <div class="dglow" style="background:radial-gradient(ellipse 60% 40% at 50% 30%,rgba(99,102,241,0.08) 0%,transparent 70%)"></div>
+  <div class="dheader"><div class="dheader-top"><span class="dstep">2 / 4</span><div class="dclose">✕</div></div><div class="dtitle">MYTHE OU RÉALITÉ ?</div></div>
+  <div class="ds3-body">
+    <div class="ds3-counter">Affirmation 1 sur 5</div>
+    <div class="ds3-card" id="pacc_card3">
+      <div class="ds3-label">Affirmation</div>
+      <div class="ds3-text">"Si tu t'accroches, c'est parce que tu aimes vraiment cette personne."</div>
+      <div class="ds3-choices">
+        <div class="ds3-mythe" id="pacc_mythe" onclick="pickMythe_acc()">🚫 Mythe</div>
+        <div class="ds3-realite">✓ Réalité</div>
+      </div>
+      <div class="ds3-fb" id="pacc_fb3"><div class="ds3-verdict">Bien vu, c'est un mythe.</div>S'accrocher, c'est souvent de la peur — pas de l'amour. La peur de la solitude, du vide, de ne pas trouver mieux.</div>
+    </div>
+  </div>
+  <div class="dbtn disabled" id="pacc_btn3">Suivant →</div>
+</div>
+
+<div class="dscreen" id="pacc_s4">
+  <div class="dglow" style="background:radial-gradient(ellipse 70% 55% at 50% 35%,rgba(99,102,241,0.1) 0%,transparent 70%)"></div>
+  <div class="dheader"><div class="dheader-top"><span class="dstep">3 / 4</span><div class="dclose">✕</div></div><div class="dtitle">EXERCICE GUIDÉ</div></div>
+  <div class="ds4-body">
+    <div class="ds4-card" style="gap:14px;">
+      <div class="ds4-orb"><div class="ds4-ring"></div><div class="ds4-ring2"></div><div class="ds4-emoji" id="pacc_exo_emoji">🫀</div></div>
+      <div id="pacc_exo_steps">
+        <div class="dexo-step"><div class="dexo-emoji">🫀</div><div><div class="dexo-instr">Pense à cette personne.</div><div class="dexo-sub">Sans juger ce que tu ressens.</div></div></div>
+        <div class="dexo-step"><div class="dexo-emoji">🔍</div><div><div class="dexo-instr">Qu'est-ce qu'elle te donne que tu n'as pas ailleurs ?</div><div class="dexo-sub">Un sentiment, pas une personne.</div></div></div>
+        <div class="dexo-step"><div class="dexo-emoji">💡</div><div><div class="dexo-instr">Est-ce que tu pourrais te le donner autrement ?</div><div class="dexo-sub">Pas maintenant. Juste comme question.</div></div></div>
+      </div>
+      <div class="ds4-tbar"><div class="ds4-tfill" id="pacc_exofill"></div></div>
+    </div>
+  </div>
+  <div class="dbtn disabled" id="pacc_btn4">Continuer →</div>
+</div>
+
+<div class="dscreen" id="pacc_s5">
+  <div class="dglow" style="background:radial-gradient(ellipse 65% 45% at 50% 30%,rgba(99,102,241,0.1) 0%,transparent 70%)"></div>
+  <div class="dheader"><div class="dheader-top"><span class="dstep">4 / 4</span><div class="dclose">✕</div></div><div class="dtitle">DÉFI DU JOUR</div></div>
+  <div class="ds5-body">
+    <div class="ds5-card">
+      <div class="ds5-inner">
+        <div class="ds5-tag">⚡ Défi · Jour 1</div>
+        <div class="ds5-title">Aujourd'hui, fais une chose pour toi — sans lien avec cette personne.</div>
+        <div class="ds5-text">Quelque chose qui te fait du bien à toi. Un repas, une sortie, un appel à quelqu'un d'autre.</div>
+      </div>
+      <div class="ds5-hold" id="pacc_hold">
+        <div class="ds5-hfill" id="pacc_hfill"></div>
+        <div class="ds5-hicon">🫀</div>
+        <div><div class="ds5-htxt" id="pacc_htxt">Je le fais aujourd'hui</div><div class="ds5-hsub">Maintiens appuyé</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="dbtn disabled" id="pacc_btn5">Terminer J1 ✓</div>
+</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="section reveal">
+  <div class="section-tag">Pour avancer dans la vraie vie</div>
+  <h2 class="section-title">Ce que ce carnet va changer.</h2>
+  <p class="section-sub">Chaque carnet est conçu pour renforcer des dimensions précises de ton profil afin de créer des changements visibles dans la vraie vie.</p>
+  <div class="dims-cards">
+    <div class="dim-card">
+      <div class="dim-card-top">
+        <div class="dim-dot-large" style="background:#f9a8d4;box-shadow:0 0 10px #f9a8d4;"></div>
+        <div><div class="dim-name-big" style="color:#f9a8d4;">Émotion</div><div class="dim-desc-short">Comprendre ce que tu ressens sans en être submergé·e.</div></div>
+      </div>
+      <div class="dim-how">Ce carnet renforce ton rapport à l'<strong>Émotion</strong> : nommer ce que tu ressens, comprendre d'où ça vient, et ne plus laisser la douleur décider à ta place.</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-card-top">
+        <div class="dim-dot-large" style="background:#67e8f9;box-shadow:0 0 10px #67e8f9;"></div>
+        <div><div class="dim-name-big" style="color:#67e8f9;">Relations</div><div class="dim-desc-short">Choisir des liens qui te font du bien.</div></div>
+      </div>
+      <div class="dim-how">Il améliore tes <strong>Relations</strong> : reconnaître ce qui est sain, poser des limites affectives, et construire des liens à partir de choix — pas de peur.</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="final reveal" id="final">
+  <div class="section-tag">Bientôt disponible</div>
+  <h2 class="final-title">Ce carnet sort<br>le 14 juillet.</h2>
+  <p class="final-sub">Inscris-toi pour être notifié en avant-première et accéder en premier.</p>
+  <div id="waitlist-carnet" style="width:100%;max-width:460px;">
+    <form class="waitlist-form" id="waitlistFormCarnet">
+      <input class="waitlist-input" type="email" name="email" placeholder="ton@email.com" required autocomplete="email"/>
+      <button class="waitlist-btn" type="submit">Rejoindre →</button>
+    </form>
+    <div class="waitlist-success" id="waitlistSuccessCarnet" style="display:none;">🎉 C'est noté ! Tu seras parmi les premiers le 14 juillet.</div>
+  </div>
+  <div class="final-meta">Gratuit &middot; Avant-première &middot; Sans engagement</div>
+</div>
+
+<script>
+var reveals=document.querySelectorAll('.reveal');
+function check(){reveals.forEach(function(el){if(el.getBoundingClientRect().top<window.innerHeight-60)el.classList.add('visible');});}
+window.addEventListener('scroll',check);check();
+</script>
+<script>
+var pacc_cur=0;
+function goTo_acc(idx){
+  var screens=['pacc_s1','pacc_s2','pacc_s3','pacc_s4','pacc_s5'];
+  document.getElementById(screens[pacc_cur]).classList.add('exit');
+  document.getElementById(screens[idx]).classList.add('active');
+  setTimeout(function(){document.getElementById(screens[pacc_cur]).classList.remove('active','exit');pacc_cur=idx;},500);
+  if(idx===1)startWA_acc();
+}
+function startWA_acc(){
+  var msgs=document.getElementById('pacc_msgs').querySelectorAll('.dmsg');
+  msgs.forEach(function(m,i){setTimeout(function(){m.classList.add('show');},500+i*700);});
+  setTimeout(function(){
+    document.getElementById('pacc_conc').classList.add('show');
+    document.getElementById('pacc_btn2').style.opacity='1';
+    document.getElementById('pacc_btn2').onclick=function(){goTo_acc(2);};
+  },(500+5*700));
+}
+function pickMythe_acc(){
+  var m=document.getElementById('pacc_mythe');
+  m.style.background='rgba(16,185,129,0.15)';m.style.borderColor='rgba(16,185,129,0.6)';m.style.color='#6ee7b7';
+  document.getElementById('pacc_fb3').classList.add('show');
+  document.getElementById('pacc_card3').style.borderColor='rgba(16,185,129,0.4)';
+  var btn=document.getElementById('pacc_btn3');btn.classList.remove('disabled');btn.onclick=function(){goTo_acc(3);startExo_acc();};
+}
+var pacc_exoStep=0,pacc_exoT=null;
+var pacc_exoData=[
+  ['🫀','Pense à cette personne.','Sans juger ce que tu ressens.'],
+  ['🔍','Qu\'est-ce qu\'elle te donne que tu n\'as pas ailleurs ?','Un sentiment, pas une personne.'],
+  ['💡','Est-ce que tu pourrais te le donner autrement ?','Pas maintenant. Juste comme question.']
+];
+function startExo_acc(){pacc_exoStep=0;runExoStep_acc();}
+function runExoStep_acc(){
+  var steps=document.getElementById('pacc_exo_steps').querySelectorAll('.dexo-step');
+  steps.forEach(function(s,i){s.style.opacity=i===pacc_exoStep?'1':'0.3';});
+  document.getElementById('pacc_exo_emoji').textContent=pacc_exoData[pacc_exoStep][0];
+  var fill=document.getElementById('pacc_exofill'),pct=0;
+  if(pacc_exoT)clearInterval(pacc_exoT);
+  pacc_exoT=setInterval(function(){
+    pct+=2;fill.style.width=pct+'%';
+    if(pct>=100){
+      clearInterval(pacc_exoT);pacc_exoStep++;
+      if(pacc_exoStep<pacc_exoData.length){fill.style.width='0%';setTimeout(runExoStep_acc,300);}
+      else{var btn=document.getElementById('pacc_btn4');btn.classList.remove('disabled');btn.onclick=function(){goTo_acc(4);startHold_acc();};}
+    }
+  },80);
+}
+function startHold_acc(){
+  var hold=document.getElementById('pacc_hold'),fill=document.getElementById('pacc_hfill'),p=0,t=null;
+  hold.addEventListener('mousedown',startH);hold.addEventListener('touchstart',startH,{passive:true});
+  hold.addEventListener('mouseup',stopH);hold.addEventListener('mouseleave',stopH);hold.addEventListener('touchend',stopH);
+  function startH(){t=setInterval(function(){p+=3;fill.style.width=p+'%';if(p>=100){clearInterval(t);document.getElementById('pacc_htxt').textContent="C'est noté !";fill.style.background='rgba(16,185,129,0.3)';var btn=document.getElementById('pacc_btn5');btn.classList.remove('disabled');btn.onclick=function(){alert('J1 terminé ! ✨');};}}  ,50);}
+  function stopH(){clearInterval(t);if(p<100){p=0;fill.style.width='0%';}}
+}
+var pacc_started=false;
+new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting&&!pacc_started){pacc_started=true;}});
+},{threshold:0.3}).observe(document.getElementById('phone_acc'));
+</script>
+<script>
+(function(){
+  var form=document.getElementById('waitlistFormCarnet');
+  if(!form)return;
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var email=form.querySelector('input[type="email"]').value;
+    var btn=form.querySelector('button');
+    btn.disabled=true;btn.textContent='...';
+    fetch('https://api.brevo.com/v3/contacts',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','api-key':'BREVO_API_KEY'},
+      body:JSON.stringify({email:email,listIds:[3],updateEnabled:true})
+    })
+    .then(function(){form.style.display='none';document.getElementById('waitlistSuccessCarnet').style.display='block';})
+    .catch(function(){form.style.display='none';document.getElementById('waitlistSuccessCarnet').style.display='block';});
+  });
+})();
+</script>
+
+</body>
+</html>
