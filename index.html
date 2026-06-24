@@ -605,37 +605,70 @@ nav {
   text-align:center; margin-bottom:48px;
   line-height:1.2;
 }
-.testimonials {
-  display:grid; grid-template-columns:1fr;
-  gap:16px;
+/* Carrousel témoignages */
+.testimonials-carousel {
+  overflow:hidden; position:relative; width:100%;
 }
-@media(min-width:600px) { .testimonials { grid-template-columns:repeat(3,1fr); } }
-
+.testimonials-track {
+  display:flex; gap:16px;
+  transition:transform 0.5s cubic-bezier(0.4,0,0.2,1);
+  will-change:transform;
+}
 .testimonial {
-  background:#141420;
-  border:1.5px solid rgba(255,255,255,0.08);
-  border-radius:20px; padding:24px;
-  display:flex; flex-direction:column; gap:16px;
+  flex:0 0 280px; perspective:1000px; cursor:pointer; height:230px;
 }
-.testimonial-quote {
-  font-size:14px; color:rgba(255,255,255,0.7);
-  line-height:1.7; font-style:italic; flex:1;
+@media(min-width:600px){ .testimonial { flex:0 0 300px; } }
+.testimonial-inner {
+  position:relative; width:100%; height:100%;
+  transform-style:preserve-3d;
+  transition:transform 0.6s cubic-bezier(0.4,0,0.2,1);
+  border-radius:20px;
 }
-.testimonial-author {
-  display:flex; align-items:center; gap:10px;
+.testimonial.flipped .testimonial-inner { transform:rotateY(180deg); }
+.testimonial-front, .testimonial-back {
+  position:absolute; inset:0; border-radius:20px;
+  backface-visibility:hidden; -webkit-backface-visibility:hidden;
+  display:flex; flex-direction:column; padding:24px;
 }
-.testimonial-avatar {
-  width:36px;height:36px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-size:16px;
+.testimonial-front {
+  align-items:center; justify-content:center; gap:12px; text-align:center;
+  transition:opacity 0.2s;
 }
-.testimonial-name {
-  font-family:"Sora",sans-serif;
-  font-size:13px; font-weight:700; color:#fff;
+.testimonial-front:hover { opacity:0.9; }
+.testimonial-back {
+  transform:rotateY(180deg); justify-content:space-between; gap:10px;
+  background:rgba(10,10,15,0.95); border:1.5px solid rgba(99,102,241,0.3);
 }
-.testimonial-meta {
-  font-size:11px; color:rgba(255,255,255,0.5);
+.t-avatar-big {
+  width:52px; height:52px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-family:"Sora",sans-serif; font-size:22px; font-weight:900; color:#fff;
 }
+.t-name { font-family:"Sora",sans-serif; font-size:15px; font-weight:800; color:#fff; }
+.t-carnet { font-size:11px; color:rgba(255,255,255,0.5); line-height:1.5; }
+.t-hint { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.t-question { font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:rgba(99,102,241,0.8); margin-bottom:6px; }
+.t-quote { font-size:13px; color:rgba(255,255,255,0.75); line-height:1.7; font-style:italic; flex:1; }
+.t-source { font-size:10px; color:rgba(255,255,255,0.2); }
+.carousel-nav {
+  display:flex; align-items:center; justify-content:center; gap:12px; margin-top:20px;
+}
+.carousel-dot {
+  width:6px; height:6px; border-radius:50%;
+  background:rgba(255,255,255,0.15); cursor:pointer; transition:all 0.3s;
+}
+.carousel-dot.active { background:#6366f1; width:20px; border-radius:3px; }
+.carousel-arrows {
+  display:flex; gap:8px; margin-top:16px; justify-content:center;
+}
+.carousel-btn {
+  width:36px; height:36px; border-radius:50%;
+  background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1);
+  color:rgba(255,255,255,0.5); font-size:16px; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  transition:all 0.2s;
+}
+.carousel-btn:hover { background:rgba(99,102,241,0.15); border-color:rgba(99,102,241,0.4); color:#fff; }
 
 /* ── FINAL CTA ── */
 
@@ -1178,7 +1211,7 @@ footer {
       </div>
       <div class="how-step-num">03</div>
       <div class="how-step-title">Avance dès que tu as 5 minutes</div>
-      <div class="how-step-desc">Chaque jour, avance dans ton carnet à travers des contenus courts et interactifs : tu réponds, choisis, réfléchis, expérimentes et avances étape après étape.</div>
+      <div class="how-step-desc">Une conversation qui te pose les bonnes questions. Un exercice de 2 minutes. Un défi pour le lendemain. Chaque jour, une chose à comprendre et une chose à faire.</div>
     </div>
 
     <div class="how-step reveal reveal-delay-4">
@@ -1365,38 +1398,116 @@ footer {
 <!-- SOCIAL PROOF -->
 <section class="social">
   <h2 class="social-title anim-fade-up">Ce qu'ils disent.</h2>
-  <div class="testimonials">
-    <div class="testimonial anim-fade-up anim-stagger-1">
-      <div class="testimonial-quote">"Je savais que je disais oui à tout le monde, mais je pensais que c'était juste ma personnalité. Le jour 3 m'a fait réaliser que c'était de la peur du conflit, pas de la gentillesse. Ça m'a changé quelque chose de concret."</div>
-      <div class="testimonial-author">
-        <div class="testimonial-avatar" style="background:linear-gradient(135deg,#4F46E5,#7C3AED);">L</div>
-        <div>
-          <div class="testimonial-name">Léa, 23 ans</div>
-          <div class="testimonial-meta">12 jours · Je dis oui alors que j'ai envie de dire non</div>
+  <p class="social-sub anim-fade-up" style="font-size:14px;color:rgba(255,255,255,0.4);text-align:center;margin-bottom:32px;line-height:1.6;">On a demandé à nos premiers testeurs ce qui les avait le plus surpris.<br>Clique sur une carte pour lire leur retour.</p>
+
+  <div class="testimonials-carousel anim-fade-up">
+    <div class="testimonials-track" id="testimonialsTrack">
+
+      <div class="testimonial" onclick="this.classList.toggle('flipped')">
+        <div class="testimonial-inner">
+          <div class="testimonial-front" style="background:linear-gradient(135deg,#1a1040,#2d1060);">
+            <div class="t-avatar-big" style="background:linear-gradient(135deg,#4F46E5,#7C3AED);">C</div>
+            <div class="t-name">Clara, 24 ans</div>
+            <div class="t-carnet">Je dis oui alors que j'ai envie de dire non</div>
+            <div class="t-hint">Lire son retour →</div>
+          </div>
+          <div class="testimonial-back">
+            <div class="t-question">Ce qui t'a le plus surpris ?</div>
+            <div class="t-quote">"Je pensais apprendre des techniques. En fait j'ai surtout compris pourquoi je faisais ce que je faisais depuis des années."</div>
+            <div class="t-source">Inspiré d'un retour de testeur</div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="testimonial anim-fade-up anim-stagger-2">
-      <div class="testimonial-quote">"Je regardais mes amis avoir des projets, des apparts, des relations stables, et je comprenais pas ce qui clochait chez moi. Saga m'a pas donné des réponses toutes faites, il m'a aidé à poser les bonnes questions."</div>
-      <div class="testimonial-author">
-        <div class="testimonial-avatar" style="background:linear-gradient(135deg,#0891b2,#6366f1);">T</div>
-        <div>
-          <div class="testimonial-name">Thomas, 26 ans</div>
-          <div class="testimonial-meta">12 jours · Je regarde les autres avancer et moi je stagne</div>
+
+      <div class="testimonial" onclick="this.classList.toggle('flipped')">
+        <div class="testimonial-inner">
+          <div class="testimonial-front" style="background:linear-gradient(135deg,#0a2040,#0d3060);">
+            <div class="t-avatar-big" style="background:linear-gradient(135deg,#0891b2,#6366f1);">M</div>
+            <div class="t-name">Maxime, 27 ans</div>
+            <div class="t-carnet">Je regarde les autres avancer et moi je stagne</div>
+            <div class="t-hint">Lire son retour →</div>
+          </div>
+          <div class="testimonial-back">
+            <div class="t-question">Ce qui t'a le plus surpris ?</div>
+            <div class="t-quote">"Le jour 3 m'a mis mal à l'aise. Pas parce que c'était dur, mais parce que c'était trop juste. Je m'attendais pas à ça en 5 minutes."</div>
+            <div class="t-source">Inspiré d'un retour de testeur</div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="testimonial anim-fade-up anim-stagger-3">
-      <div class="testimonial-quote">"J'ai l'habitude de me adapter à tout le monde et de jamais vraiment dire ce que je pense. Le carnet m'a fait réaliser que je savais même plus ce que j'aimais vraiment, tellement j'avais pris l'habitude de m'effacer."</div>
-      <div class="testimonial-author">
-        <div class="testimonial-avatar" style="background:linear-gradient(135deg,#ec4899,#8b5cf6);">S</div>
-        <div>
-          <div class="testimonial-name">Sara, 21 ans</div>
-          <div class="testimonial-meta">12 jours · Je n'ose pas être totalement moi-même</div>
+
+      <div class="testimonial" onclick="this.classList.toggle('flipped')">
+        <div class="testimonial-inner">
+          <div class="testimonial-front" style="background:linear-gradient(135deg,#2d0a28,#4a0a40);">
+            <div class="t-avatar-big" style="background:linear-gradient(135deg,#ec4899,#8b5cf6);">I</div>
+            <div class="t-name">Inès, 22 ans</div>
+            <div class="t-carnet">Je me compare tout le temps aux autres</div>
+            <div class="t-hint">Lire son retour →</div>
+          </div>
+          <div class="testimonial-back">
+            <div class="t-question">Ce qui t'a le plus surpris ?</div>
+            <div class="t-quote">"J'ai l'habitude d'abandonner ce genre de truc au bout de 2 jours. Là j'ai tenu les 12 jours. Je pense que c'est parce que c'est court et que ça parle vraiment de moi."</div>
+            <div class="t-source">Inspiré d'un retour de testeur</div>
+          </div>
         </div>
       </div>
+
+      <div class="testimonial" onclick="this.classList.toggle('flipped')">
+        <div class="testimonial-inner">
+          <div class="testimonial-front" style="background:linear-gradient(135deg,#0a2818,#0d4020);">
+            <div class="t-avatar-big" style="background:linear-gradient(135deg,#059669,#6366f1);">A</div>
+            <div class="t-name">Axel, 25 ans</div>
+            <div class="t-carnet">J'angoisse quand je pense à l'avenir</div>
+            <div class="t-hint">Lire son retour →</div>
+          </div>
+          <div class="testimonial-back">
+            <div class="t-question">Ce qui t'a le plus surpris ?</div>
+            <div class="t-quote">"J'pensais que ça allait me donner un plan. Mais en fait ça m'a juste aidé à arrêter de fuir la question. C'est déjà beaucoup."</div>
+            <div class="t-source">Inspiré d'un retour de testeur</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial" onclick="this.classList.toggle('flipped')">
+        <div class="testimonial-inner">
+          <div class="testimonial-front" style="background:linear-gradient(135deg,#281808,#402010);">
+            <div class="t-avatar-big" style="background:linear-gradient(135deg,#d97706,#dc2626);">N</div>
+            <div class="t-name">Noémie, 23 ans</div>
+            <div class="t-carnet">J'ai peur de faire les mauvais choix</div>
+            <div class="t-hint">Lire son retour →</div>
+          </div>
+          <div class="testimonial-back">
+            <div class="t-question">Ce qui t'a le plus surpris ?</div>
+            <div class="t-quote">"Que la peur de choisir c'est pas un défaut de caractère. C'est quelque chose qui se comprend et qui se travaille. Ça change tout dans ma tête."</div>
+            <div class="t-source">Inspiré d'un retour de testeur</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial" onclick="this.classList.toggle('flipped')">
+        <div class="testimonial-inner">
+          <div class="testimonial-front" style="background:linear-gradient(135deg,#1a0a2e,#2e0a4a);">
+            <div class="t-avatar-big" style="background:linear-gradient(135deg,#7c3aed,#c026d3);">L</div>
+            <div class="t-name">Lucas, 26 ans</div>
+            <div class="t-carnet">Je n'ose pas être totalement moi-même</div>
+            <div class="t-hint">Lire son retour →</div>
+          </div>
+          <div class="testimonial-back">
+            <div class="t-question">Ce qui t'a le plus surpris ?</div>
+            <div class="t-quote">"Le jour 1 j'ai réalisé que je savais même plus ce que j'aimais vraiment. Tellement j'avais pris l'habitude de m'adapter à tout le monde."</div>
+            <div class="t-source">Inspiré d'un retour de testeur</div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
+
+  <div class="carousel-arrows">
+    <button class="carousel-btn" onclick="carouselPrev()">←</button>
+    <div class="carousel-nav" id="carouselDots"></div>
+    <button class="carousel-btn" onclick="carouselNext()">→</button>
+  </div>
+
 </section>
 
 <div class="section-divider"></div>
@@ -2101,6 +2212,64 @@ var animObs = new IntersectionObserver(function(entries) {
 animEls.forEach(function(el) { animObs.observe(el); });
 
 setupWaitlist('waitlistForm2', 'waitlistSuccess2', 'waitlistError2');
+
+// ── CARROUSEL TÉMOIGNAGES ──
+(function(){
+  var track = document.getElementById('testimonialsTrack');
+  if (!track) return;
+  var cards = track.querySelectorAll('.testimonial');
+  var total = cards.length;
+  var current = 0;
+  var cardW = 300 + 16; // width + gap
+
+  function getVisible() {
+    return window.innerWidth >= 600 ? 3 : 1;
+  }
+
+  function maxIndex() {
+    return Math.max(0, total - getVisible());
+  }
+
+  function goTo(idx) {
+    current = Math.max(0, Math.min(idx, maxIndex()));
+    track.style.transform = 'translateX(-' + (current * cardW) + 'px)';
+    updateDots();
+  }
+
+  function buildDots() {
+    var nav = document.getElementById('carouselDots');
+    if (!nav) return;
+    nav.innerHTML = '';
+    var pages = maxIndex() + 1;
+    for (var i = 0; i < pages; i++) {
+      (function(i){
+        var d = document.createElement('div');
+        d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        d.onclick = function(){ goTo(i); };
+        nav.appendChild(d);
+      })(i);
+    }
+  }
+
+  function updateDots() {
+    var dots = document.querySelectorAll('.carousel-dot');
+    dots.forEach(function(d, i){ d.classList.toggle('active', i === current); });
+  }
+
+  window.carouselNext = function(){ goTo(current + 1); };
+  window.carouselPrev = function(){ goTo(current - 1); };
+
+  buildDots();
+
+  // Touch/swipe
+  var startX = 0;
+  track.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; }, {passive:true});
+  track.addEventListener('touchend', function(e){
+    var diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) diff > 0 ? carouselNext() : carouselPrev();
+  }, {passive:true});
+})();
+
 
 // Timeline animation
 var parcoursList = document.querySelector('.parcours-actes');
