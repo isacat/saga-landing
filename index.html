@@ -359,6 +359,7 @@ nav {
 .how-steps {
   display:grid; grid-template-columns:1fr; gap:20px;
 }
+
 @media(min-width:560px) { .how-steps { grid-template-columns:repeat(2,1fr); } }
 @media(min-width:768px) { .how-steps { grid-template-columns:repeat(4,1fr); } }
 /* ── RESPONSIVE MOBILE ── */
@@ -436,6 +437,16 @@ nav {
 }
 .how-step-desc {
   font-size:13px; color:rgba(255,255,255,0.5); line-height:1.6;
+}
+
+.how-step {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.how-step.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* ── DIMENSIONS ── */
@@ -1627,6 +1638,20 @@ var observer = new IntersectionObserver(function(entries) {
   });
 }, { threshold: 0.15 });
 
+var howSteps = document.querySelectorAll('.how-step');
+var howObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      var idx = Array.from(howSteps).indexOf(entry.target);
+      setTimeout(function() {
+        entry.target.classList.add('visible');
+      }, idx * 150);
+      howObs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+howSteps.forEach(function(s) { howObs.observe(s); });
+  
 document.querySelectorAll(".reveal, .tension-phrase, #statCounter").forEach(function(el) {
   observer.observe(el);
 });
