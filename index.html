@@ -615,20 +615,22 @@ nav {
   will-change:transform;
 }
 .testimonial {
-  flex:0 0 280px; perspective:1000px; cursor:pointer; height:230px;
+  flex:0 0 280px; perspective:1000px; cursor:pointer; height:270px;
 }
-@media(min-width:600px){ .testimonial { flex:0 0 300px; } }
+@media(min-width:600px){ .testimonial { flex:0 0 300px; height:270px; } }
 .testimonial-inner {
-  position:relative; width:100%; height:100%;
+  position:relative; width:100%; height:270px;
   transform-style:preserve-3d;
   transition:transform 0.6s cubic-bezier(0.4,0,0.2,1);
   border-radius:20px;
 }
 .testimonial.flipped .testimonial-inner { transform:rotateY(180deg); }
 .testimonial-front, .testimonial-back {
-  position:absolute; inset:0; border-radius:20px;
+  position:absolute; top:0; left:0; right:0; bottom:0;
+  width:100%; height:270px; border-radius:20px;
   backface-visibility:hidden; -webkit-backface-visibility:hidden;
-  display:flex; flex-direction:column; padding:24px;
+  display:flex; flex-direction:column; padding:22px;
+  box-sizing:border-box;
 }
 .testimonial-front {
   align-items:center; justify-content:center; gap:12px; text-align:center;
@@ -1433,7 +1435,7 @@ footer {
 
       <div class="testimonial" onclick="this.classList.toggle('flipped')">
         <div class="testimonial-inner">
-          <div class="testimonial-front" style="background:linear-gradient(135deg,rgba(26,16,64,0.6),rgba(45,16,96,0.5));">
+          <div class="testimonial-front" style="background:#0e0e1a;position:relative;overflow:hidden;" data-glow="radial-gradient(ellipse 80% 60% at 50% 40%,rgba(99,102,241,0.25) 0%,transparent 70%)">
             <div class="t-avatar-big" style="background:linear-gradient(135deg,#4F46E5,#7C3AED);">C</div>
             <div class="t-name">Clara, 24 ans</div>
             <div class="t-carnet">Je dis oui alors que j'ai envie de dire non</div>
@@ -1449,7 +1451,7 @@ footer {
 
       <div class="testimonial" onclick="this.classList.toggle('flipped')">
         <div class="testimonial-inner">
-          <div class="testimonial-front" style="background:linear-gradient(135deg,rgba(10,32,64,0.6),rgba(13,48,96,0.5));">
+          <div class="testimonial-front" style="background:#0e0e1a;position:relative;overflow:hidden;" data-glow="radial-gradient(ellipse 80% 60% at 50% 40%,rgba(8,145,178,0.25) 0%,transparent 70%)">
             <div class="t-avatar-big" style="background:linear-gradient(135deg,#0891b2,#6366f1);">M</div>
             <div class="t-name">Maxime, 27 ans</div>
             <div class="t-carnet">Je regarde les autres avancer et moi je stagne</div>
@@ -1465,7 +1467,7 @@ footer {
 
       <div class="testimonial" onclick="this.classList.toggle('flipped')">
         <div class="testimonial-inner">
-          <div class="testimonial-front" style="background:linear-gradient(135deg,rgba(45,10,40,0.6),rgba(74,10,64,0.5));">
+          <div class="testimonial-front" style="background:#0e0e1a;position:relative;overflow:hidden;" data-glow="radial-gradient(ellipse 80% 60% at 50% 40%,rgba(236,72,153,0.25) 0%,transparent 70%)">
             <div class="t-avatar-big" style="background:linear-gradient(135deg,#ec4899,#8b5cf6);">I</div>
             <div class="t-name">Inès, 22 ans</div>
             <div class="t-carnet">Je me compare tout le temps aux autres</div>
@@ -1481,7 +1483,7 @@ footer {
 
       <div class="testimonial" onclick="this.classList.toggle('flipped')">
         <div class="testimonial-inner">
-          <div class="testimonial-front" style="background:linear-gradient(135deg,rgba(10,40,24,0.6),rgba(13,64,32,0.5));">
+          <div class="testimonial-front" style="background:#0e0e1a;position:relative;overflow:hidden;" data-glow="radial-gradient(ellipse 80% 60% at 50% 40%,rgba(5,150,105,0.25) 0%,transparent 70%)">
             <div class="t-avatar-big" style="background:linear-gradient(135deg,#059669,#6366f1);">A</div>
             <div class="t-name">Axel, 25 ans</div>
             <div class="t-carnet">J'angoisse quand je pense à l'avenir</div>
@@ -1497,7 +1499,7 @@ footer {
 
       <div class="testimonial" onclick="this.classList.toggle('flipped')">
         <div class="testimonial-inner">
-          <div class="testimonial-front" style="background:linear-gradient(135deg,rgba(40,24,8,0.6),rgba(64,32,16,0.5));">
+          <div class="testimonial-front" style="background:#0e0e1a;position:relative;overflow:hidden;" data-glow="radial-gradient(ellipse 80% 60% at 50% 40%,rgba(217,119,6,0.25) 0%,transparent 70%)">
             <div class="t-avatar-big" style="background:linear-gradient(135deg,#d97706,#dc2626);">N</div>
             <div class="t-name">Noémie, 23 ans</div>
             <div class="t-carnet">J'ai peur de faire les mauvais choix</div>
@@ -1513,7 +1515,7 @@ footer {
 
       <div class="testimonial" onclick="this.classList.toggle('flipped')">
         <div class="testimonial-inner">
-          <div class="testimonial-front" style="background:linear-gradient(135deg,rgba(26,10,46,0.6),rgba(46,10,74,0.5));">
+          <div class="testimonial-front" style="background:#0e0e1a;position:relative;overflow:hidden;" data-glow="radial-gradient(ellipse 80% 60% at 50% 40%,rgba(124,58,237,0.25) 0%,transparent 70%)">
             <div class="t-avatar-big" style="background:linear-gradient(135deg,#7c3aed,#c026d3);">L</div>
             <div class="t-name">Lucas, 26 ans</div>
             <div class="t-carnet">Je n'ose pas être totalement moi-même</div>
@@ -2373,6 +2375,19 @@ var animObs = new IntersectionObserver(function(entries) {
 animEls.forEach(function(el) { animObs.observe(el); });
 
 setupWaitlist('waitlistForm2', 'waitlistSuccess2', 'waitlistError2');
+
+// ── GLOWS TÉMOIGNAGES ──
+document.querySelectorAll('.testimonial-front[data-glow]').forEach(function(el) {
+  var glow = document.createElement('div');
+  glow.style.cssText = 'position:absolute;inset:0;pointer-events:none;z-index:0;';
+  glow.style.background = el.getAttribute('data-glow');
+  el.insertBefore(glow, el.firstChild);
+  // S'assurer que le contenu est au-dessus du glow
+  Array.from(el.children).forEach(function(child) {
+    if (child !== glow) child.style.position = 'relative';
+  });
+});
+
 
 // ── FAQ ──
 function toggleFaq(el) {
