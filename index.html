@@ -1041,6 +1041,35 @@ footer {
 .anim-stagger-5 { transition-delay:0.33s; }
 .anim-stagger-6 { transition-delay:0.40s; }
 
+
+/* ── FAQ ── */
+.faq { padding:80px 24px; max-width:680px; margin:0 auto; }
+.faq-title { font-family:"Sora",sans-serif; font-size:clamp(24px,4vw,32px); font-weight:900; color:#fff; margin-bottom:40px; text-align:center; line-height:1.2; }
+.faq-list { display:flex; flex-direction:column; gap:0; }
+.faq-item { border-bottom:1px solid rgba(255,255,255,0.07); }
+.faq-question {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:18px 0; cursor:pointer; gap:16px;
+  font-family:"Sora",sans-serif; font-size:15px; font-weight:700; color:#fff;
+  transition:color 0.2s;
+}
+.faq-question:hover { color:#a5b4fc; }
+.faq-icon {
+  width:24px; height:24px; border-radius:50%;
+  background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1);
+  display:flex; align-items:center; justify-content:center;
+  font-size:14px; color:rgba(255,255,255,0.4); flex-shrink:0;
+  transition:all 0.3s;
+}
+.faq-item.open .faq-icon { background:rgba(99,102,241,0.15); border-color:rgba(99,102,241,0.4); color:#a5b4fc; transform:rotate(45deg); }
+.faq-item.open .faq-question { color:#a5b4fc; }
+.faq-answer {
+  max-height:0; overflow:hidden;
+  transition:max-height 0.4s ease, padding 0.3s ease;
+  font-size:14px; color:rgba(255,255,255,0.5); line-height:1.8;
+}
+.faq-item.open .faq-answer { max-height:200px; padding-bottom:18px; }
+
 </style>
 </head>
 <body>
@@ -1404,13 +1433,13 @@ footer {
 
       <div class="testimonial" onclick="this.classList.toggle('flipped')">
         <div class="testimonial-inner">
-          <div class="testimonial-front" style="background:linear-gradient(135deg,#1a1040,#2d1060);">
+          <div class="testimonial-front" style="background:linear-gradient(135deg,rgba(26,16,64,0.6),rgba(45,16,96,0.5));">
             <div class="t-avatar-big" style="background:linear-gradient(135deg,#4F46E5,#7C3AED);">C</div>
             <div class="t-name">Clara, 24 ans</div>
             <div class="t-carnet">Je dis oui alors que j'ai envie de dire non</div>
             <div class="t-hint">Lire son retour →</div>
           </div>
-          <div class="testimonial-back" style="background:linear-gradient(160deg,#1e1450,#120a35);border:1.5px solid rgba(99,102,241,0.35);">
+          <div class="testimonial-back" style="background:linear-gradient(160deg,rgba(30,20,80,0.5),rgba(18,10,53,0.6));border:1.5px solid rgba(99,102,241,0.2);">
             <div class="t-question">Ce qui t'a le plus surpris ?</div>
             <div class="t-quote">"Je pensais apprendre des techniques. En fait j'ai surtout compris pourquoi je faisais ce que je faisais depuis des années."</div>
             <div class="t-source">Inspiré d'un retour de testeur</div>
@@ -1420,13 +1449,13 @@ footer {
 
       <div class="testimonial" onclick="this.classList.toggle('flipped')">
         <div class="testimonial-inner">
-          <div class="testimonial-front" style="background:linear-gradient(135deg,#0a2040,#0d3060);">
+          <div class="testimonial-front" style="background:linear-gradient(135deg,rgba(10,32,64,0.6),rgba(13,48,96,0.5));">
             <div class="t-avatar-big" style="background:linear-gradient(135deg,#0891b2,#6366f1);">M</div>
             <div class="t-name">Maxime, 27 ans</div>
             <div class="t-carnet">Je regarde les autres avancer et moi je stagne</div>
             <div class="t-hint">Lire son retour →</div>
           </div>
-          <div class="testimonial-back" style="background:linear-gradient(160deg,#0a2848,#071830);border:1.5px solid rgba(8,145,178,0.35);">
+          <div class="testimonial-back" style="background:linear-gradient(160deg,rgba(10,40,72,0.5),rgba(7,24,48,0.6));border:1.5px solid rgba(8,145,178,0.2);">
             <div class="t-question">Ce qui t'a le plus surpris ?</div>
             <div class="t-quote">"Le jour 3 m'a mis mal à l'aise. Pas parce que c'était dur, mais parce que c'était trop juste. Je m'attendais pas à ça en 5 minutes."</div>
             <div class="t-source">Inspiré d'un retour de testeur</div>
@@ -1436,13 +1465,13 @@ footer {
 
       <div class="testimonial" onclick="this.classList.toggle('flipped')">
         <div class="testimonial-inner">
-          <div class="testimonial-front" style="background:linear-gradient(135deg,#2d0a28,#4a0a40);">
+          <div class="testimonial-front" style="background:linear-gradient(135deg,rgba(45,10,40,0.6),rgba(74,10,64,0.5));">
             <div class="t-avatar-big" style="background:linear-gradient(135deg,#ec4899,#8b5cf6);">I</div>
             <div class="t-name">Inès, 22 ans</div>
             <div class="t-carnet">Je me compare tout le temps aux autres</div>
             <div class="t-hint">Lire son retour →</div>
           </div>
-          <div class="testimonial-back" style="background:linear-gradient(160deg,#2d0a28,#1a0520);border:1.5px solid rgba(236,72,153,0.35);">
+          <div class="testimonial-back" style="background:linear-gradient(160deg,rgba(45,10,40,0.5),rgba(26,5,32,0.6));border:1.5px solid rgba(236,72,153,0.2);">
             <div class="t-question">Ce qui t'a le plus surpris ?</div>
             <div class="t-quote">"J'ai l'habitude d'abandonner ce genre de truc au bout de 2 jours. Là j'ai tenu les 12 jours. Je pense que c'est parce que c'est court et que ça parle vraiment de moi."</div>
             <div class="t-source">Inspiré d'un retour de testeur</div>
@@ -1452,13 +1481,13 @@ footer {
 
       <div class="testimonial" onclick="this.classList.toggle('flipped')">
         <div class="testimonial-inner">
-          <div class="testimonial-front" style="background:linear-gradient(135deg,#0a2818,#0d4020);">
+          <div class="testimonial-front" style="background:linear-gradient(135deg,rgba(10,40,24,0.6),rgba(13,64,32,0.5));">
             <div class="t-avatar-big" style="background:linear-gradient(135deg,#059669,#6366f1);">A</div>
             <div class="t-name">Axel, 25 ans</div>
             <div class="t-carnet">J'angoisse quand je pense à l'avenir</div>
             <div class="t-hint">Lire son retour →</div>
           </div>
-          <div class="testimonial-back" style="background:linear-gradient(160deg,#0a2818,#061510);border:1.5px solid rgba(5,150,105,0.35);">
+          <div class="testimonial-back" style="background:linear-gradient(160deg,rgba(10,40,24,0.5),rgba(6,21,16,0.6));border:1.5px solid rgba(5,150,105,0.2);">
             <div class="t-question">Ce qui t'a le plus surpris ?</div>
             <div class="t-quote">"J'pensais que ça allait me donner un plan. Mais en fait ça m'a juste aidé à arrêter de fuir la question. C'est déjà beaucoup."</div>
             <div class="t-source">Inspiré d'un retour de testeur</div>
@@ -1468,13 +1497,13 @@ footer {
 
       <div class="testimonial" onclick="this.classList.toggle('flipped')">
         <div class="testimonial-inner">
-          <div class="testimonial-front" style="background:linear-gradient(135deg,#281808,#402010);">
+          <div class="testimonial-front" style="background:linear-gradient(135deg,rgba(40,24,8,0.6),rgba(64,32,16,0.5));">
             <div class="t-avatar-big" style="background:linear-gradient(135deg,#d97706,#dc2626);">N</div>
             <div class="t-name">Noémie, 23 ans</div>
             <div class="t-carnet">J'ai peur de faire les mauvais choix</div>
             <div class="t-hint">Lire son retour →</div>
           </div>
-          <div class="testimonial-back" style="background:linear-gradient(160deg,#281808,#180e05);border:1.5px solid rgba(217,119,6,0.35);">
+          <div class="testimonial-back" style="background:linear-gradient(160deg,rgba(40,24,8,0.5),rgba(24,14,5,0.6));border:1.5px solid rgba(217,119,6,0.2);">
             <div class="t-question">Ce qui t'a le plus surpris ?</div>
             <div class="t-quote">"Que la peur de choisir c'est pas un défaut de caractère. C'est quelque chose qui se comprend et qui se travaille. Ça change tout dans ma tête."</div>
             <div class="t-source">Inspiré d'un retour de testeur</div>
@@ -1484,13 +1513,13 @@ footer {
 
       <div class="testimonial" onclick="this.classList.toggle('flipped')">
         <div class="testimonial-inner">
-          <div class="testimonial-front" style="background:linear-gradient(135deg,#1a0a2e,#2e0a4a);">
+          <div class="testimonial-front" style="background:linear-gradient(135deg,rgba(26,10,46,0.6),rgba(46,10,74,0.5));">
             <div class="t-avatar-big" style="background:linear-gradient(135deg,#7c3aed,#c026d3);">L</div>
             <div class="t-name">Lucas, 26 ans</div>
             <div class="t-carnet">Je n'ose pas être totalement moi-même</div>
             <div class="t-hint">Lire son retour →</div>
           </div>
-          <div class="testimonial-back" style="background:linear-gradient(160deg,#1a0a2e,#0e0620);border:1.5px solid rgba(124,58,237,0.35);">
+          <div class="testimonial-back" style="background:linear-gradient(160deg,rgba(26,10,46,0.5),rgba(14,6,32,0.6));border:1.5px solid rgba(124,58,237,0.2);">
             <div class="t-question">Ce qui t'a le plus surpris ?</div>
             <div class="t-quote">"Le jour 1 j'ai réalisé que je savais même plus ce que j'aimais vraiment. Tellement j'avais pris l'habitude de m'adapter à tout le monde."</div>
             <div class="t-source">Inspiré d'un retour de testeur</div>
@@ -1759,6 +1788,66 @@ footer {
     <span>Sans engagement</span>
   </div>
 </section>
+
+
+<div class="section-divider"></div>
+
+<!-- FAQ -->
+<section class="faq reveal">
+  <h2 class="faq-title">Questions fréquentes</h2>
+  <div class="faq-list">
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        Saga est-il une application mobile ?
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-answer">Saga est disponible sur iOS et Android. Tu peux aussi y accéder depuis un navigateur web. Le lancement est prévu pour le 14 juillet 2025 — inscris-toi pour être notifié en avant-première.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        Combien de temps faut-il par jour ?
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-answer">5 minutes par jour, pas une de plus. Chaque session est courte et conçue pour s'intégrer dans ta journée — le matin, dans les transports, ou le soir. L'idée c'est la régularité, pas la durée.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        Vais-je recevoir des rappels ?
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-answer">Oui, tu peux activer des rappels quotidiens à l'heure qui te convient. Tu choisis aussi de les désactiver à tout moment. On ne te spamme pas — juste un nudge au bon moment si tu le souhaites.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        Combien coûte Saga ?
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-answer">Saga propose 3 jours d'essai gratuit, sans carte bancaire. Ensuite, deux formules : un abonnement mensuel et un abonnement annuel (plus avantageux). Les tarifs exacts seront annoncés au lancement le 14 juillet.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        Puis-je arrêter et reprendre un carnet ?
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-answer">Oui. Tu peux mettre un carnet en pause et le reprendre quand tu veux. Les carnets que tu as commencés ou terminés restent accessibles à vie dans ton compte, même sans abonnement actif.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        Qui a créé Saga ?
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-answer">Saga a été créé par Isabelle, une jeune fondatrice convaincue que le développement personnel peut être concret, ciblé et accessible — sans bullshit. Si tu veux en savoir plus ou échanger, écris-nous à hello@mysaga.fr.</div>
+    </div>
+
+  </div>
+</section>
+
 
 <!-- FOOTER -->
 <footer>
@@ -2276,6 +2365,15 @@ var animObs = new IntersectionObserver(function(entries) {
 animEls.forEach(function(el) { animObs.observe(el); });
 
 setupWaitlist('waitlistForm2', 'waitlistSuccess2', 'waitlistError2');
+
+// ── FAQ ──
+function toggleFaq(el) {
+  var item = el.parentElement;
+  var isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(function(i){ i.classList.remove('open'); });
+  if (!isOpen) item.classList.add('open');
+}
+
 
 // ── CARROUSEL TÉMOIGNAGES ──
 (function(){
