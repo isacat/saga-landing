@@ -1094,23 +1094,27 @@ footer {
   display:flex;
   align-items:center;
   padding:100px 48px 60px;
-  gap:60px;
+  gap:48px;
   position:relative;
   overflow:hidden;
+  max-width:1280px;
+  margin:0 auto;
+  width:100%;
 }
 .hero-left {
   position:relative;z-index:1;
-  flex:1;max-width:480px;
-  display:flex;flex-direction:column;gap:24px;
+  flex:0 0 420px;
+  display:flex;flex-direction:column;gap:20px;
   align-items:flex-start;
 }
 .hero-right{
-  flex-shrink:0;
+  flex:1;
   display:grid;
-  grid-template-columns:160px 220px 160px;
-  grid-template-rows:1fr 1fr;
-  gap:16px;
+  grid-template-columns:140px 200px 140px;
+  grid-template-rows:auto auto;
+  gap:14px;
   align-items:center;
+  justify-content:center;
   position:relative;z-index:1;
 }
 .phone-col{
@@ -1120,7 +1124,7 @@ footer {
 }
 @keyframes phoneFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
 .phone{
-  width:220px;border-radius:36px;background:#0e0e1a;
+  width:200px;border-radius:32px;background:#0e0e1a;
   border:1.5px solid rgba(255,255,255,0.12);
   box-shadow:0 0 0 1px rgba(255,255,255,0.04),0 40px 80px rgba(0,0,0,0.8),0 0 60px rgba(99,102,241,0.2);
   overflow:hidden;position:relative;
@@ -1152,7 +1156,7 @@ footer {
 .profil-desc{font-size:8px;color:rgba(255,255,255,0.4);line-height:1.5;margin-bottom:6px;}
 .profil-dims{display:flex;gap:4px;flex-wrap:wrap;}
 .dim-pill{padding:3px 7px;border-radius:20px;font-size:7px;font-weight:700;}
-.carnet-hero{height:175px;position:relative;overflow:hidden;}
+.carnet-hero{height:155px;position:relative;overflow:hidden;}
 .carnet-hero img{width:100%;height:100%;object-fit:cover;opacity:0.65;}
 .carnet-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,15,0.2) 0%,rgba(10,10,15,0.9) 100%);}
 .carnet-hero-content{position:absolute;bottom:0;left:0;right:0;padding:14px 14px 12px;}
@@ -1213,7 +1217,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </nav>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero" style="box-sizing:border-box;">
   <div class="hero-bg" aria-hidden="true"></div>
   <div class="hero-orbits" aria-hidden="true">
     <div class="horbit h1"><div class="hdot"></div></div>
