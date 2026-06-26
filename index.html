@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N57X76J8');</script>
+<!-- End Google Tag Manager -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SG1Z589FJJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-SG1Z589FJJ');
+</script>
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1072,9 +1087,117 @@ footer {
 }
 .faq-item.open .faq-answer { max-height:200px; padding-bottom:18px; }
 
+
+/* ── HERO V3 : grille 3 colonnes ── */
+.hero {
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  padding:100px 48px 60px;
+  gap:60px;
+  position:relative;
+  overflow:hidden;
+}
+.hero-left {
+  position:relative;z-index:1;
+  flex:1;max-width:480px;
+  display:flex;flex-direction:column;gap:24px;
+}
+.hero-right{
+  flex-shrink:0;
+  display:grid;
+  grid-template-columns:160px 220px 160px;
+  grid-template-rows:1fr 1fr;
+  gap:16px;
+  align-items:center;
+  position:relative;z-index:1;
+}
+.phone-col{
+  grid-column:2;grid-row:1/3;
+  display:flex;align-items:center;justify-content:center;
+  animation:phoneFloat 4s ease-in-out infinite;
+}
+@keyframes phoneFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.phone{
+  width:220px;border-radius:36px;background:#0e0e1a;
+  border:1.5px solid rgba(255,255,255,0.12);
+  box-shadow:0 0 0 1px rgba(255,255,255,0.04),0 40px 80px rgba(0,0,0,0.8),0 0 60px rgba(99,102,241,0.2);
+  overflow:hidden;position:relative;
+}
+.phone-notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:80px;height:22px;background:#0e0e1a;border-radius:0 0 14px 14px;z-index:20;}
+.phone-bar{position:absolute;top:0;left:0;width:100%;height:2px;z-index:19;background:linear-gradient(90deg,#4F46E5,#7C3AED);}
+.fc-left-top{grid-column:1;grid-row:1;animation:fcFloat1 5s ease-in-out infinite;}
+.fc-left-bot{grid-column:1;grid-row:2;animation:fcFloat2 6s ease-in-out infinite;}
+.fc-right-top{grid-column:3;grid-row:1;animation:fcFloat3 4.5s ease-in-out infinite;}
+.fc-right-bot{grid-column:3;grid-row:2;animation:fcFloat4 5.5s ease-in-out infinite;}
+@keyframes fcFloat1{0%,100%{transform:rotate(-1.5deg);}50%{transform:rotate(-1.5deg);}}
+@keyframes fcFloat2{0%,100%{transform:rotate(1deg);}50%{transform:rotate(1deg);}}
+@keyframes fcFloat3{0%,100%{transform:rotate(1.5deg);}50%{transform:rotate(1.5deg);}}
+@keyframes fcFloat4{0%,100%{transform:rotate(-1deg);}50%{transform:rotate(-1deg);}}
+.fcard{background:#141420;border:1.5px solid rgba(255,255,255,0.08);border-radius:16px;padding:14px 16px;box-shadow:0 12px 40px rgba(0,0,0,0.6);}
+.fcard-tag{font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#6366f1;margin-bottom:8px;}
+.wa-header{display:flex;align-items:center;gap:6px;margin-bottom:8px;}
+.wa-avs{display:flex;}
+.wa-av{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;border:1.5px solid #141420;}
+.wa-name{font-family:"Sora",sans-serif;font-size:9px;font-weight:700;color:#fff;}
+.wa-msgs{display:flex;flex-direction:column;gap:4px;}
+.wa-msg{padding:5px 8px;border-radius:7px;font-size:8px;line-height:1.4;color:rgba(255,255,255,0.8);}
+.wa-l{background:#1f1f2e;align-self:flex-start;border-bottom-left-radius:2px;}
+.wa-r{background:#1a3a2a;align-self:flex-end;border-bottom-right-radius:2px;}
+.defi-title{font-family:"Sora",sans-serif;font-size:10px;font-weight:800;color:#fff;line-height:1.3;margin-bottom:8px;}
+.defi-btn{padding:5px 10px;background:linear-gradient(90deg,#4F46E5,#7C3AED);border-radius:6px;font-size:8px;font-weight:700;color:#fff;width:fit-content;}
+.profil-emoji{font-size:20px;margin-bottom:4px;}
+.profil-name{font-family:"Sora",sans-serif;font-size:11px;font-weight:900;color:#fff;margin-bottom:3px;line-height:1.2;}
+.profil-desc{font-size:8px;color:rgba(255,255,255,0.4);line-height:1.5;margin-bottom:6px;}
+.profil-dims{display:flex;gap:4px;flex-wrap:wrap;}
+.dim-pill{padding:3px 7px;border-radius:20px;font-size:7px;font-weight:700;}
+.carnet-hero{height:175px;position:relative;overflow:hidden;}
+.carnet-hero img{width:100%;height:100%;object-fit:cover;opacity:0.65;}
+.carnet-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,15,0.2) 0%,rgba(10,10,15,0.9) 100%);}
+.carnet-hero-content{position:absolute;bottom:0;left:0;right:0;padding:14px 14px 12px;}
+.carnet-dims{display:flex;gap:5px;margin-bottom:6px;}
+.carnet-dim-chip{display:flex;align-items:center;gap:3px;padding:2px 7px;border-radius:20px;font-size:8px;font-weight:700;background:rgba(0,0,0,0.4);backdrop-filter:blur(4px);}
+.carnet-dim-dot{width:4px;height:4px;border-radius:50%;}
+.carnet-title{font-family:"Sora",sans-serif;font-size:13px;font-weight:900;color:#fff;line-height:1.2;}
+.carnet-body{background:#0e0e1a;padding:14px 14px 18px;display:flex;flex-direction:column;gap:12px;}
+.prog-top{display:flex;justify-content:space-between;}
+.prog-label{font-size:9px;color:rgba(255,255,255,0.4);}
+.prog-val{font-size:9px;color:#6366f1;font-weight:700;}
+.prog-bar{height:3px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;margin-top:4px;}
+.prog-fill{height:100%;width:0%;background:linear-gradient(90deg,#4F46E5,#7C3AED);border-radius:2px;}
+.next-session{display:flex;align-items:center;gap:8px;padding:10px;background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.18);border-radius:10px;}
+.next-icon{width:26px;height:26px;border-radius:7px;background:rgba(99,102,241,0.15);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+.next-label{font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#6366f1;margin-bottom:2px;}
+.next-title{font-family:"Sora",sans-serif;font-size:10px;font-weight:800;color:#fff;}
+.next-meta{font-size:8px;color:rgba(255,255,255,0.3);margin-top:1px;}
+.next-arrow{font-size:11px;color:rgba(255,255,255,0.25);margin-left:auto;}
+.cta{width:100%;padding:12px;background:linear-gradient(90deg,#4F46E5,#7C3AED);border:none;border-radius:11px;font-family:"Sora",sans-serif;font-size:12px;font-weight:700;color:#fff;text-align:center;box-shadow:0 4px 16px rgba(79,70,229,0.4);}
+/* Responsive hero */
+@media(max-width:1100px){
+  .hero{gap:40px;padding:100px 32px 60px;}
+  .hero-right{grid-template-columns:130px 200px 130px;}
+  .phone{width:200px;}
+}
+@media(max-width:900px){
+  .hero{flex-direction:column;align-items:center;text-align:center;padding:100px 24px 60px;gap:40px;}
+  .hero-left{align-items:center;max-width:100%;}
+  .hero-sub{text-align:center;}
+  .waitlist-form{justify-content:center;}
+  .hero-right{grid-template-columns:120px 180px 120px;gap:10px;}
+  .phone{width:180px;}
+}
+@media(max-width:600px){
+  .hero-right{display:flex;justify-content:center;}
+  .fcard{display:none;}
+  .phone-col{grid-column:unset;grid-row:unset;animation:phoneFloat 4s ease-in-out infinite;}
+}
 </style>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N57X76J8"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <!-- NAV -->
 <nav>
@@ -1101,23 +1224,96 @@ footer {
     <div class="horbit h7"><div class="hdot"></div></div>
     <div class="horbit h8"><div class="hdot"></div></div>
   </div>
-  <div class="hero-content">
+
+  <!-- Gauche -->
+  <div class="hero-left">
     <div class="hero-badge">✦ &nbsp;📱 App mobile · Disponible le 14 juillet 2026</div>
     <h1 class="hero-title">Comprends ce qui te bloque.<br><span>Avance pour de vrai.</span></h1>
     <p class="hero-sub">Une application de carnets interactifs de 12 jours pour comprendre tes blocages et passer à l'action.</p>
+    <form class="waitlist-form" id="waitlistForm1" novalidate>
+      <input class="waitlist-input" type="email" name="email" placeholder="ton@email.com" autocomplete="email"/>
+      <button class="waitlist-btn" type="submit">Rejoindre →</button>
+    </form>
+    <div class="waitlist-error" id="waitlistError1">Cet email ne semble pas valide.</div>
+    <div class="waitlist-success" id="waitlistSuccess1">🎉 C'est noté ! Tu seras parmi les premiers le 14 juillet 2026.</div>
+    <div style="font-size:12px;color:rgba(255,255,255,0.25);text-align:center;margin-top:12px;">Aucun engagement · Juste un email le jour du lancement</div>
+  </div>
 
- 
-      <form class="waitlist-form" id="waitlistForm1" novalidate>
-        <input class="waitlist-input" type="email" name="email" placeholder="ton@email.com" autocomplete="email"/>
-        <button class="waitlist-btn" type="submit">Rejoindre →</button>
-      </form>
-      <div class="waitlist-error" id="waitlistError1">Cet email ne semble pas valide.</div>
-      <div class="waitlist-success" id="waitlistSuccess1">🎉 C'est noté ! Tu seras parmi les premiers le 14 juillet 2026.</div>
-      <div style="font-size:12px;color:rgba(255,255,255,0.25);text-align:center;margin-top:12px;">
-        Aucun engagement · Juste un email le jour du lancement
+    <div class="hero-right">
+
+    <!-- Col 1 ligne 1 : Conversation -->
+    <div class="fcard fc-left-top" id="fc-wa">
+      <div class="fcard-tag">💬 Ta conversation</div>
+      <div id="fc-wa-body">
+        <div class="wa-header">
+          <div class="wa-avs">
+            <div class="wa-av" style="background:linear-gradient(135deg,#f472b6,#8b5cf6);">👩</div>
+            <div class="wa-av" style="background:linear-gradient(135deg,#67e8f9,#6366f1);margin-left:-6px;">👨</div>
+          </div>
+          <div class="wa-name">Camille & Mehdi</div>
+        </div>
+        <div class="wa-msgs">
+          <div class="wa-msg wa-l">Tu viens samedi ?</div>
+          <div class="wa-msg wa-r">Euh… ouais je pense 😅</div>
+          <div class="wa-msg wa-l">T'amènes un dessert ?</div>
+          <div class="wa-msg wa-r">Ok pas de problème !</div>
+        </div>
       </div>
     </div>
+
+    <!-- Col 1 ligne 2 : Défi -->
+    <div class="fcard fc-left-bot" id="fc-defi">
+      <div class="fcard-tag" id="fc-defi-tag">⚡ Ton défi du jour</div>
+      <div id="fc-defi-body">
+        <div class="defi-title">Dis à quelqu'un quelque chose que tu aurais gardé pour toi.</div>
+        <div class="defi-btn">Je le fais →</div>
+      </div>
+    </div>
+
+    <!-- Col 2 : Phone -->
+    <div class="phone-col">
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-bar"></div>
+        <!-- Carrousel 8 carnets -->
+        <div style="position:relative;overflow:hidden;">
+          <div id="carnetTrack" style="transition:opacity 0.4s ease;">
+<div class="carnet-slide"><div class="carnet-hero" style="background:linear-gradient(135deg,#0a2818,#061510);"><img src="images/carnet-oui-non.png" alt="" onerror="this.style.display='none'"/><div class="carnet-overlay"></div><div class="carnet-hero-content"><div class="carnet-dims"><div class="carnet-dim-chip"><div class="carnet-dim-dot" style="background:#bef264;box-shadow:0 0 4px #bef264;"></div><span style="color:#bef264;">Ancrage</span></div><div class="carnet-dim-chip"><div class="carnet-dim-dot" style="background:#67e8f9;box-shadow:0 0 4px #67e8f9;"></div><span style="color:#67e8f9;">Relations</span></div></div><div class="carnet-title">Je dis oui alors que j'ai envie de dire non</div></div></div><div class="carnet-body"><div><div class="prog-top"><span class="prog-label">Jour 1 / 12</span><span class="prog-val">0%</span></div><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="next-session"><div class="next-icon">📓</div><div style="flex:1;"><div class="next-label">Aujourd'hui</div><div class="next-title">Pourquoi tu dis oui</div><div class="next-meta">5 min · 3 étapes</div></div><div class="next-arrow">→</div></div><div class="cta">Commencer le Jour 1 →</div></div></div>
+<div class="carnet-slide" style="display:none;"><div class="carnet-hero" style="background:linear-gradient(135deg,#0a1820,#0d3020);"><img src="images/carnet-stagner.png" alt="" onerror="this.style.display='none'"/><div class="carnet-overlay"></div><div class="carnet-hero-content"><div class="carnet-dims"><div class="carnet-dim-chip"><div class="carnet-dim-dot" style="background:#5eead4;box-shadow:0 0 4px #5eead4;"></div><span style="color:#5eead4;">Action</span></div><div class="carnet-dim-chip"><div class="carnet-dim-dot" style="background:#fdba74;box-shadow:0 0 4px #fdba74;"></div><span style="color:#fdba74;">Courage</span></div></div><div class="carnet-title">Je regarde les autres avancer et moi je stagne</div></div></div><div class="carnet-body"><div><div class="prog-top"><span class="prog-label">Jour 1 / 12</span><span class="prog-val">0%</span></div><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="next-session"><div class="next-icon">📓</div><div style="flex:1;"><div class="next-label">Aujourd'hui</div><div class="next-title">Comprendre pourquoi je stagne</div><div class="next-meta">5 min · 3 étapes</div></div><div class="next-arrow">→</div></div><div class="cta">Commencer le Jour 1 →</div></div></div>
+<div class="carnet-slide" style="display:none;"><div class="carnet-hero" style="background:linear-gradient(135deg,#201808,#302010);"><img src="images/carnet-choix.png" alt="" onerror="this.style.display='none'"/><div class="carnet-overlay"></div><div class="carnet-hero-content"><div class="carnet-dims"><div class="carnet-dim-chip"><div class="carnet-dim-dot" style="background:#fde047;box-shadow:0 0 4px #fde047;"></div><span style="color:#fde047;">Choix</span></div><div class="carnet-dim-chip"><div class="carnet-dim-dot" style="background:#fda4af;box-shadow:0 0 4px #fda4af;"></div><span style="color:#fda4af;">Clarté</span></div></div><div class="carnet-title">J'ai peur de faire les mauvais choix</div></div></div><div class="carnet-body"><div><div class="prog-top"><span class="prog-label">Jour 1 / 12</span><span class="prog-val">0%</span></div><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="next-session"><div class="next-icon">📓</div><div style="flex:1;"><div class="next-label">Aujourd'hui</div><div class="next-title">Comprendre ma peur de choisir</div><div class="next-meta">5 min · 3 étapes</div></div><div class="next-arrow">→</div></div><div class="cta">Commencer le Jour 1 →</div></div></div>
+<div class="carnet-slide" style="display:none;"><div class="carnet-hero" style="background:linear-gradient(135deg,#1a0828,#280a30);"><img src="images/carnet-comparaison.png" alt="" onerror="this.style.display='none'"/><div class="carnet-overlay"></div><div class="carnet-hero-content"><div class="carnet-dims"><div class="carnet-dim-chip"><div class="carnet-dim-dot" style="background:#67e8f9;box-shadow:0 0 4px #67e8f9;"></div><span style="color:#67e8f9;">Relations</span></div><div class="carnet-dim-chip"><div class="carnet-dim-dot" style="background:#c4b5fd;box-shadow:0 0 4px #c4b5fd;"></div><span style="color:#c4b5fd;">Identité</span></div></div><div class="carnet-title">Je me compare tout le temps aux autres</div></div></div><div class="carnet-body"><div><div class="prog-top"><span class="prog-label">Jour 1 / 12</span><span class="prog-val">0%</span></div><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="next-session"><div class="next-icon">📓</div><div style="flex:1;"><div class="next-label">Aujourd'hui</div><div class="next-title">Pourquoi je me compare</div><div class="next-meta">5 min · 3 étapes</div></div><div class="next-arrow">→</div></div><div class="cta">Commencer le Jour 1 →</div></div></div>
+<div class="carnet-slide" style="display:none;"><div class="carnet-hero" style="background:linear-gradient(135deg,#200a18,#300a28);"><img src="images/carnet-cerveau.png" alt="" onerror="this.style.display='none'"/><div class="carnet-overlay"></div><div class="carnet-hero-content"><div class="carnet-dims"><div class="carnet-dim-chip"><div class="carnet-dim-dot" style="background:#fda4af;box-shadow:0 0 4px #fda4af;"></div><span style="color:#fda4af;">Clarté</span></div><div class="carnet-dim-chip"><div class="carnet-dim-dot" style="background:#bef264;box-shadow:0 0 4px #bef264;"></div><span style="color:#bef264;">Ancrage</span></div></div><div class="carnet-title">Mon cerveau ne s'arrête jamais</div></div></div><div class="carnet-body"><div><div class="prog-top"><span class="prog-label">Jour 1 / 12</span><span class="prog-val">0%</span></div><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="next-session"><div class="next-icon">📓</div><div style="flex:1;"><div class="next-label">Aujourd'hui</div><div class="next-title">Comprendre mon mental agité</div><div class="next-meta">5 min · 3 étapes</div></div><div class="next-arrow">→</div></div><div class="cta">Commencer le Jour 1 →</div></div></div>
+<div class="carnet-slide" style="display:none;"><div class="carnet-hero" style="background:linear-gradient(135deg,#0a1828,#0a1040);"><img src="images/carnet-moi-meme.png" alt="" onerror="this.style.display='none'"/><div class="carnet-overlay"></div><div class="carnet-hero-content"><div class="carnet-dims"><div class="carnet-dim-chip"><div class="carnet-dim-dot" style="background:#f9a8d4;box-shadow:0 0 4px #f9a8d4;"></div><span style="color:#f9a8d4;">Émotion</span></div><div class="carnet-dim-chip"><div class="carnet-dim-dot" style="background:#67e8f9;box-shadow:0 0 4px #67e8f9;"></div><span style="color:#67e8f9;">Relations</span></div></div><div class="carnet-title">Je n'ose pas être totalement moi-même</div></div></div><div class="carnet-body"><div><div class="prog-top"><span class="prog-label">Jour 1 / 12</span><span class="prog-val">0%</span></div><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="next-session"><div class="next-icon">📓</div><div style="flex:1;"><div class="next-label">Aujourd'hui</div><div class="next-title">Comprendre pourquoi je m'efface</div><div class="next-meta">5 min · 3 étapes</div></div><div class="next-arrow">→</div></div><div class="cta">Commencer le Jour 1 →</div></div></div>
+<div class="carnet-slide" style="display:none;"><div class="carnet-hero" style="background:linear-gradient(135deg,#200818,#300820);"><img src="images/carnet-accroche.png" alt="" onerror="this.style.display='none'"/><div class="carnet-overlay"></div><div class="carnet-hero-content"><div class="carnet-dims"><div class="carnet-dim-chip"><div class="carnet-dim-dot" style="background:#f9a8d4;box-shadow:0 0 4px #f9a8d4;"></div><span style="color:#f9a8d4;">Émotion</span></div><div class="carnet-dim-chip"><div class="carnet-dim-dot" style="background:#67e8f9;box-shadow:0 0 4px #67e8f9;"></div><span style="color:#67e8f9;">Relations</span></div></div><div class="carnet-title">Je m'accroche à des personnes qui me font du mal</div></div></div><div class="carnet-body"><div><div class="prog-top"><span class="prog-label">Jour 1 / 12</span><span class="prog-val">0%</span></div><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="next-session"><div class="next-icon">📓</div><div style="flex:1;"><div class="next-label">Aujourd'hui</div><div class="next-title">Comprendre mes attachements</div><div class="next-meta">5 min · 3 étapes</div></div><div class="next-arrow">→</div></div><div class="cta">Commencer le Jour 1 →</div></div></div>
+<div class="carnet-slide" style="display:none;"><div class="carnet-hero" style="background:linear-gradient(135deg,#0a1020,#101828);"><img src="images/carnet-avenir.png" alt="" onerror="this.style.display='none'"/><div class="carnet-overlay"></div><div class="carnet-hero-content"><div class="carnet-dims"><div class="carnet-dim-chip"><div class="carnet-dim-dot" style="background:#fdba74;box-shadow:0 0 4px #fdba74;"></div><span style="color:#fdba74;">Courage</span></div><div class="carnet-dim-chip"><div class="carnet-dim-dot" style="background:#5eead4;box-shadow:0 0 4px #5eead4;"></div><span style="color:#5eead4;">Action</span></div></div><div class="carnet-title">J'angoisse quand je pense à l'avenir</div></div></div><div class="carnet-body"><div><div class="prog-top"><span class="prog-label">Jour 1 / 12</span><span class="prog-val">0%</span></div><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="next-session"><div class="next-icon">📓</div><div style="flex:1;"><div class="next-label">Aujourd'hui</div><div class="next-title">Comprendre mon angoisse</div><div class="next-meta">5 min · 3 étapes</div></div><div class="next-arrow">→</div></div><div class="cta">Commencer le Jour 1 →</div></div></div>
+          </div>
+        </div>
+        <div id="carnetDots" style="display:flex;justify-content:center;gap:3px;padding:8px 0;background:#0e0e1a;"><div class="cdot" style="width:14px;height:3px;border-radius:2px;background:#6366f1;transition:all 0.3s;"></div><div class="cdot" style="width:4px;height:3px;border-radius:2px;background:rgba(255,255,255,0.2);transition:all 0.3s;"></div><div class="cdot" style="width:4px;height:3px;border-radius:2px;background:rgba(255,255,255,0.2);transition:all 0.3s;"></div><div class="cdot" style="width:4px;height:3px;border-radius:2px;background:rgba(255,255,255,0.2);transition:all 0.3s;"></div><div class="cdot" style="width:4px;height:3px;border-radius:2px;background:rgba(255,255,255,0.2);transition:all 0.3s;"></div><div class="cdot" style="width:4px;height:3px;border-radius:2px;background:rgba(255,255,255,0.2);transition:all 0.3s;"></div><div class="cdot" style="width:4px;height:3px;border-radius:2px;background:rgba(255,255,255,0.2);transition:all 0.3s;"></div><div class="cdot" style="width:4px;height:3px;border-radius:2px;background:rgba(255,255,255,0.2);transition:all 0.3s;"></div></div>
+      </div>
+    </div>
+
+    <!-- Col 3 ligne 1 : Profil -->
+    <div class="fcard fc-right-top" id="fc-profil" style="border-color:rgba(196,181,253,0.2);background:rgba(139,92,246,0.06);">
+      <div class="fcard-tag">✦ Ton profil</div>
+      <div id="fc-profil-body">
+        <div class="profil-emoji">🎭</div>
+        <div class="profil-name">Le Pacificateur</div>
+        <div class="profil-desc">Tu mets l'harmonie avant tout.</div>
+        <div class="profil-dims">
+          <div class="dim-pill" style="background:rgba(190,242,100,0.1);color:#bef264;">Ancrage</div>
+          <div class="dim-pill" style="background:rgba(103,232,249,0.1);color:#67e8f9;">Relations</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Col 3 ligne 2 : Dimensions défilantes -->
+    <div class="fcard fc-right-bot" id="fc-dims">
+      <div class="fcard-tag">🕸️ Tes 8 dimensions</div>
+      <div id="fc-dims-body"></div>
+    </div>
+
   </div>
+</div>
 </section>
 
 <div class="section-divider"></div>
@@ -2360,7 +2556,85 @@ function setupWaitlist(formId, successId, errorId) {
 
 
 
+// ── CARROUSEL CARNETS ──
+(function(){
+  var slides = document.querySelectorAll('.carnet-slide');
+  var dots = document.querySelectorAll('.cdot');
+  var track = document.getElementById('carnetTrack');
+  var cur = 0;
+  var total = slides.length;
+
+  function goTo(idx){
+    track.style.opacity = '0';
+    setTimeout(function(){
+      slides[cur].style.display = 'none';
+      dots[cur].style.width = '4px';
+      dots[cur].style.background = 'rgba(255,255,255,0.2)';
+      cur = (idx + total) % total;
+      slides[cur].style.display = 'block';
+      dots[cur].style.width = '14px';
+      dots[cur].style.background = '#6366f1';
+      track.style.opacity = '1';
+    }, 250);
+  }
+
+  setInterval(function(){ goTo(cur + 1); }, 3500);
+})();
+
+// ── DIMENSION FIXE ──
+(function(){
+  var body = document.getElementById('fc-dims-body');
+  if(!body) return;
+  body.innerHTML = '<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">'
+    + '<div style="width:28px;height:28px;border-radius:8px;background:rgba(255,255,255,0.04);border:1px solid #bef26444;display:flex;align-items:center;justify-content:center;font-size:14px;">🌱</div>'
+    + '<div><div style="font-family:Sora,sans-serif;font-size:12px;font-weight:800;color:#fff;">Ancrage</div></div></div>'
+    + '<div style="display:flex;justify-content:space-between;margin-bottom:5px;">'
+    + '<div style="font-size:8px;color:rgba(255,255,255,0.3);">Niveau actuel</div>'
+    + '<div style="font-size:8px;font-weight:700;color:#bef264;">88%</div></div>'
+    + '<div style="height:5px;background:rgba(255,255,255,0.08);border-radius:3px;overflow:hidden;">'
+    + '<div id="dimBar" style="height:100%;width:0%;background:#bef264;border-radius:3px;transition:width 0.8s cubic-bezier(0.4,0,0.2,1);"></div></div>';
+  setTimeout(function(){ var b=document.getElementById('dimBar'); if(b) b.style.width='88%'; }, 100);
+})();
 setupWaitlist('waitlistForm1', 'waitlistSuccess1', 'waitlistError1');
+
+// ── PHONE HERO ──
+(function(){
+  var track = document.getElementById('hphoneSlides');
+  var dotsEl = document.getElementById('hphoneDots');
+  var barFill = document.getElementById('hpBarFill');
+  if(!track) return;
+  var total = track.querySelectorAll('.hpslide').length;
+  var current = 0;
+  var W = 200;
+  var autoT;
+
+  for(var i=0;i<total;i++){
+    var d=document.createElement('div');
+    d.className='hpdot'+(i===0?' active':'');
+    dotsEl.appendChild(d);
+  }
+
+  function goTo(idx){
+    current=(idx+total)%total;
+    track.style.transform='translateX(-'+(current*W)+'px)';
+    document.querySelectorAll('.hpdot').forEach(function(d,i){d.classList.toggle('active',i===current);});
+    barFill.style.width=((current+1)/total*100)+'%';
+  }
+
+  function next(){ goTo(current+1); }
+  autoT=setInterval(next,2800);
+  track.addEventListener('mouseenter',function(){clearInterval(autoT);});
+  track.addEventListener('mouseleave',function(){autoT=setInterval(next,2800);});
+
+  // Swipe
+  var sx=0;
+  track.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;},{passive:true});
+  track.addEventListener('touchend',function(e){
+    var diff=sx-e.changedTouches[0].clientX;
+    if(Math.abs(diff)>40) diff>0?goTo(current+1):goTo(current-1);
+  },{passive:true});
+})();
+
 
 // ── ANIMATIONS SECTIONS ──
 var animEls = document.querySelectorAll('.anim-fade-up, .anim-fade-left, .anim-scale');
